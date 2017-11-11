@@ -1,0 +1,19 @@
+@mixin transition($values...){
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  transition: $args;
+}
+
+@mixin borderradius($value){
+  -webkit-border-radius: $value;
+  -moz-transition: $value;
+  transition: $value;
+}
+
+@mixin clearfix() {
+  &::after {
+    display: block;
+    clear: both;
+    content: "";
+  }
+}
