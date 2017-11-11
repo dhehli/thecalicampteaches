@@ -1,0 +1,7 @@
+{
+  "id": "string",
+  "userId": "string",
+  "teamId": "string",
+  "state": "string",
+  "created": "date"
+}

@@ -1,0 +1,15 @@
+{
+  "id": "string",
+  "orderId": "string",
+  "videos": [
+    {
+      "video": "string",
+      "order": "number",
+      "comment": {
+        "text": "string",
+        "created": "date"
+      }
+    }
+  ],
+  "created": "date"
+}

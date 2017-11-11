@@ -1,0 +1,9 @@
+{
+  "id": "string",
+  "vorname": "string",
+  "name": "string",
+  "image": "string",
+  "quote": "string",
+  "created": "date",
+  "onlineState": true
+}

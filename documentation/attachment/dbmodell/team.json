@@ -1,0 +1,11 @@
+{
+  "id": "string",
+  "vorname": "string",
+  "name": "string",
+  "image": "string",
+  "email": "string",
+  "location": "string",
+  "password": "string",
+  "created": "date",
+  "onlineState": true
+}
