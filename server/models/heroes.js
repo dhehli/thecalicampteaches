@@ -1,8 +1,10 @@
-const express = require('express');
+import express from 'express';
+import config from 'config';
+import _ from 'underscore';
+import rethinkdbdash from 'rethinkdbdash';
+
 const router = express.Router();
-const config  = require('config');
-const _ = require('underscore');
-var r = require('rethinkdbdash')(config.get('rethinkdb'));
+const r = rethinkdbdash(config.get('rethinkdb'));
 
 const table = 'heroes';
 
@@ -76,4 +78,4 @@ router.delete('/heroesApi/:uid', (req, res) => {
   .error(err => res.status(500).send({error: err}))
 })
 
-module.exports = router;
+export default router;

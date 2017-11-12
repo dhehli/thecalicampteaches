@@ -1,11 +1,10 @@
 // Get dependencies
-const express = require('express');
-const path = require('path');
-const http = require('http');
-const bodyParser = require('body-parser');
-
+import express from 'express';
+import path from 'path';
+import http from 'http';
+import bodyParser from 'body-parser';
 // Get our API routes
-const api = require('./server/models/heroes');
+import api from './models/heroes';
 
 const app = express();
 
