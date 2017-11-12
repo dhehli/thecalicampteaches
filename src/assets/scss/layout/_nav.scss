@@ -1,0 +1,60 @@
+.navbar{
+  a{
+    font-family: $nav-font-sans-serif;
+  }
+
+  .navbar-brand{
+    color: $black;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-base * 2;
+  }
+
+  .nav-item{
+    margin: 0 .3125rem;
+
+    .nav-link{
+      color: $black;
+      font-weight: $font-weight-bold;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    &.active, &:hover{
+      background: $blue;
+      color: $white;
+
+      .nav-link{
+        color: $white;
+      }
+    }
+  }
+
+  .social-media{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li{
+      background: $black;
+      display: inline-block;
+      @include borderradius(50%);
+      width: 1.87rem;
+      width: 1.87rem;
+      text-align: center;
+    }
+
+    a{
+      color: $white;
+      line-height: 1.87rem;
+
+      &:hover{
+        text-decoration: none;
+      }
+    }
+  }
+
+  //Todo: Toggler color
+  .navbar-toggler-icon{
+
+  }
+}
