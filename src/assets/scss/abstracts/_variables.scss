@@ -6,8 +6,9 @@ $gray: #4d4d4d;
 $light-gray: #f7f7f7;
 
 $base-font-sans-serif: 'Raleway', 'Helvetica Neue', 'Helvetica', sans-serif;
+$second-font-sans-serif: 'Montserrat', 'Helvetica Neue', 'Helvetica', sans-serif;
 $base-font-serif: 'Playfair Display', 'Times', 'Baskerville', 'Georgia', serif;
-$nav-font-sans-serif: 'Montserrat', 'Helvetica Neue', 'Helvetica', sans-serif;
+
 
 // Body
 $base-text-color: $black !default;
@@ -28,6 +29,7 @@ $btn-color: $white !default;
 $btn-background: $blue !default;
 $btn-padding: 0.4em 0.7em !default;
 $btn-font-size: inherit !default;
+$btn-font-family: $second-font-sans-serif !default;
 
 // Forms
 $form-element-padding: $btn-padding !default;

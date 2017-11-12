@@ -6,6 +6,9 @@ $breakpoints: (
   'widescreen': 1300px
 );
 
+//Overwrite Bootstrap
+@import 'bootstrap/bootstrap';
+
 //Abstracts
 @import 'abstracts/variables';
 @import 'abstracts/base-mixins';

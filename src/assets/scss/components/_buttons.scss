@@ -1,0 +1,11 @@
+.btn{
+  background: $btn-background;
+  color: $white;
+  font-family: $btn-font-family;
+
+  &:hover{
+    color: $blue;
+    background: $white;
+    border: 1px solid $blue;
+  }
+}
