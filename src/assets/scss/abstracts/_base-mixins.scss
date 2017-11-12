@@ -1,7 +1,7 @@
 @mixin transition($values...){
-  -webkit-transition: $args;
-  -moz-transition: $args;
-  transition: $args;
+  -webkit-transition: $values;
+  -moz-transition: $values;
+  transition: $values;
 }
 
 @mixin borderradius($value){
