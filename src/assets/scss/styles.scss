@@ -23,5 +23,6 @@ $breakpoints: (
 @import 'components/forms';
 
 //Layout
+@import 'layout/content';
 @import 'layout/nav';
-@import 'layout/header';
+@import 'layout/intro';
