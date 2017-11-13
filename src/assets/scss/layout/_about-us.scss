@@ -1,18 +1,54 @@
 .about-us{
-  background: url("../images/aboutus-bg.jpg");
+  background: url("../images/aboutus-bg.jpg") no-repeat;
   margin: 7.813em 0;
   padding-top: 16.250rem;
   position: relative;
 
+  @include media('screen', '<tablet') {
+  padding-top: 5rem;
+  }
+
   .left-col{
     background: $white;
     width: 50%;
-    min-height: 300px;
+    min-height: 600px;
+
+    @include media('screen', '<tablet') {
+      display: none;
+    }
   }
+
   .container{
     position: absolute;
     top: 16.250rem;
     left: 50%;
     transform: translate(-50%); //magic
+
+    @include media('screen', '<tablet') {
+      position: static;
+      transform: translate(0);
+      background: $white;
+    }
+
+    .txt-holder{
+      padding: 6.25rem 6.25rem 6.25rem 0;
+      max-width: 400px;
+      float: right;
+
+      @include media('screen', '<tablet') {
+        padding: 0;
+        float: none;
+        max-width: 100%;
+        padding: 2rem 0;
+      }
+    }
+
+    .video-holder{
+      padding-top: 18.625rem;
+
+      @include media('screen', '<tablet') {
+        padding-top: 0;
+      }
+    }
   }
 }

@@ -29,4 +29,8 @@ p {
 
 a {
   color: $base-link-color;
+
+  &:hover{
+    color: $base-link-color;  
+  }
 }
