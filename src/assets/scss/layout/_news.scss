@@ -1,0 +1,34 @@
+.news{
+  margin: 7.813em 0;
+
+  .news-holder{
+    max-width: 270px;
+    margin: 0 auto 1rem;
+    @include transition(box-shadow, ease-in-out, 0.4s);
+
+    .img-holder{
+      overflow: hidden;
+
+      img{
+        @include transition(all, ease-in-out, 0.4s);
+      }
+    }
+
+    &:hover{
+      @include box-shadow(0, 1px, 5px, rgba(77, 77, 77, 0.5));
+
+      .img-holder img{
+        transform: scale(1.2);
+      }
+    }
+
+    .txt-holder{
+      padding: 1.25rem;
+    }
+  }
+
+  .btn-holder-center{
+    margin-top: 2.5rem;
+    text-align: center;
+  }
+}

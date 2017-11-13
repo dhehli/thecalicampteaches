@@ -8,7 +8,7 @@ h6, .h6,
 .h {
   font-family: $second-font-sans-serif;
   font-weight: $font-weight-bold;
-  margin: 0 0 1em;
+  margin: 0 0 1rem;
 }
 
 h1, .h1 {
@@ -24,13 +24,13 @@ h3, .h3 {
 }
 
 p {
-  margin: 1em 0;
+  margin: 1rem 0;
 }
 
 a {
   color: $base-link-color;
 
   &:hover{
-    color: $base-link-color;  
+    color: $base-link-color;
   }
 }
