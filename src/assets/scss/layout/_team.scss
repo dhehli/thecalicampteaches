@@ -15,6 +15,7 @@
 
   .team-holder{
     @include box-shadow(0, 1px, 5px, rgba(77, 77, 77, 0.5));
+    @include transition(all, ease-in-out, 0.4s);
     @include borderradius(5px);
     text-align: center;
     padding: 1.877rem 0 2.5rem;
