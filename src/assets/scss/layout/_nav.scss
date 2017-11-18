@@ -14,6 +14,11 @@
     color: $black;
     font-weight: $font-weight-bold;
     font-size: $font-size-base * 2;
+
+    img{
+      display: block;
+      max-width: 200px;
+    }
   }
 
   .nav-item{
