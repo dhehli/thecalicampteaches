@@ -27,7 +27,7 @@
         "../node_modules/popper.js/dist/umd/popper.min.js",
         "../node_modules/bootstrap/dist/js/bootstrap.min.js",
         "../node_modules/flexslider/2.6.2/jquery.flexslider.js",
-        "../node_modules/flexslider/2.6.2/test.js" 
+        "assets/js/flexslider-init.js" 
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
