@@ -1,5 +1,61 @@
 .team{
   margin: 7.813em 0;
 
-  
+  .slides{
+    margin: 10px;
+
+    li{
+      max-width: 241.25px;
+    }
+
+    & li:nth-child(even){
+      margin-top: 1.875rem;
+    }
+  }
+
+  .team-holder{
+    @include box-shadow(0, 1px, 5px, rgba(77, 77, 77, 0.5));
+    @include borderradius(5px);
+    text-align: center;
+    padding: 1.877rem 0 2.5rem;
+    color: $mid-gray;
+
+    .img-holder{
+      margin-bottom: .625rem;
+
+      img{
+        @include borderradius(50%);
+        border: 3px solid $white;
+        width: auto;
+        display: inline;
+      }
+    }
+
+    h2{
+      margin: 0;
+      color: $blue;
+    }
+
+    .mail, .location{
+      font-size: .875rem;
+    }
+
+    .icon-waves{
+      color: $gray;
+      font-size: 1.5rem;
+    }
+
+    &:hover{
+      background: $blue;
+      color: $white;
+
+      h2{
+        color: $white;
+      }
+
+      .icon-waves{
+        color: $dark-blue;
+      }
+    }
+  }
 }
