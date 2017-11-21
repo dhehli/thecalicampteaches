@@ -15,6 +15,11 @@ import { HeroesComponent }      from './heroes/heroes.component';
 import { HeroSearchComponent }  from './hero-search/hero-search.component';
 import { HeroService }          from './hero.service';
 import { MessageService }       from './message.service';
+import { HeaderComponent } from './shared/header/header.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { HomeComponent } from './components/home/home.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   imports: [
@@ -35,7 +40,12 @@ import { MessageService }       from './message.service';
     DashboardComponent,
     HeroesComponent,
     HeroDetailComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    HeaderComponent,
+    FooterComponent,
+    HomeComponent,
+    SignupComponent,
+    LoginComponent
   ],
   providers: [ HeroService, MessageService ],
   bootstrap: [ AppComponent ]
