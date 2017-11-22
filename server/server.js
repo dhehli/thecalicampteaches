@@ -3,8 +3,11 @@ import express from 'express';
 import path from 'path';
 import http from 'http';
 import bodyParser from 'body-parser';
+import session from 'express-session';
 // Get our API routes
-import api from './models/heroes';
+import heroes from './models/heroes';
+import signup from './models/signup';
+import login from './models/login';
 
 const app = express();
 
@@ -15,8 +18,31 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));
 
-// Set our api routes
-app.use('/api', api);
+//use sessions for tracking logins
+app.use(session({
+  secret: 'holy cow',
+  resave: true,
+  saveUninitialized: false
+}));
+
+//Router Middleware to Check if user has Session
+function loggedIn(req, res, next) {
+  if (req.session && req.session.userId) {
+    return next();
+  } else {
+    var err = new Error('You must be logged in to view this page.');
+    err.status = 401;
+    return next(err);
+  }
+}
+
+// Set api routes
+
+app.use('/api', signup);
+app.use('/api', login);
+
+// Set protected routes
+app.use('/api', loggedIn, heroes);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {
