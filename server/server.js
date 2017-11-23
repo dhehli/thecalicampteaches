@@ -4,6 +4,8 @@ import path from 'path';
 import http from 'http';
 import bodyParser from 'body-parser';
 import session from 'express-session';
+import expressValidator from 'express-validator';
+
 // Get our API routes
 import heroes from './models/heroes';
 import signup from './models/signup';
@@ -14,6 +16,7 @@ const app = express();
 // Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
 
 // Point static path to dist
 app.use(express.static(path.join(__dirname, 'dist')));

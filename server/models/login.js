@@ -35,6 +35,7 @@ router.post('/login', (req, res) => {
             return res.status(401).send({error: 'Password wrong'})
         }
 
+
         const userId = response[0].id;
         req.session.userId = userId;
 

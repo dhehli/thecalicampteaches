@@ -9,34 +9,57 @@ const r = rethinkdbdash(config.get('rethinkdb'));
 
 const table = 'user';
 
+//Check email adress is
+function checkDuplicatedEmail(email){
+  return new Promise((resolve, reject) => {
+   r.table(table)
+   .filter({ email: email })
+   .count()
+   .run()
+   .then(response => response ? reject("email taken") : resolve())
+   .error(err => reject(err));
+  })
+}
+
+//Encrypt Password to Store in Database
+function encryptPassword(password){
+  return new Promise((resolve, reject) => {
+    bcrypt.hash(password, 10)
+    .then(hash => resolve(hash))
+  })
+}
+
+//Post to insert User
 router.post('/signup', (req, res) => {
-  if(_.isEmpty(req.body)){
-    return res.status(400).send({error: 'No Request Body'})
-  }
-  if(!req.body.salutation){
-    return res.status(400).send({error: 'No Salutation provided'})
-  }
-  if(!req.body.firstname){
-    return res.status(400).send({error: 'No Firstname provided'})
-  }
-  if(!req.body.lastname){
-    return res.status(400).send({error: 'No Lastname provided'})
-  }
-  if(!req.body.email){
-    return res.status(400).send({error: 'No email provided'})
-  }
-  if(!req.body.password){
-    return res.status(400).send({error: 'No password provided'})
+
+  req.checkBody("salutation", "No salutation.").notEmpty().trim();
+  req.checkBody("firstname", "No firstname.").notEmpty().trim();
+  req.checkBody("lastname", "No lastname.").notEmpty().trim();
+  req.checkBody("email", "No email.").isEmail().trim();
+  req.checkBody("password", "No password.").notEmpty().trim();
+
+  const errors = req.validationErrors();
+
+  if(errors){
+    return res.status(400).json({errors: errors});
   }
 
-  bcrypt.hash(req.body.password, 10)
-  .then(hash => {
+  const {salutation, firstname, lastname, email, password} = req.body;
+
+
+  Promise.all([
+    checkDuplicatedEmail(email),
+    encryptPassword(password)
+  ])
+  .then(values => {
+    const cryptedPassword = values[1];
+
     const data = {
-      salutation: req.body.salutation.trim(),
-      firstname: req.body.firstname.trim(),
-      lastname: req.body.lastname.trim(),
-      email: req.body.email.trim(),
-      password: hash,
+      salutation,
+      firstname,
+      lastname,
+      email,
+      password: cryptedPassword,
       created: new Date(),
       onlineSate: true
     }
@@ -45,12 +68,11 @@ router.post('/signup', (req, res) => {
     .insert(data)
     .run()
     .then(response =>	{
-      
-
-      res.status(201).json(response)
+      return res.status(201).json(response)
     })
     .error(err => res.status(500).send({error: err}))
-  });
+  })
+  .catch(err => res.status(500).send({error: err}))
 })
 
 export default router;
