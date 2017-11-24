@@ -1,6 +1,5 @@
 import express from 'express';
 import config from 'config';
-import _ from 'underscore';
 import rethinkdbdash from 'rethinkdbdash';
 import bcrypt from 'bcrypt';
 
@@ -12,11 +11,11 @@ const table = 'user';
 //Check email adress is
 function checkDuplicatedEmail(email){
   return new Promise((resolve, reject) => {
-   r.table(table)
+   return r.table(table)
    .filter({ email: email })
    .count()
    .run()
-   .then(response => response ? reject("email taken") : resolve())
+   .then(response => response ? reject([{param: 'email', msg: 'Duplicated email'}]) : resolve())
    .error(err => reject(err));
   })
 }
@@ -24,7 +23,7 @@ function checkDuplicatedEmail(email){
 //Encrypt Password to Store in Database
 function encryptPassword(password){
   return new Promise((resolve, reject) => {
-    bcrypt.hash(password, 10)
+    return bcrypt.hash(password, 10)
     .then(hash => resolve(hash))
   })
 }
@@ -41,7 +40,7 @@ router.post('/signup', (req, res) => {
   const errors = req.validationErrors();
 
   if(errors){
-    return res.status(400).json({errors: errors});
+    return res.json({errors: errors});
   }
 
   const {salutation, firstname, lastname, email, password} = req.body;
@@ -72,7 +71,7 @@ router.post('/signup', (req, res) => {
     })
     .error(err => res.status(500).send({error: err}))
   })
-  .catch(err => res.status(500).send({error: err}))
+  .catch(err => res.send({errors: err}))
 })
 
 export default router;

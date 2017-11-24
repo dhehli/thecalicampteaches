@@ -10,25 +10,27 @@ const r = rethinkdbdash(config.get('rethinkdb'));
 const table = 'user';
 
 router.post('/login', (req, res) => {
-  if(_.isEmpty(req.body)){
-    return res.status(400).send({error: 'No Request Body'})
-  }
-  if(!req.body.email){
-    return res.status(400).send({error: 'No email provided'})
-  }
-  if(!req.body.password){
-    return res.status(400).send({error: 'No password provided'})
+
+  req.checkBody("email", "No email.").isEmail().trim();
+  req.checkBody("password", "No password.").notEmpty().trim();
+
+  const errors = req.validationErrors();
+
+  if(errors){
+    return res.status(400).json({errors: errors});
   }
 
+  const {email, password} = req.body;
+
   r.table(table)
-  .filter({email: req.body.email})
+  .filter({email: email})
   .run()
   .then(response =>	{
     if(_.isEmpty(response)){
       return res.status(401).send({error: 'User not found'})
     }
 
-    bcrypt.compare(req.body.password, response[0].password)
+    bcrypt.compare(password, response[0].password)
     .then(cryptResponse => {
         console.log("cres", cryptResponse)
         if(cryptResponse === false){
