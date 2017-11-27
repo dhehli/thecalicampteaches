@@ -22,6 +22,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { UserService } from './components/signup/user.service';
 import { LoginComponent } from './components/login/login.component';
+import { LoginService } from './components/login/login.service';
 
 @NgModule({
   imports: [
@@ -50,7 +51,7 @@ import { LoginComponent } from './components/login/login.component';
     SignupComponent,
     LoginComponent
   ],
-  providers: [ HeroService, MessageService, UserService ],
+  providers: [ HeroService, MessageService, UserService, LoginService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -12,16 +12,16 @@ const httpOptions = {
 };
 
 @Injectable()
-export class UserService {
+export class LoginService {
 
-  private url = 'http://localhost:3000/api/signup';  // URL to web api
+  private url = 'http://localhost:3000/api/login';  // URL to web api
 
   constructor(
     private http: HttpClient
   ) { }
 
   /** POST: add a new hero to the server */
-  addUser(user): Promise<any> {
+  login(user): Promise<any> {
     return this.http
       .post(this.url, JSON.stringify(user), httpOptions)
       .toPromise()

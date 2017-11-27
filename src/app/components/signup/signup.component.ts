@@ -2,8 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { User }         from './user';
-import { UserService }         from './user.service';
+import { UserService }   from './user.service';
 
 
 @Component({

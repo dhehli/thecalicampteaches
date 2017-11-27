@@ -48,7 +48,7 @@ router.post('/login', (req, res) => {
   })
   .then(isPasswordValid => {
     if(!isPasswordValid){
-      return res.json({errors: [{param: 'email', msg: 'Password wrong'}]});
+      return res.json({errors: [{param: 'password', msg: 'Password wrong'}]});
     }
 
     req.session.userId = userId;
