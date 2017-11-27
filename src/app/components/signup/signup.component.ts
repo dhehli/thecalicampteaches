@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 
 import { User }         from './user';
 import { UserService }         from './user.service';
@@ -14,8 +13,8 @@ import { UserService }         from './user.service';
   encapsulation: ViewEncapsulation.None
 })
 export class SignupComponent implements OnInit {
-  @Input() error = {};
-  @Input() success: boolean;
+  error = {};
+  success: boolean;
 
   constructor(
     private route: ActivatedRoute,
@@ -50,10 +49,9 @@ export class SignupComponent implements OnInit {
         response.errors.forEach(e => this.error[e.param] = e.msg);
       }else{
         this.success = true;
-        this.form.reset();
       }
     })
-    .catch(err => console.error(err)))
+    .catch(err => console.error(err))
    }
 
 }

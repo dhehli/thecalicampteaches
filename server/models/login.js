@@ -9,6 +9,23 @@ const r = rethinkdbdash(config.get('rethinkdb'));
 
 const table = 'user';
 
+//Check if User Exists
+function checkIfEmailExists(email){
+  return new Promise((resolve, reject) => {
+   r.table(table)
+   .filter({ email: email })
+   .run()
+   .then(response => _.isEmpty(response) ? reject([{param: 'email', msg: 'User not found'}]) : resolve(response))
+   .error(err => reject(err));
+  })
+}
+
+//Compare Passwords
+function checkPassword(password, hash){
+   return bcrypt.compare(password, hash).then(res => res);
+}
+
+//Login User
 router.post('/login', (req, res) => {
 
   req.checkBody("email", "No email.").isEmail().trim();
@@ -17,43 +34,33 @@ router.post('/login', (req, res) => {
   const errors = req.validationErrors();
 
   if(errors){
-    return res.status(400).json({errors: errors});
+    return res.json({errors: errors});
   }
 
   const {email, password} = req.body;
 
-  r.table(table)
-  .filter({email: email})
-  .run()
-  .then(response =>	{
-    if(_.isEmpty(response)){
-      return res.status(401).send({error: 'User not found'})
+  let userId;
+
+  checkIfEmailExists(email)
+  .then(user => {
+    userId = user[0].id;
+    return checkPassword(password, user[0].password)
+  })
+  .then(isPasswordValid => {
+    if(!isPasswordValid){
+      return res.json({errors: [{param: 'email', msg: 'Password wrong'}]});
     }
 
-    bcrypt.compare(password, response[0].password)
-    .then(cryptResponse => {
-        console.log("cres", cryptResponse)
-        if(cryptResponse === false){
-            return res.status(401).send({error: 'Password wrong'})
-        }
-
-
-        const userId = response[0].id;
-        req.session.userId = userId;
-
-        return res.status(200).json("Logged in")
-    })
-    .catch(err => console.log(err));
-
+    req.session.userId = userId;
+    return res.status(200).json("Logged in");
   })
-  .error(err => res.status(500).send({error: err}))
+  .catch(err => res.send({errors: err}))
 
 })
 
 router.get('/logout', (req, res) => {
   console.log("logout")
   if (req.session) {
-
     req.session.destroy(err => {
       if(err) {
         return next(err);

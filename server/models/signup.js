@@ -11,7 +11,7 @@ const table = 'user';
 //Check email adress is
 function checkDuplicatedEmail(email){
   return new Promise((resolve, reject) => {
-   return r.table(table)
+   r.table(table)
    .filter({ email: email })
    .count()
    .run()
@@ -22,10 +22,7 @@ function checkDuplicatedEmail(email){
 
 //Encrypt Password to Store in Database
 function encryptPassword(password){
-  return new Promise((resolve, reject) => {
-    return bcrypt.hash(password, 10)
-    .then(hash => resolve(hash))
-  })
+  return bcrypt.hash(password, 10).then(hash => hash)
 }
 
 //Post to insert User
