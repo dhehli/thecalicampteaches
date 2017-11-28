@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
       if(response.errors){
         response.errors.forEach(e => this.error[e.param] = e.msg);
       }else{
+        console.log("success login");
         this.router.navigateByUrl('/member');
       }
 

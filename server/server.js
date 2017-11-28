@@ -8,6 +8,7 @@ import expressValidator from 'express-validator';
 import cors from 'cors';
 // Get our API routes
 import heroes from './models/heroes';
+import authCheck from './models/authenticationCheck';
 import signup from './models/signup';
 import login from './models/login';
 
@@ -17,9 +18,11 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
-app.use(cors());
+app.use(cors({
+  credentials: true,
+}));
 // Point static path to dist
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 //use sessions for tracking logins
 app.use(session({
@@ -28,8 +31,10 @@ app.use(session({
   saveUninitialized: false
 }));
 
+
 //Router Middleware to Check if user has Session
 function loggedIn(req, res, next) {
+  console.log(req.session);
   if (req.session && req.session.userId) {
     return next();
   } else {
@@ -40,7 +45,7 @@ function loggedIn(req, res, next) {
 }
 
 // Set api routes
-
+app.use('/api', authCheck);
 app.use('/api', signup);
 app.use('/api', login);
 

@@ -16,13 +16,20 @@ import { HeroesComponent }      from './heroes/heroes.component';
 import { HeroSearchComponent }  from './hero-search/hero-search.component';
 import { HeroService }          from './hero.service';
 import { MessageService }       from './message.service';
+
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
+
+import { AuthenticationGuard } from './guard/authentication';
+
+
+
 import { SignupComponent } from './components/signup/signup.component';
 import { UserService } from './components/signup/user.service';
 import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './components/login/login.service';
+import { MemberComponent } from './components/member/member.component';
 
 @NgModule({
   imports: [
@@ -49,9 +56,16 @@ import { LoginService } from './components/login/login.service';
     FooterComponent,
     HomeComponent,
     SignupComponent,
-    LoginComponent
+    LoginComponent,
+    MemberComponent
   ],
-  providers: [ HeroService, MessageService, UserService, LoginService ],
+  providers: [
+    AuthenticationGuard,
+    HeroService,
+    MessageService,
+    UserService,
+    LoginService
+  ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
