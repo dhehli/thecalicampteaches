@@ -26,13 +26,11 @@ export class AuthenticationGuard implements CanActivate{
           .toPromise()
           .then(response => {
             console.log(response)
-            if(response.loggedIn){
-              return true;
-            }else{
-              return false;
-            }
+            
           })
-          .catch(e => return false)
+          .catch(e => console.log(e))
+
+          return true;
 
     }
 }

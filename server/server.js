@@ -19,7 +19,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
 app.use(cors({
-  credentials: true,
+  origin: "http://localhost:4200",
+  credentials: true
 }));
 // Point static path to dist
 app.use(express.static(path.join(__dirname, '../dist')));
@@ -27,10 +28,13 @@ app.use(express.static(path.join(__dirname, '../dist')));
 //use sessions for tracking logins
 app.use(session({
   secret: 'holy cow',
-  resave: true,
-  saveUninitialized: false
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    secure: false,
+    httpOnly: false
+  }
 }));
-
 
 //Router Middleware to Check if user has Session
 function loggedIn(req, res, next) {

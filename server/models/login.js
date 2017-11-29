@@ -39,6 +39,7 @@ router.post('/login', (req, res) => {
 
   const {email, password} = req.body;
 
+
   let userId;
 
   checkIfEmailExists(email)
@@ -51,7 +52,12 @@ router.post('/login', (req, res) => {
       return res.json({errors: [{param: 'password', msg: 'Password wrong'}]});
     }
 
+    console.log("user id on server", userId)
+
     req.session.userId = userId;
+
+    console.log(req.session.userId)
+
     return res.status(200).json("Logged in");
   })
   .catch(err => res.send({errors: err}))
