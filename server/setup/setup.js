@@ -3,28 +3,30 @@ import config from 'config';
 
 const dbCaliCamp = 'thecalicampteaches';
 
-createDatabaseIfNotExists(dbCaliCamp);
-
-createTableIfNotExists(dbCaliCamp,'order');
-createTableIfNotExists(dbCaliCamp,'team');
-createTableIfNotExists(dbCaliCamp,'testimonial');
-createTableIfNotExists(dbCaliCamp,'user');
-createTableIfNotExists(dbCaliCamp,'uservideo');
+createDatabaseIfNotExists(dbCaliCamp)
+.then(()=> {
+  createTableIfNotExists(dbCaliCamp,'order');
+  createTableIfNotExists(dbCaliCamp,'team');
+  createTableIfNotExists(dbCaliCamp,'testimonial');
+  createTableIfNotExists(dbCaliCamp,'user');
+  createTableIfNotExists(dbCaliCamp,'uservideo');
+})
+.catch(err => console.log(err));
 
 function connection(){
-    return new Promise((resolve, reject) => {
-        r.connect( {
-          host: config.get('rethinkdb.host'),
-          port: config.get('rethinkdb.port')
-        }, (err, conn) => {
-          if (err) reject(err);
-          resolve(conn);
-      })
+  return new Promise((resolve, reject) => {
+    r.connect( {
+        host: config.get('rethinkdb.host'),
+        port: config.get('rethinkdb.port')
+      }, (err, conn) => {
+        if (err) reject(err);
+        resolve(conn);
+    })
   })
 }
 
 function createDatabaseIfNotExists(dbName){
-  connection()
+  return connection()
   .then(connection => {
     r.dbList()
     .run(connection)
@@ -37,11 +39,10 @@ function createDatabaseIfNotExists(dbName){
       }
     })
   })
-  .catch(e => console.log(e));
 }
 
 function createTableIfNotExists(dbName, tableName){
-  connection()
+  return connection()
   .then(connection => {
     r.db(dbName)
     .tableList()
@@ -55,5 +56,4 @@ function createTableIfNotExists(dbName, tableName){
       }
     })
   })
-  .catch(e => console.log(e));
 }
