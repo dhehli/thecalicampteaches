@@ -14,18 +14,18 @@ import login from './models/login';
 
 const app = express();
 
-// Parsers for POST data
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
-app.use(cors({
+app.use(cors({ // TODO: add to config
   origin: "http://localhost:4200",
   credentials: true
 }));
 // Point static path to dist
 app.use(express.static(path.join(__dirname, '../dist')));
 
-//use sessions for tracking logins
+//use sessions for tracking logins // TODO: add to config
 app.use(session({
   secret: 'holy cow',
   resave: false,

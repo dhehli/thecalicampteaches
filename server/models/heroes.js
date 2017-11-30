@@ -9,7 +9,6 @@ const table = 'heroes';
 
 // Get All
 router.get('/heroesApi', (req, res) => {
-  console.log(req.session)
   r.table(table)
   .run()
   .then(response =>	res.json(response))
