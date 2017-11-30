@@ -41,7 +41,6 @@ app.use(session({
 
 //Router Middleware to Check if user has Session
 function loggedIn(req, res, next) {
-  console.log(req.session.userId);
   if (req.session && req.session.userId) {
     return next();
   } else {
