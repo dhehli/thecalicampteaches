@@ -76,7 +76,9 @@ export class TestimonialService {
 
   /** PUT: update the testimonial on the server */
   updateTestimonial (testimonial: Testimonial): Observable<any> {
-    return this.http.put(this.testimonialUrl, testimonial, httpOptions).pipe(
+    const url = `${this.testimonialUrl}/${testimonial.id}`;
+
+    return this.http.put(url, testimonial, httpOptions).pipe(
       tap(_ => this.log(`updated testimonial id=${testimonial.id}`)),
       catchError(this.handleError<any>('updateTestimonial'))
     );

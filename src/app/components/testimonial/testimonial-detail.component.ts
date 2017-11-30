@@ -28,15 +28,9 @@ export class TestimonialDetailComponent implements OnInit {
       .subscribe(testimonial => this.testimonial = testimonial);
   }
 
-  add(firstname: string, lastname: string, quote: string, onlineState: boolean): void {
-    const data = {
-      firstname,
-      lastname,
-      quote,
-      onlineState
-    } as Testimonial;
-
-    this.testimonialService.addTestimonial(data)
+  update(): void {
+    console.log(this.testimonial)
+    this.testimonialService.updateTestimonial(this.testimonial)
     .subscribe(testimonial => {
       if(testimonial.errors){
         testimonial.errors.forEach(e => this.error[e.param] = e.msg);
@@ -45,5 +39,4 @@ export class TestimonialDetailComponent implements OnInit {
       }
     });
   }
-
 }
