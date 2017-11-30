@@ -15,7 +15,7 @@ createDatabaseIfNotExists(dbCaliCamp)
 
 function connection(){
   return new Promise((resolve, reject) => {
-    r.connect( {
+    r.connect({
         host: config.get('rethinkdb.host'),
         port: config.get('rethinkdb.port')
       }, (err, conn) => {

@@ -11,6 +11,7 @@ import heroes from './models/heroes';
 import authCheck from './models/authenticationCheck';
 import signup from './models/signup';
 import login from './models/login';
+import testimonial from './models/testimonial';
 
 const app = express();
 
@@ -36,25 +37,18 @@ app.use(session({
   }
 }));
 
-//Router Middleware to Check if user has Session
-function loggedIn(req, res, next) {
-  console.log(req.session);
-  if (req.session && req.session.userId) {
-    return next();
-  } else {
-    var err = new Error('You must be logged in to view this page.');
-    err.status = 401;
-    return next(err);
-  }
-}
+
 
 // Set api routes
 app.use('/api', authCheck);
 app.use('/api', signup);
 app.use('/api', login);
 
+//Admin Routes
+app.use('/api', testimonial);
+
 // Set protected routes
-app.use('/api', loggedIn, heroes);
+//app.use('/api', loggedIn, heroes);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

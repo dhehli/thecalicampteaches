@@ -1,6 +1,5 @@
 import express from 'express';
 import _ from 'underscore';
-import rethinkdbdash from 'rethinkdbdash';
 import bcrypt from 'bcrypt';
 import r from '../connection/connection'
 
