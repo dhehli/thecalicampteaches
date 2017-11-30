@@ -30,6 +30,7 @@ app.use(session({
   secret: 'holy cow',
   resave: false,
   saveUninitialized: false,
+  maxAge: 600000,
   cookie: {
     secure: false,
     httpOnly: false
@@ -38,7 +39,7 @@ app.use(session({
 
 //Router Middleware to Check if user has Session
 function loggedIn(req, res, next) {
-  console.log(req.session);
+  console.log(req.session.userId);
   if (req.session && req.session.userId) {
     return next();
   } else {
