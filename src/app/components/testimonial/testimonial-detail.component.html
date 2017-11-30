@@ -1,0 +1,51 @@
+<section>
+  <div class="container">
+    <div class="base-container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>Edit Testimonial</h1>
+          <p>
+            <button class="btn btn-default" routerLink="/testimonial">Back</button>
+          </p>
+          <div *ngIf="success">
+            <div class="alert alert-success" role="alert">
+              Testimonial created <a routerLink="/testimonial">Back to List</a>
+            </div>
+          </div>
+          <form (ngSubmit)="add(firstname.value, lastname.value, quote.value, onlineState.value)" *ngIf="!success">
+            <div class="form-group">
+              <input type="text" class="form-control {{error && error.firstname && 'is-invalid'}}" id="firstname" #firstname placeholder="Firstname" required>
+              <div class="invalid-feedback">
+                {{error && error.firstname}}
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control {{error && error.lastname && 'is-invalid'}}" id="lastname" placeholder="Lastname" #lastname required>
+              <div class="invalid-feedback">
+                {{error && error.lastname}}
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea class="form-control {{error && error.quote && 'is-invalid'}}" id="quote" placeholder="Quote" #quote required></textarea>
+              <div class="invalid-feedback">
+                {{error && error.quote}}
+              </div>
+            </div>
+            <div class="form-group">
+              <select #onlineState class="form-control">
+                <option value="true">Online</option>
+                <option value="false">Offline</option>
+              </select>
+              <div class="invalid-feedback">
+                {{error && error.onlineState}}
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn">Edit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

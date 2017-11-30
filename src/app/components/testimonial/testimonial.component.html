@@ -1,0 +1,35 @@
+<section>
+  <div class="container">
+    <div class="base-container">
+      <h1>Testimonials</h1>
+      <p><button class="btn" [routerLink]="['/testimonial/add']">New Testimonial</button></p>
+      <div *ngIf="testimonials && testimonials.length">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Quote</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let testimonial of testimonials">
+                <td>{{testimonial.firstname}}</td>
+                <td>{{testimonial.lastname}}</td>
+                <td>{{testimonial.quote}}</td>
+                <td><a [routerLink]="['/testimonial/detail', testimonial.id]">Detail</a></td>
+                <td>
+                  <button class="interface-button" href="#" title="delete testimonial"
+                  (click)="delete(testimonial)"><span class="icon-cross"></span></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -9,7 +9,9 @@
     "test": "ng test",
     "lint": "tslint ./src/**/*.ts -t verbose",
     "e2e": "ng e2e",
-    "server": "node index.js && ng serve"
+    "server": "node index.js",
+    "setup": "node ./server/setup/index",
+    "fixtures": "node ./server/fixtures/index"
   },
   "keywords": [],
   "author": "",
@@ -42,6 +44,7 @@
     "handlebars": "^4.0.11",
     "jquery": "^2.2.1",
     "popper.js": "^1.12.7",
+    "rethinkdb": "^2.3.3",
     "rethinkdbdash": "^2.3.31",
     "rxjs": "^5.5.0",
     "underscore": "^1.8.3",

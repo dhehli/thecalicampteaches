@@ -1,11 +1,9 @@
 import express from 'express';
-import config from 'config';
 import _ from 'underscore';
-import rethinkdbdash from 'rethinkdbdash';
 import bcrypt from 'bcrypt';
+import r from '../connection/connection'
 
 const router = express.Router();
-const r = rethinkdbdash(config.get('rethinkdb'));
 
 const table = 'user';
 

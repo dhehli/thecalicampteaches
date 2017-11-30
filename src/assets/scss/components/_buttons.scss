@@ -2,8 +2,14 @@
   background: $btn-background;
   color: $white;
   font-family: $btn-font-family;
+  cursor: pointer;
 
-  &:hover{
+  &.btn-default{
+    background: $white;
+    color: $gray;
+  }
+
+  &:hover, &.btn-default{
     color: $blue;
     background: $white;
     border: 1px solid $blue;

@@ -11,21 +11,22 @@ import heroes from './models/heroes';
 import authCheck from './models/authenticationCheck';
 import signup from './models/signup';
 import login from './models/login';
+import testimonial from './models/testimonial';
 
 const app = express();
 
-// Parsers for POST data
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
-app.use(cors({
+app.use(cors({ // TODO: add to config
   origin: "http://localhost:4200",
   credentials: true
 }));
 // Point static path to dist
 app.use(express.static(path.join(__dirname, '../dist')));
 
-//use sessions for tracking logins
+//use sessions for tracking logins // TODO: add to config
 app.use(session({
   secret: 'holy cow',
   resave: false,
@@ -36,6 +37,7 @@ app.use(session({
     httpOnly: false
   }
 }));
+
 
 //Router Middleware to Check if user has Session
 function loggedIn(req, res, next) {
@@ -49,13 +51,17 @@ function loggedIn(req, res, next) {
   }
 }
 
+
 // Set api routes
 app.use('/api', authCheck);
 app.use('/api', signup);
 app.use('/api', login);
 
+//Admin Routes
+app.use('/api', testimonial);
+
 // Set protected routes
-app.use('/api', loggedIn, heroes);
+//app.use('/api', loggedIn, heroes);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

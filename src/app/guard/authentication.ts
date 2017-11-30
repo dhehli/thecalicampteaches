@@ -25,8 +25,12 @@ export class AuthenticationGuard implements CanActivate{
           .get(this.url, httpOptions)
           .toPromise()
           .then(response => {
+<<<<<<< HEAD
             console.log(response)
 
+=======
+            console.log(response)            
+>>>>>>> dc4b13cb963df3f4059a0f4b84a9ed472dbb5997
           })
           .catch(e => console.log(e))
 
