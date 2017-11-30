@@ -20,7 +20,6 @@ import { MessageService }       from './message.service';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
-
 import { AuthenticationGuard } from './guard/authentication';
 
 
@@ -30,6 +29,11 @@ import { UserService } from './components/signup/user.service';
 import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './components/login/login.service';
 import { MemberComponent } from './components/member/member.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { TestimonialComponent } from './components/testimonial/testimonial.component';
+import { TestimonialAddComponent } from './components/testimonial/testimonial-add.component';
+import { TestimonialDetailComponent } from './components/testimonial/testimonial-detail.component';
+import { TestimonialService } from './components/testimonial/testimonial.service';
 
 @NgModule({
   imports: [
@@ -57,14 +61,19 @@ import { MemberComponent } from './components/member/member.component';
     HomeComponent,
     SignupComponent,
     LoginComponent,
-    MemberComponent
+    MemberComponent,
+    AdminComponent,
+    TestimonialComponent,
+    TestimonialAddComponent,
+    TestimonialDetailComponent
   ],
   providers: [
     AuthenticationGuard,
     HeroService,
     MessageService,
     UserService,
-    LoginService
+    LoginService,
+    TestimonialService
   ],
   bootstrap: [ AppComponent ]
 })

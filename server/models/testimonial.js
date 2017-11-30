@@ -3,8 +3,6 @@ import config from 'config';
 import _ from 'underscore';
 import r from '../connection/connection'
 
-console.log("in testi")
-
 const router = express.Router();
 
 const table = 'testimonial';
