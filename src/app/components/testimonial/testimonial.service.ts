@@ -45,7 +45,7 @@ export class TestimonialService {
   }
 
   /** GET testimonial by id. Will 404 if id not found */
-  getTestimonial(id: number): Observable<Testimonial> {
+  getTestimonial(id: string): Observable<Testimonial> {
     const url = `${this.testimonialUrl}/${id}`;
     return this.http.get<Testimonial>(url).pipe(
       tap(_ => this.log(`fetched testimonial id=${id}`)),

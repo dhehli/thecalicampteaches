@@ -20,7 +20,7 @@ const adminRoutes: Routes = [
     { path: 'admin', component: AdminComponent },
     { path: 'testimonial', component: TestimonialComponent },
     { path: 'testimonial/add', component: TestimonialAddComponent },
-    { path: 'testimonial/detail/:id', component: TestimonialDetailComponent }
+    { path: 'testimonial/detail/:uid', component: TestimonialDetailComponent }
 ]
 
 const routes: Routes = [

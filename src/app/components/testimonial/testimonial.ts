@@ -4,5 +4,5 @@ export class Testimonial {
   lastname: string;
   image?: string;
   quote: string;
-  onlineState?: boolean;
+  onlineState: boolean;
 }

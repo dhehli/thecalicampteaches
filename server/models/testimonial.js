@@ -16,7 +16,7 @@ router.get(`/${table}`, (req, res) => {
 })
 
 //Get by Uid
-router.get(`${table}/:uid`, (req, res) => {
+router.get(`/${table}/:uid`, (req, res) => {
   const uid = req.params.uid;
 
   r.table(table)
@@ -39,14 +39,14 @@ router.post(`/${table}`, (req, res) => {
     return res.json({errors: errors});
   }
 
-  const {firstname, lastname, quote} = req.body;
+  const {firstname, lastname, quote, onlineState} = req.body;
 
   const data = {
     firstname,
     lastname,
     quote,
     created: new Date(),
-    onlineSate: true
+    onlineState
   }
 
   r.table(table)
