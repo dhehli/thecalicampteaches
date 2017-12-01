@@ -32,7 +32,10 @@
               </div>
             </div>
             <div class="form-group">
-              <input type="file" class="form-control" id="image" name="image">
+              <input type="file" class="form-control {{error && error.file && 'is-invalid'}}" id="image" name="image">
+              <div class="invalid-feedback">
+                {{error && error.file}}
+              </div>
             </div>
             <div class="form-group">
               <select #onlineState class="form-control">

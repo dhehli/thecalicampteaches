@@ -30,17 +30,18 @@ router.get(`/${table}/:uid`, (req, res) => {
 
 //Post
 router.post(`/${table}`, upload.single('image'), (req, res) => {
-  console.log(req.body);
-  console.log('------');
-  console.log(req.file);
+
   req.checkBody("firstname", "No firstname.").notEmpty().trim();
   req.checkBody("lastname", "No lastname.").notEmpty().trim();
-  // TODO: add image
   req.checkBody("quote", "No quote.").notEmpty().trim();
 
-  const errors = req.validationErrors();
+  let errors = req.validationErrors() || [];
 
-  if(errors){
+  if(!req.file){
+    errors.push({param: 'file', msg: 'No File'})
+  }
+
+  if(!_.isEmpty(errors)){
     return res.json({errors: errors});
   }
 
