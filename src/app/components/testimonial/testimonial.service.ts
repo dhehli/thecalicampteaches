@@ -56,10 +56,10 @@ export class TestimonialService {
   //////// Save methods //////////
 
   /** POST: add a new testimonial to the server */
-  addTestimonial (testimonial: Testimonial): Observable<any> {
-    return this.http.post<Testimonial>(this.testimonialUrl, testimonial, httpOptions).pipe(
-      tap((testimonial: Testimonial) => this.log(`added testimonial w/ id=${testimonial.id}`)),
-      catchError(this.handleError<Testimonial>('addTestimonial'))
+  addTestimonial (testimonial: FormData): Observable<any> {
+    return this.http.post<FormData>(this.testimonialUrl, testimonial).pipe(
+      tap((testimonial: FormData) => this.log(`test`)),
+      catchError(this.handleError<FormData>('addTestimonial'))
     );
   }
 

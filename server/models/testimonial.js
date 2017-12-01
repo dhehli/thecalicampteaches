@@ -2,8 +2,10 @@ import express from 'express';
 import config from 'config';
 import _ from 'underscore';
 import r from '../connection/connection'
+import upload from './multer'
 
 const router = express.Router();
+
 
 const table = 'testimonial';
 
@@ -27,7 +29,10 @@ router.get(`/${table}/:uid`, (req, res) => {
 })
 
 //Post
-router.post(`/${table}`, (req, res) => {
+router.post(`/${table}`, upload.single('image'), (req, res) => {
+  console.log(req.body);
+  console.log('------');
+  console.log(req.file);
   req.checkBody("firstname", "No firstname.").notEmpty().trim();
   req.checkBody("lastname", "No lastname.").notEmpty().trim();
   // TODO: add image

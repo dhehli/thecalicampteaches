@@ -29,9 +29,10 @@ export class TestimonialDetailComponent implements OnInit {
   }
 
   update(): void {
-    console.log(this.testimonial)
     this.testimonialService.updateTestimonial(this.testimonial)
     .subscribe(testimonial => {
+      this.error = [];
+      
       if(testimonial.errors){
         testimonial.errors.forEach(e => this.error[e.param] = e.msg);
       }else{
