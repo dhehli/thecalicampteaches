@@ -3,5 +3,10 @@
     "host": "localhost",
     "port": 28015,
     "db": "thecalicampteaches"
+  },
+  "cloudinary": {
+    "cloud_name": "dfjnd1tqe",
+    "api_key": "172155386425644",
+    "api_secret": "SvLfxi3JV1qsuHynVKv-kI50Zcw"
   }
 }

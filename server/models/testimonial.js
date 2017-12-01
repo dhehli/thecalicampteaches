@@ -2,10 +2,11 @@ import express from 'express';
 import config from 'config';
 import _ from 'underscore';
 import r from '../connection/connection'
-import upload from './multer'
+import fs from 'fs';
+import upload from '../helpers/multer'
+import cloudinaryUpload from '../helpers/cloudinary'
 
 const router = express.Router();
-
 
 const table = 'testimonial';
 
@@ -42,24 +43,32 @@ router.post(`/${table}`, upload.single('image'), (req, res) => {
   }
 
   if(!_.isEmpty(errors)){
+    req.file && req.file.path && fs.unlink(req.file.path, e => console.error(e))
     return res.json({errors: errors});
   }
 
-  const {firstname, lastname, quote, onlineState} = req.body;
+  cloudinaryUpload(req.file.path)
+  .then(image => {
+    const {firstname, lastname, quote, onlineState} = req.body;
 
-  const data = {
-    firstname,
-    lastname,
-    quote,
-    created: new Date(),
-    onlineState
-  }
+    const data = {
+      firstname,
+      lastname,
+      quote,
+      image,
+      created: new Date(),
+      onlineState
+    }
 
-  r.table(table)
-  .insert(data)
-  .run()
-  .then(response =>	res.status(201).json(response))
-  .error(err => res.status(500).send({error: err}))
+    r.table(table)
+    .insert(data)
+    .run()
+    .then(response =>	{
+      fs.unlink(req.file.path, e => console.error(e))
+      res.status(201).json(response)
+    })
+    .error(err => res.status(500).send({error: err}))
+  })
 })
 
 //Put
