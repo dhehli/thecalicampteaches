@@ -5,6 +5,10 @@
     margin: 0 auto 1rem;
     @include transition(box-shadow, ease-in-out, 0.4s);
 
+    h2{
+      color: $blue;
+    }
+
     .img-holder{
       overflow: hidden;
 

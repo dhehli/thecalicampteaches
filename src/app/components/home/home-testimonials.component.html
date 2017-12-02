@@ -1,0 +1,28 @@
+<section class="news">
+  <div class="container">
+    <div class="heading">
+      <h1>Testimonials</h1>
+      <span class="icon-cross"></span>
+    </div>
+    <div class="row justify-content-md-center">
+      <div class="col-md-4" *ngFor="let testimonial of testimonials">
+        <div class="news-holder">
+          <div class="img-holder">
+            <div *ngIf="testimonial.image">
+              <cl-image public-id="{{testimonial.image.public_id}}" >
+                <cl-transformation height="203" width="270" crop="fill"></cl-transformation>
+              </cl-image>
+            </div>
+          </div>
+          <div class="txt-holder">
+            <h2>{{testimonial.firstname}} {{testimonial.lastname}}</h2>
+            <p>{{testimonial.quote}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--<div class="btn-holder-center">
+      <a href="#" class="btn">View all Posts</a>
+    </div>-->
+  </div>
+</section>

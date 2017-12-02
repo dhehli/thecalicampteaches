@@ -36,6 +36,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { TestimonialComponent } from './components/testimonial/testimonial.component';
 import { TestimonialAddComponent } from './components/testimonial/testimonial-add.component';
 import { TestimonialDetailComponent } from './components/testimonial/testimonial-detail.component';
+import { TestimonialHomeComponent } from './components/home/home-testimonials.component';
 import { TestimonialService } from './components/testimonial/testimonial.service';
 
 @NgModule({
@@ -69,7 +70,8 @@ import { TestimonialService } from './components/testimonial/testimonial.service
     AdminComponent,
     TestimonialComponent,
     TestimonialAddComponent,
-    TestimonialDetailComponent
+    TestimonialDetailComponent,
+    TestimonialHomeComponent
   ],
   providers: [
     AuthenticationGuard,

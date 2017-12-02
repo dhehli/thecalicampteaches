@@ -100,6 +100,7 @@ router.put(`/${table}/:uid`, upload.single('image'), (req, res) => {
     cloudinaryUpload(req.file.path)
     .then(image => {
       data.image = image;
+      fs.unlink(req.file.path, e => e ? console.error(e) : '')
       insert();
     })
   }else{
