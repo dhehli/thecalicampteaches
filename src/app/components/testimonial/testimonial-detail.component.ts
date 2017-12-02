@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import $ from 'jquery';
 
 import { Testimonial } from './testimonial';
 import { TestimonialService } from './testimonial.service';
@@ -28,11 +29,22 @@ export class TestimonialDetailComponent implements OnInit {
       .subscribe(testimonial => this.testimonial = testimonial);
   }
 
-  update(): void {
-    this.testimonialService.updateTestimonial(this.testimonial)
+  update(firstname: string, lastname: string, quote: string, onlineState: string): void {
+    let formData = new FormData();
+
+    let file = $("#image")[0].files[0];
+
+    formData.append('id', this.testimonial.id);
+    formData.append('image', file);
+    formData.append('firstname', firstname);
+    formData.append('lastname', lastname);
+    formData.append('quote', quote);
+    formData.append('onlineState', onlineState);
+
+    this.testimonialService.updateTestimonial(formData)
     .subscribe(testimonial => {
       this.error = [];
-      
+
       if(testimonial.errors){
         testimonial.errors.forEach(e => this.error[e.param] = e.msg);
       }else{

@@ -1,4 +1,4 @@
-import express from 'express';
+ import express from 'express';
 import config from 'config';
 import _ from 'underscore';
 import r from '../connection/connection'
@@ -47,9 +47,10 @@ router.post(`/${table}`, upload.single('image'), (req, res) => {
     return res.json({errors: errors});
   }
 
+  const {firstname, lastname, quote, onlineState} = req.body;
+
   cloudinaryUpload(req.file.path)
   .then(image => {
-    const {firstname, lastname, quote, onlineState} = req.body;
 
     const data = {
       firstname,
@@ -64,20 +65,19 @@ router.post(`/${table}`, upload.single('image'), (req, res) => {
     .insert(data)
     .run()
     .then(response =>	{
-      fs.unlink(req.file.path, e => console.error(e))
-      res.status(201).json(response)
+      fs.unlink(req.file.path, e => e ? console.error(e) : '')
+      return res.status(201).json(response)
     })
-    .error(err => res.status(500).send({error: err}))
   })
+  .catch(err => res.status(500).send({error: err}))
 })
 
 //Put
-router.put(`/${table}/:uid`, (req, res) => {
+router.put(`/${table}/:uid`, upload.single('image'), (req, res) => {
   const uid = req.params.uid;
 
   req.checkBody("firstname", "No firstname.").notEmpty().trim();
   req.checkBody("lastname", "No lastname.").notEmpty().trim();
-  // TODO: add image
   req.checkBody("quote", "No quote.").notEmpty().trim();
   req.checkBody("onlineState", "No online state.").isBoolean();
 
@@ -96,12 +96,25 @@ router.put(`/${table}/:uid`, (req, res) => {
     onlineState
   }
 
-  r.table(table)
-  .get(uid)
-  .update(data)
-  .run()
-  .then(response =>	res.status(200).json(response))
-  .error(err => res.status(500).send({error: err}))
+  if(req.file){
+    cloudinaryUpload(req.file.path)
+    .then(image => {
+      data.image = image;
+      insert();
+    })
+  }else{
+    insert();
+  }
+
+
+  function insert(){
+    return r.table(table)
+    .get(uid)
+    .update(data)
+    .run()
+    .then(response =>	res.status(200).json(response))
+    .error(err => res.status(500).send({error: err}))
+  }
 })
 
 //Delete

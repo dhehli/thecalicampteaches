@@ -58,7 +58,7 @@ export class TestimonialService {
   /** POST: add a new testimonial to the server */
   addTestimonial (testimonial: FormData): Observable<any> {
     return this.http.post<FormData>(this.testimonialUrl, testimonial).pipe(
-      tap((testimonial: FormData) => this.log(`test`)),
+      tap((testimonial: FormData) => this.log(`add`)),
       catchError(this.handleError<FormData>('addTestimonial'))
     );
   }
@@ -75,11 +75,11 @@ export class TestimonialService {
   }
 
   /** PUT: update the testimonial on the server */
-  updateTestimonial (testimonial: Testimonial): Observable<any> {
-    const url = `${this.testimonialUrl}/${testimonial.id}`;
+  updateTestimonial (testimonial: FormData): Observable<any> {
+    const url = `${this.testimonialUrl}/${testimonial.get('id')}`;
 
-    return this.http.put(url, testimonial, httpOptions).pipe(
-      tap(_ => this.log(`updated testimonial id=${testimonial.id}`)),
+    return this.http.put(url, testimonial).pipe(
+      tap(_ => this.log('update')),
       catchError(this.handleError<any>('updateTestimonial'))
     );
   }

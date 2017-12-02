@@ -13,7 +13,7 @@
                 Testimonial updated <a routerLink="/testimonial">Back to List</a>
               </div>
             </div>
-            <form (ngSubmit)="update()" *ngIf="!success">
+            <form (ngSubmit)="update(firstname.value, lastname.value, quote.value, onlineState.value)" *ngIf="!success" enctype="multipart/form-data">
               <div class="form-group">
                 <input
                   type="text"
@@ -52,12 +52,10 @@
                   {{error && error.quote}}
                 </div>
               </div>
-              <div class="form-row">
-
+              <div class="form-group" *ngIf="testimonial.image">
                 <cl-image public-id="{{testimonial.image.public_id}}" >
-
+                  <cl-transformation height="150" width="150" crop="fill"></cl-transformation>
                 </cl-image>
-
               </div>
               <div class="form-group">
                 <input type="file" class="form-control {{error && error.file && 'is-invalid'}}" id="image" name="image">
