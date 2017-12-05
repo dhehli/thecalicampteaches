@@ -35,7 +35,8 @@ export class LoginComponent implements OnInit {
     this.loginService.login(user)
     .then(response => {
       this.error = [];
-
+        console.log(response)
+      //return
       if(response.errors){
         response.errors.forEach(e => this.error[e.param] = e.msg);
       }else{

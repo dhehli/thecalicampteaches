@@ -54,7 +54,7 @@ router.post('/login', (req, res) => {
 
     req.session.userId = userId;
 
-    return res.status(200).json("Logged in");
+    return res.status(200).json({userId: userId});
   })
   .catch(err => res.send({errors: err}))
 

@@ -38,6 +38,10 @@ import { TestimonialAddComponent } from './components/testimonial/testimonial-ad
 import { TestimonialDetailComponent } from './components/testimonial/testimonial-detail.component';
 import { TestimonialHomeComponent } from './components/home/home-testimonials.component';
 import { TestimonialService } from './components/testimonial/testimonial.service';
+import { TeamComponent } from './components/team/team.component';
+import { TeamAddComponent } from './components/team/team-add.component';
+import { TeamDetailComponent } from './components/team/team-detail.component';
+import { TeamService } from './components/team/team.service';
 
 @NgModule({
   imports: [
@@ -71,7 +75,10 @@ import { TestimonialService } from './components/testimonial/testimonial.service
     TestimonialComponent,
     TestimonialAddComponent,
     TestimonialDetailComponent,
-    TestimonialHomeComponent
+    TestimonialHomeComponent,
+    TeamComponent,
+    TeamAddComponent,
+    TeamDetailComponent
   ],
   providers: [
     AuthenticationGuard,
@@ -79,7 +86,8 @@ import { TestimonialService } from './components/testimonial/testimonial.service
     MessageService,
     UserService,
     LoginService,
-    TestimonialService
+    TestimonialService,
+    TeamService
   ],
   bootstrap: [ AppComponent ]
 })

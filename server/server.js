@@ -34,7 +34,8 @@ app.use(session({
   maxAge: 600000,
   cookie: {
     secure: false,
-    httpOnly: false
+    httpOnly: false,
+    domain: "http://localhost:4200"
   }
 }));
 
