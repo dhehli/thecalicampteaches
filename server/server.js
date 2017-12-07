@@ -12,6 +12,7 @@ import authCheck from './models/authenticationCheck';
 import signup from './models/signup';
 import login from './models/login';
 import testimonial from './models/testimonial';
+import team from './models/team';
 
 const app = express();
 
@@ -55,6 +56,7 @@ app.use('/api', login);
 
 //Admin Routes
 app.use('/api', testimonial);
+app.use('/api', team);
 
 // Set protected routes
 //app.use('/api', loggedIn, heroes);

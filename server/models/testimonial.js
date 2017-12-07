@@ -35,6 +35,7 @@ router.post(`/${table}`, upload.single('image'), (req, res) => {
   req.checkBody("firstname", "No firstname.").notEmpty().trim();
   req.checkBody("lastname", "No lastname.").notEmpty().trim();
   req.checkBody("quote", "No quote.").notEmpty().trim();
+  req.checkBody("onlineState", "No online state.").isBoolean();
 
   let errors = req.validationErrors() || [];
 
@@ -106,7 +107,6 @@ router.put(`/${table}/:uid`, upload.single('image'), (req, res) => {
   }else{
     insert();
   }
-
 
   function insert(){
     return r.table(table)
