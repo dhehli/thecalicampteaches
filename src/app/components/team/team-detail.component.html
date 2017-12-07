@@ -1,1 +1,98 @@
-<p>team detal</p>
+<section>
+  <div class="container">
+    <div class="base-container">
+      <div class="row">
+        <div class="col-md-6">
+          <div *ngIf="team">
+            <h1>Edit Team</h1>
+            <p>
+              <button class="btn btn-default" routerLink="/team">Back</button>
+            </p>
+            <div *ngIf="success">
+              <div class="alert alert-success" role="alert">
+                Team updated <a routerLink="/team">Back to List</a>
+              </div>
+            </div>
+            <form (ngSubmit)="update(firstname.value, lastname.value, email.value, location.value, onlineState.value)" *ngIf="!success" enctype="multipart/form-data">
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control {{error && error.firstname && 'is-invalid'}}"
+                  name="firstname"
+                  [(ngModel)]="team.firstname"
+                  #firstname
+                  placeholder="Firstname"
+                  required>
+                <div class="invalid-feedback">
+                  {{error && error.firstname}}
+                </div>
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control {{error && error.lastname && 'is-invalid'}}"
+                  name="lastname"
+                  [(ngModel)]="team.lastname"
+                  placeholder="Lastname"
+                  #lastname
+                  required>
+                <div class="invalid-feedback">
+                  {{error && error.lastname}}
+                </div>
+              </div>
+              <div class="form-group">
+                <input
+                  type="email"
+                  class="form-control {{error && error.email && 'is-invalid'}}"
+                  name="email"
+                  [(ngModel)]="team.email"
+                  placeholder="E-Mail"
+                  #email
+                  required>
+                <div class="invalid-feedback">
+                  {{error && error.email}}
+                </div>
+              </div>
+              <div class="form-group">
+                <input
+                  type="text"
+                  class="form-control {{error && error.location && 'is-invalid'}}"
+                  name="location"
+                  [(ngModel)]="team.location"
+                  placeholder="Location"
+                  #location
+                  required>
+                <div class="invalid-feedback">
+                  {{error && error.location}}
+                </div>
+              </div>
+              <div class="form-group" *ngIf="team.image">
+                <cl-image public-id="{{team.image.public_id}}" >
+                  <cl-transformation height="150" width="150" crop="thumb" gravity="face"></cl-transformation>
+                </cl-image>
+              </div>
+              <div class="form-group">
+                <input type="file" class="form-control {{error && error.file && 'is-invalid'}}" id="image" name="image">
+                <div class="invalid-feedback">
+                  {{error && error.file}}
+                </div>
+              </div>
+              <div class="form-group">
+                <select #onlineState class="form-control">
+                  <option value="true" [selected]="team.onlineState ? true : null">Online</option>
+                  <option value="false" [selected]="team.onlineState ? null : true">Offline</option>
+                </select>
+                <div class="invalid-feedback">
+                  {{error && error.onlineState}}
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn">Edit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

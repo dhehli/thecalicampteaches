@@ -26,7 +26,7 @@ const adminRoutes: Routes = [
 
     { path: 'testimonial', component: TestimonialComponent },
     { path: 'testimonial/add', component: TestimonialAddComponent },
-    { path: 'testimonial/detail/:uid', component: TestimonialDetailComponent }
+    { path: 'testimonial/detail/:uid', component: TestimonialDetailComponent },
 
     { path: 'team', component: TeamComponent },
     { path: 'team/add', component: TeamAddComponent },
