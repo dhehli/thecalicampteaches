@@ -3,5 +3,6 @@
   "userId": "string",
   "teamId": "string",
   "state": "string",
-  "created": "date"
+  "created": "date",
+  "video": "object"
 }

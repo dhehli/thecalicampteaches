@@ -1,0 +1,12 @@
+{
+  "id": "string",
+  "orderId": "string",
+  "teamUserId": "string",
+  "comments": [
+    {
+      "text": "string",
+      "created": "date"
+    }
+  ],
+  "created": "date"
+}
