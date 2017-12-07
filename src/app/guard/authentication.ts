@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 
 
 const httpOptions = {
-  headers: new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Credentials', 'true')
+  headers: new HttpHeaders().set('Access-Control-Allow-Credentials', 'true').set('Content-Type', 'application/json'),
+  params: {userId: "123"}
 };
 
 @Injectable()

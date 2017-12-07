@@ -31,12 +31,8 @@ app.use(session({
   secret: 'holy cow',
   resave: false,
   saveUninitialized: false,
-  maxAge: 600000,
-  cookie: {
-    secure: false,
-    httpOnly: false,
-    domain: "http://localhost:4200"
-  }
+  expires: 100000000000,
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000, secure: false }
 }));
 
 

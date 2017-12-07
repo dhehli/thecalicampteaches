@@ -23,6 +23,8 @@ function encryptPassword(password){
   return bcrypt.hash(password, 10).then(hash => hash)
 }
 
+
+
 //Post to insert User
 router.post('/signup', (req, res) => {
 
