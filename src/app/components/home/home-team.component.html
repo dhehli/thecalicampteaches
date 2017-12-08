@@ -4,8 +4,8 @@
       <h1>Our Team</h1>
       <span class="icon-cross"></span>
     </div>
-    <div class="flexslider">
-        <ul class="slides">
+    <div class="slider">
+        <ul class="slides" *ngIf="teams">
           <li *ngFor="let team of teams">
             <div class="team-holder active">
               <div class="img-holder">

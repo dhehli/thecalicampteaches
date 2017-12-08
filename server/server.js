@@ -31,7 +31,7 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use(session({
   secret: 'holy cow',
   resave: false,
-  saveUninitialized: false,
+  saveUninitialized: true,
   expires: 100000000000,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000, secure: false }
 }));
