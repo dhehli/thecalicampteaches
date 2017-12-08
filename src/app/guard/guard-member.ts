@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
+import {Observable} from 'rxjs/Rx';
 
 import { AuthenticationService }   from './authentication.service';
 
@@ -11,7 +12,7 @@ const httpOptions = {
 };
 
 @Injectable()
-export class AuthenticationGuard implements CanActivate{
+export class GuardMember implements CanActivate{
 
 
     constructor(
@@ -20,16 +21,20 @@ export class AuthenticationGuard implements CanActivate{
       private authenticationService: AuthenticationService
     ) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<boolean> | boolean {
+   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
 
-      return this.authenticationService.check()
+      return this.authenticationService.isAuthenticated()
       .then(response => {
         if(response && response.loggedIn){
           return true
         }else{
+          this.router.navigate(['/login']);
           return false
         }
       })
-      .catch(err => console.error(err))
+      .catch(err => {
+        this.router.navigate(['/login']);
+        return false
+      })
     }
 }

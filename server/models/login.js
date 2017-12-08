@@ -52,7 +52,12 @@ router.post('/login', (req, res) => {
 
     req.session.userId = userId;
 
-    return res.status(200).json({loggedIn: 'success'});
+    r.table('user')
+    .filter({ id: userId, admin: true })
+    .count()
+    .run()
+    .then(response => response ? res.json({loggedIn: true, admin: true}) : res.json({loggedIn: true}))
+    .error(err => res.send({errors: err}))
   })
   .catch(err => res.send({errors: err}))
 

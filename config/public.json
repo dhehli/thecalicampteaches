@@ -8,5 +8,15 @@
     "cloud_name": "",
     "api_key": "",
     "api_secret": ""
+  },
+  "cors": {
+    "origin": "",
+    "credentials":
+  },
+  "session":{
+    "secret": "",
+    "resave": ,
+    "saveUninitialized": ,
+    "expires":
   }
 }

@@ -24,7 +24,8 @@ import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 
-import { AuthenticationGuard } from './guard/authentication';
+import { GuardAdmin } from './guard/guard-admin';
+import { GuardMember } from './guard/guard-member';
 import { AuthenticationService } from './guard/authentication.service';
 
 import { SignupComponent } from './components/signup/signup.component';
@@ -85,7 +86,8 @@ import { TeamService } from './components/team/team.service';
     TeamHomeComponent
   ],
   providers: [
-    AuthenticationGuard,
+    GuardAdmin,
+    GuardMember,
     AuthenticationService,
     HeroService,
     MessageService,

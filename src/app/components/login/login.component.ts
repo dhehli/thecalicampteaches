@@ -36,8 +36,12 @@ export class LoginComponent implements OnInit {
     .then(response => {
       this.error = [];
 
+      console.log(response)
+
       if(response.errors){
         response.errors.forEach(e => this.error[e.param] = e.msg);
+      }else if(response && response.admin){
+        this.router.navigateByUrl('/admin');
       }else{
         this.router.navigateByUrl('/member');
       }

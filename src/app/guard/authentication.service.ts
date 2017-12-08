@@ -21,8 +21,8 @@ export class AuthenticationService {
     private http: HttpClient
   ) { }
 
-  /** POST: add a new hero to the server */
-  check(): Promise<boolean> {
+
+  isAuthenticated(): Promise<any> {
     return this.http
       .get(this.url, httpOptions)
       .toPromise()

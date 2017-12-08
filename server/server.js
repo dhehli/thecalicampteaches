@@ -1,4 +1,5 @@
 // Get dependencies
+import config from 'config';
 import express from 'express';
 import path from 'path';
 import http from 'http';
@@ -20,25 +21,15 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(expressValidator());
-app.use(cors({ // TODO: add to config
-  origin: "http://localhost:4200",
-  credentials: true
-}));
+app.use(cors(config.get('cors')));
 // Point static path to dist
 app.use(express.static(path.join(__dirname, '../dist')));
 
-//use sessions for tracking logins // TODO: add to config
-app.use(session({
-  secret: 'holy cow',
-  resave: false,
-  saveUninitialized: true,
-  expires: 100000000000,
-  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000, secure: false }
-}));
+app.use(session(config.get('session')));
 
 
 //Router Middleware to Check if user has Session
-function loggedIn(req, res, next) {
+function isMember(req, res, next) {
   if (req.session && req.session.userId) {
     return next();
   } else {

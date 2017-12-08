@@ -14,7 +14,8 @@ import { TeamComponent }  from './components/team/team.component';
 import { TeamAddComponent }  from './components/team/team-add.component';
 import { TeamDetailComponent }  from './components/team/team-detail.component';
 
-import { AuthenticationGuard } from './guard/authentication';
+import { GuardAdmin } from './guard/guard-admin';
+import { GuardMember } from './guard/guard-member';
 import { MemberComponent }  from './components/member/member.component';
 
 import { DashboardComponent }   from './dashboard/dashboard.component';
@@ -22,7 +23,7 @@ import { HeroesComponent }      from './heroes/heroes.component';
 import { HeroDetailComponent }  from './hero-detail/hero-detail.component';
 
 const adminRoutes: Routes = [
-    { path: 'admin', component: AdminComponent },
+    { path: 'admin', component: AdminComponent, canActivate: [GuardAdmin] },
 
     { path: 'testimonial', component: TestimonialComponent },
     { path: 'testimonial/add', component: TestimonialAddComponent },
@@ -38,7 +39,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'member', component: MemberComponent, canActivate: [AuthenticationGuard] },
+  { path: 'member', component: MemberComponent, canActivate: [GuardMember] },
 
 
   { path: 'dashboard', component: DashboardComponent },
