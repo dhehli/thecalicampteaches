@@ -18,5 +18,10 @@
     "resave": ,
     "saveUninitialized": ,
     "expires":
-  }
+  },
+  "mailgun":{
+    "apiKey": "",
+    "domain": ""
+  },
+  "defaultMail": ""
 }
