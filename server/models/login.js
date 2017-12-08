@@ -49,12 +49,10 @@ router.post('/login', (req, res) => {
     if(!isPasswordValid){
       return res.json({errors: [{param: 'password', msg: 'Password wrong'}]});
     }
-    // FIXME: This session is avaialable when i use postman but not when i use my angular frontend
-    console.log("user id on server", userId)
 
     req.session.userId = userId;
 
-    return res.status(200).json({userId: userId});
+    return res.status(200).json({loggedIn: 'success'});
   })
   .catch(err => res.send({errors: err}))
 

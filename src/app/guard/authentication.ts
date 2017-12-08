@@ -3,6 +3,7 @@ import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
 
+import { AuthenticationService }   from './authentication.service';
 
 const httpOptions = {
   headers: new HttpHeaders().set('Content-Type', 'application/json'),
@@ -12,25 +13,23 @@ const httpOptions = {
 @Injectable()
 export class AuthenticationGuard implements CanActivate{
 
-    private url = 'http://localhost:3000/api/authcheck';
 
     constructor(
       private router: Router,
-      private http: HttpClient
+      private http: HttpClient,
+      private authenticationService: AuthenticationService
     ) { }
 
-    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-        let url: string = state.url;
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot):Observable<boolean> | boolean {
 
-        this.http
-          .get(this.url, httpOptions)
-          .toPromise()
-          .then(response => {
-            console.log(response)
-          })
-          .catch(e => console.log(e))
-
-          return true;
-
+      return this.authenticationService.check()
+      .then(response => {
+        if(response && response.loggedIn){
+          return true
+        }else{
+          return false
+        }
+      })
+      .catch(err => console.error(err))
     }
 }
