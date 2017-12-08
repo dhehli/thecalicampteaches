@@ -10,6 +10,7 @@ createDatabaseIfNotExists(dbCaliCamp)
   createTableIfNotExists(dbCaliCamp,'testimonial');
   createTableIfNotExists(dbCaliCamp,'user');
   createTableIfNotExists(dbCaliCamp,'uservideo');
+  createTableIfNotExists(dbCaliCamp,'forgotpassword');
 })
 .catch(err => console.log(err));
 

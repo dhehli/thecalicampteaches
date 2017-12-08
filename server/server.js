@@ -12,6 +12,7 @@ import heroes from './models/heroes';
 import authCheck from './models/authenticationCheck';
 import signup from './models/signup';
 import login from './models/login';
+import forgotPassword from './models/forgotPassword'
 import testimonial from './models/testimonial';
 import team from './models/team';
 
@@ -44,6 +45,7 @@ function isMember(req, res, next) {
 app.use('/api', authCheck);
 app.use('/api', signup);
 app.use('/api', login);
+app.use('/api', forgotPassword);
 
 //Admin Routes
 app.use('/api', testimonial);
