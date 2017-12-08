@@ -26,6 +26,8 @@ const publicRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'forgotpassword', component: ForgotpasswordComponent },
+  { path: 'resetpassword/:hash', component: ResetpasswordComponent },
 ]
 
 const adminRoutes: Routes = [
