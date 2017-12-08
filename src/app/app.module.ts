@@ -13,11 +13,6 @@ import { InMemoryDataService }  from './in-memory-data.service';
 import { AppRoutingModule }     from './app-routing.module';
 
 import { AppComponent }         from './app.component';
-import { DashboardComponent }   from './dashboard/dashboard.component';
-import { HeroDetailComponent }  from './hero-detail/hero-detail.component';
-import { HeroesComponent }      from './heroes/heroes.component';
-import { HeroSearchComponent }  from './hero-search/hero-search.component';
-import { HeroService }          from './hero.service';
 import { MessageService }       from './message.service';
 
 import { HeaderComponent } from './shared/header/header.component';
@@ -32,6 +27,12 @@ import { SignupComponent } from './components/signup/signup.component';
 import { UserService } from './components/signup/user.service';
 import { LoginComponent } from './components/login/login.component';
 import { LoginService } from './components/login/login.service';
+
+import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './components/forgotpassword/resetpassword.component';
+import { ForgotPasswordService } from './components/forgotpassword/forgotpassword.service';
+import { ResetPasswordService } from './components/forgotpassword/resetpassword.service';
+
 import { MemberComponent } from './components/member/member.component';
 import { AdminComponent } from './components/admin/admin.component';
 
@@ -46,6 +47,7 @@ import { TeamAddComponent } from './components/team/team-add.component';
 import { TeamDetailComponent } from './components/team/team-detail.component';
 import { TeamHomeComponent } from './components/home/home-team.component';
 import { TeamService } from './components/team/team.service';
+
 
 @NgModule({
   imports: [
@@ -65,10 +67,6 @@ import { TeamService } from './components/team/team.service';
   ],
   declarations: [
     AppComponent,
-    DashboardComponent,
-    HeroesComponent,
-    HeroDetailComponent,
-    HeroSearchComponent,
     HeaderComponent,
     FooterComponent,
     HomeComponent,
@@ -83,16 +81,19 @@ import { TeamService } from './components/team/team.service';
     TeamComponent,
     TeamAddComponent,
     TeamDetailComponent,
-    TeamHomeComponent
+    TeamHomeComponent,
+    ForgotpasswordComponent,
+    ResetpasswordComponent
   ],
   providers: [
     GuardAdmin,
     GuardMember,
     AuthenticationService,
-    HeroService,
     MessageService,
     UserService,
     LoginService,
+    ForgotPasswordService,
+    ResetPasswordService,
     TestimonialService,
     TeamService
   ],
