@@ -63,7 +63,17 @@ router.post('/forgotpassword', (req, res) => {
       if (err) {
         return res.json({errors: [{param: 'mail', msg: 'Mailing failure'}]});
       }
-      return res.send({mailSent: true})
+
+      r.table('forgotpassword')
+      .insert({
+        email,
+        hash,
+        created: new Date(),
+        state: 0
+      })
+      .run()
+      .then(response => res.send({mailSent: true}))
+      .error(err => err);
     });
 
   })

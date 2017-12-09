@@ -15,5 +15,23 @@ const httpOptions = {
 @Injectable()
 export class ForgotPasswordService {
 
+  private url = 'http://localhost:3000/api/forgotpassword';
 
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  /** POST: add a new hero to the server */
+  reset(entry): Promise<any> {
+    return this.http
+      .post(this.url, JSON.stringify(entry), httpOptions)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError)
+  }
+
+  private handleError(error: any): Promise<string> {
+    //console.error('An error occurred', console.log(error)); // for demo purposes only
+    return Promise.reject(error.message || error);
+  }
 }

@@ -1,6 +1,4 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Location } from '@angular/common';
 
 import { UserService }   from './user.service';
 
@@ -16,10 +14,7 @@ export class SignupComponent implements OnInit {
   success: boolean;
 
   constructor(
-    private route: ActivatedRoute,
-    private userService: UserService,
-    private location: Location,
-
+    private userService: UserService
   ) { }
 
   ngOnInit() { }

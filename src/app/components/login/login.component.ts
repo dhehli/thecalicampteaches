@@ -1,22 +1,18 @@
 import { Component, OnInit, ViewEncapsulation, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
 
 import { LoginService }   from './login.service';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  templateUrl: './login.component.html'
 })
 export class LoginComponent implements OnInit {
   error = {};
 
   constructor(
     private router: Router,
-    private loginService: LoginService,
-    private location: Location,
+    private loginService: LoginService
   ) { }
 
   ngOnInit() {
@@ -35,8 +31,6 @@ export class LoginComponent implements OnInit {
     this.loginService.login(user)
     .then(response => {
       this.error = [];
-
-      console.log(response)
 
       if(response.errors){
         response.errors.forEach(e => this.error[e.param] = e.msg);
