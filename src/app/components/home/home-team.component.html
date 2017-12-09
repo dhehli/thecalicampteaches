@@ -4,31 +4,29 @@
       <h1>Our Team</h1>
       <span class="icon-cross"></span>
     </div>
-    <div class="slider">
-        <ul class="slides" *ngIf="teams">
-          <li *ngFor="let team of teams">
-            <div class="team-holder active">
-              <div class="img-holder">
-                <div *ngIf="team.image">
-                  <cl-image public-id="{{team.image.public_id}}" >
-                    <cl-transformation height="203" width="203" crop="thumb" gravity="face"></cl-transformation>
-                  </cl-image>
-                </div>
-              </div>
-              <h2>{{team.firstname}} {{team.lastname}}</h2>
-              <div class="mail">
-                <span><a href="mailto: {{team.email}}">{{team.email}}</a></span>
-              </div>
-              <div>
-                <span class="icon-waves"></span>
-              </div>
-              <div class="location">
-                <span class="icon-location"></span>
-                <span>{{team.location}}</span>
-              </div>
+    <div class="row justify-content-md-center">
+      <div class="col-lg-3" *ngFor="let team of teams">
+        <div class="team-holder active">
+          <div class="img-holder">
+            <div *ngIf="team.image">
+              <cl-image public-id="{{team.image.public_id}}" >
+                <cl-transformation height="203" width="203" crop="thumb" gravity="face"></cl-transformation>
+              </cl-image>
             </div>
-          </li>
-        </ul>
+          </div>
+          <h2>{{team.firstname}} {{team.lastname}}</h2>
+          <div class="mail">
+            <span><a href="mailto: {{team.email}}">{{team.email}}</a></span>
+          </div>
+          <div>
+            <span class="icon-waves"></span>
+          </div>
+          <div class="location">
+            <span class="icon-location"></span>
+            <span>{{team.location}}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
