@@ -22,9 +22,12 @@ export class ForgotPasswordService {
   ) { }
 
   /** POST: add a new hero to the server */
-  reset(entry): Promise<any> {
+  forgot(email: string): Promise<any> {
+    const data = {
+      email
+    }
     return this.http
-      .post(this.url, JSON.stringify(entry), httpOptions)
+      .post(this.url, JSON.stringify(data), httpOptions)
       .toPromise()
       .then(response => response)
       .catch(this.handleError)

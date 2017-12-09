@@ -16,11 +16,9 @@ export class ForgotpasswordComponent implements OnInit {
 
   ngOnInit() { }
 
-  reset(email: string){
+  forgot(email: string){
 
-    const data = { email };
-
-    this.forgotPasswordService.reset(data)
+    this.forgotPasswordService.forgot(email)
     .then(response => {
       this.error = [];
 
@@ -31,7 +29,5 @@ export class ForgotpasswordComponent implements OnInit {
       }
     })
     .catch(err => console.error(err))
-   }
   }
-
 }

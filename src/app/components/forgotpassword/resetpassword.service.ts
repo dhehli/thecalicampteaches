@@ -14,5 +14,33 @@ const httpOptions = {
 
 @Injectable()
 export class ResetPasswordService {
+  private url = 'http://localhost:3000/api/resetpassword';
 
+  constructor(
+    private http: HttpClient
+  ) { }
+
+  checkHash(hash: string) : Promise<any> {
+    return this.http
+      .get(`${this.url}/${hash}`, httpOptions)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError)
+  }
+
+  resetPassword(hash: string, password: string): Promise<any> {
+    const data = {
+        password
+    }
+    return this.http
+      .post(`${this.url}/${hash}`, JSON.stringify(data), httpOptions)
+      .toPromise()
+      .then(response => response)
+      .catch(this.handleError)
+  }
+
+  private handleError(error: any): Promise<string> {
+    //console.error('An error occurred', console.log(error)); // for demo purposes only
+    return Promise.reject(error.message || error);
+  }
 }
