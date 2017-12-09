@@ -65,20 +65,26 @@ router.post('/forgotpassword', (req, res) => {
       }
 
       r.table('forgotpassword')
-      .insert({
-        email,
-        hash,
-        created: new Date(),
-        state: 0
-      })
+      .filter({ email })
+      .update({ state: 1 })
       .run()
-      .then(response => res.send({mailSent: true}))
+      .then(update => {
+        r.table('forgotpassword')
+        .insert({
+          email,
+          hash,
+          created: new Date(),
+          state: 0
+        })
+        .run()
+        .then(response => res.send({mailSent: true}))
+        .error(err => err);
+      })
       .error(err => err);
     });
 
   })
   .catch(err => res.send({errors: err}))
-
 })
 
 export default router;
