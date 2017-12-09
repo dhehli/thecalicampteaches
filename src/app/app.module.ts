@@ -7,9 +7,6 @@ import { HttpModule } from '@angular/http';
 import { CloudinaryModule, CloudinaryConfiguration } from '@cloudinary/angular-5.x';
 import { Cloudinary } from 'cloudinary-core';
 
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService }  from './in-memory-data.service';
-
 import { AppRoutingModule }     from './app-routing.module';
 
 import { AppComponent }         from './app.component';
