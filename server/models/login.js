@@ -39,11 +39,13 @@ router.post('/login', (req, res) => {
 
 
   let userId;
+  let isAdmin;
 
   checkIfEmailExists(email)
   .then(user => {
-    console.log(user);
     userId = user[0].id;
+    isAdmin = user[0].admin;
+
     return checkPassword(password, user[0].password)
   })
   .then(isPasswordValid => {
@@ -52,6 +54,10 @@ router.post('/login', (req, res) => {
     }
 
     req.session.userId = userId;
+
+    if(isAdmin){
+      req.session.admin = isAdmin;
+    }
 
     r.table('user')
     .filter({ id: userId, admin: true })

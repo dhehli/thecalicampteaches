@@ -41,6 +41,17 @@ function isMember(req, res, next) {
   }
 }
 
+//Router Middleware to Check if Memeraccess
+function isAdmin(req, res, next) {
+  if (req.session && req.session.userId && req.session.admin) {
+    return next();
+  } else {
+    var err = new Error('You must be admin in to view this page.');
+    err.status = 401;
+    return next(err);
+  }
+}
+
 // Set api routes
 app.use('/api', authCheck);
 app.use('/api', signup);
@@ -49,8 +60,8 @@ app.use('/api', forgotPassword);
 app.use('/api', resetPassword);
 
 //Admin Routes
-app.use('/api',testimonial);
-app.use('/api',team);
+app.use('/api', isMember, testimonial);
+app.use('/api',isAdmin, team);
 
 // Set protected routes
 //app.use('/api', loggedIn, heroes);
