@@ -9,7 +9,6 @@ import { Testimonial } from './testimonial';
 import { MessageService } from '../../message.service';
 
 const httpOptions = {
-  headers: new HttpHeaders().set('Content-Type', 'application/json'),
   withCredentials: true
 };
 

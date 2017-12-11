@@ -9,7 +9,6 @@ import { Team } from './team';
 import { MessageService } from '../../message.service';
 
 const httpOptions = {
-  headers: new HttpHeaders().set('Content-Type', 'application/json'),
   withCredentials: true
 };
 

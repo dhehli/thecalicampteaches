@@ -42,6 +42,7 @@ router.post('/login', (req, res) => {
 
   checkIfEmailExists(email)
   .then(user => {
+    console.log(user);
     userId = user[0].id;
     return checkPassword(password, user[0].password)
   })

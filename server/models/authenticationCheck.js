@@ -6,6 +6,7 @@ const router = express.Router();
 router.get('/authcheck', (req, res) => {
   if(req.session && req.session.userId){
     const userId = req.session.userId;
+    
     r.table('user')
     .filter({ id: userId, admin: true })
     .count()
