@@ -8,7 +8,6 @@ import session from 'express-session';
 import expressValidator from 'express-validator';
 import cors from 'cors';
 // Get our API routes
-import heroes from './models/heroes';
 import authCheck from './models/authenticationCheck';
 import signup from './models/signup';
 import login from './models/login';
@@ -30,7 +29,7 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use(session(config.get('session')));
 
 
-//Router Middleware to Check if Memeraccess
+//Router Middleware to Check if Memberaccess
 function isMember(req, res, next) {
   if (req.session && req.session.userId) {
     return next();
@@ -41,7 +40,7 @@ function isMember(req, res, next) {
   }
 }
 
-//Router Middleware to Check if Memeraccess
+//Router Middleware to Check if Adminaccess
 function isAdmin(req, res, next) {
   if (req.session && req.session.userId && req.session.admin) {
     return next();
@@ -60,8 +59,8 @@ app.use('/api', forgotPassword);
 app.use('/api', resetPassword);
 
 //Admin Routes
-app.use('/api', isMember, testimonial);
-app.use('/api',isAdmin, team);
+app.use('/api', testimonial);
+app.use('/api', team);
 
 // Set protected routes
 //app.use('/api', loggedIn, heroes);

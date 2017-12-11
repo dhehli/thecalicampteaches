@@ -33,7 +33,6 @@ router.post('/forgotpassword', (req, res) => {
 
   const {email} = req.body;
 
-
   let userId;
 
   checkIfEmailExists(email)

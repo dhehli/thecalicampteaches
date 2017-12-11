@@ -102,7 +102,7 @@ router.put(`/${table}/:uid`, upload.single('image'), (req, res) => {
  }
 
  if(req.file){
-       // TODO: delete old file cloudinary.v2.uploader.destroy('zombie', function(error, result){console.log(result)});
+       // TODO: restriction for file type
    cloudinaryUpload(req.file.path)
    .then(image => {
      data.image = image;
