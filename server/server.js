@@ -30,8 +30,9 @@ app.use(express.static(path.join(__dirname, '../dist')));
 app.use(session(config.get('session')));
 
 
-//Router Middleware to Check if user has Session
+//Router Middleware to Check if Memeraccess
 function isMember(req, res, next) {
+  console.log("middleware", req.session)
   if (req.session && req.session.userId) {
     return next();
   } else {
@@ -50,7 +51,7 @@ app.use('/api', resetPassword);
 
 //Admin Routes
 app.use('/api', testimonial);
-app.use('/api', team);
+app.use('/api', isMember, team);
 
 // Set protected routes
 //app.use('/api', loggedIn, heroes);

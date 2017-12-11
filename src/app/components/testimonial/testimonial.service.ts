@@ -9,7 +9,8 @@ import { Testimonial } from './testimonial';
 import { MessageService } from '../../message.service';
 
 const httpOptions = {
-  headers: new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Credentials', 'true')
+  headers: new HttpHeaders().set('Content-Type', 'application/json'),
+  withCredentials: true
 };
 
 @Injectable()
@@ -23,7 +24,7 @@ export class TestimonialService {
 
   /** GET testimoniales from the server */
   getTestimonials (): Observable<Testimonial[]> {
-    return this.http.get<Testimonial[]>(this.testimonialUrl)
+    return this.http.get<Testimonial[]>(this.testimonialUrl, httpOptions)
       .pipe(
         tap(testimoniales => this.log(`fetched testimoniales`)),
         catchError(this.handleError('getTestimoniales', []))
@@ -33,7 +34,7 @@ export class TestimonialService {
   /** GET testimonial by id. Return `undefined` when id not found */
   getTestimonialNo404<Data>(id: number): Observable<Testimonial> {
     const url = `${this.testimonialUrl}/?id=${id}`;
-    return this.http.get<Testimonial[]>(url)
+    return this.http.get<Testimonial[]>(url, httpOptions)
       .pipe(
         map(testimoniales => testimoniales[0]), // returns a {0|1} element array
         tap(h => {
@@ -47,7 +48,7 @@ export class TestimonialService {
   /** GET testimonial by id. Will 404 if id not found */
   getTestimonial(id: string): Observable<Testimonial> {
     const url = `${this.testimonialUrl}/${id}`;
-    return this.http.get<Testimonial>(url).pipe(
+    return this.http.get<Testimonial>(url, httpOptions).pipe(
       tap(_ => this.log(`fetched testimonial id=${id}`)),
       catchError(this.handleError<Testimonial>(`getTestimonial id=${id}`))
     );
@@ -57,7 +58,7 @@ export class TestimonialService {
 
   /** POST: add a new testimonial to the server */
   addTestimonial (testimonial: FormData): Observable<any> {
-    return this.http.post<FormData>(this.testimonialUrl, testimonial).pipe(
+    return this.http.post<FormData>(this.testimonialUrl, testimonial, httpOptions).pipe(
       tap((testimonial: FormData) => this.log(`add`)),
       catchError(this.handleError<FormData>('addTestimonial'))
     );
@@ -78,7 +79,7 @@ export class TestimonialService {
   updateTestimonial (testimonial: FormData): Observable<any> {
     const url = `${this.testimonialUrl}/${testimonial.get('id')}`;
 
-    return this.http.put(url, testimonial).pipe(
+    return this.http.put(url, testimonial, httpOptions).pipe(
       tap(_ => this.log('update')),
       catchError(this.handleError<any>('updateTestimonial'))
     );

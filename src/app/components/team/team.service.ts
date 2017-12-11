@@ -9,7 +9,8 @@ import { Team } from './team';
 import { MessageService } from '../../message.service';
 
 const httpOptions = {
-  headers: new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Credentials', 'true')
+  headers: new HttpHeaders().set('Content-Type', 'application/json'),
+  withCredentials: true
 };
 
 @Injectable()
@@ -23,7 +24,7 @@ export class TeamService {
 
   /** GET teames from the server */
   getTeams (): Observable<Team[]> {
-    return this.http.get<Team[]>(this.teamUrl)
+    return this.http.get<Team[]>(this.teamUrl, httpOptions)
       .pipe(
         tap(teams => this.log(`fetched teames`)),
         catchError(this.handleError('getTeames', []))
@@ -33,7 +34,7 @@ export class TeamService {
   /** GET team by id. Return `undefined` when id not found */
   getTeamNo404<Data>(id: number): Observable<Team> {
     const url = `${this.teamUrl}/?id=${id}`;
-    return this.http.get<Team[]>(url)
+    return this.http.get<Team[]>(url, httpOptions)
       .pipe(
         map(teames => teames[0]), // returns a {0|1} element array
         tap(h => {
@@ -47,7 +48,7 @@ export class TeamService {
   /** GET team by id. Will 404 if id not found */
   getTeam(id: string): Observable<Team> {
     const url = `${this.teamUrl}/${id}`;
-    return this.http.get<Team>(url).pipe(
+    return this.http.get<Team>(url, httpOptions).pipe(
       tap(_ => this.log(`fetched team id=${id}`)),
       catchError(this.handleError<Team>(`getTeam id=${id}`))
     );
@@ -57,7 +58,7 @@ export class TeamService {
 
   /** POST: add a new team to the server */
   addTeam (team: FormData): Observable<any> {
-    return this.http.post<FormData>(this.teamUrl, team).pipe(
+    return this.http.post<FormData>(this.teamUrl, team, httpOptions).pipe(
       tap((team: FormData) => this.log(`add`)),
       catchError(this.handleError<FormData>('addTeam'))
     );
@@ -78,7 +79,7 @@ export class TeamService {
   updateTeam (team: FormData): Observable<any> {
     const url = `${this.teamUrl}/${team.get('id')}`;
 
-    return this.http.put(url, team).pipe(
+    return this.http.put(url, team, httpOptions).pipe(
       tap(_ => this.log('update')),
       catchError(this.handleError<any>('updateTeam'))
     );
