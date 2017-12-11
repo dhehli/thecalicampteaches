@@ -60,14 +60,12 @@ router.post('/resetpassword/:hash', (req, res) => {
 
   const { password } = req.body;
 
-  console.log(password);
-
   Promise.all([
     checkIfHashExists(hash),
     encryptPassword(password)
   ])
   .then(values => {
-    const email = values[0].email;
+    const email = values[0][0].email;
     const cryptedPassword = values[1];
 
     r.table(tableForgotpassword)
