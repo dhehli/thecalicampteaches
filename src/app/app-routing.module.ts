@@ -35,8 +35,7 @@ const publicRoutes: Routes = [
          { path: 'resetpassword/:hash', component: ResetpasswordComponent },
        ]
   }
-
-]
+];
 
 const adminRoutes: Routes = [
   {
@@ -45,10 +44,10 @@ const adminRoutes: Routes = [
        children: [
          { path: 'testimonial', component: TestimonialComponent },
          { path: 'testimonial/add', component: TestimonialAddComponent },
-         { path: 'testimonial/detail/:uid', component: TestimonialDetailComponent },
+         { path: 'testimonial/:uid', component: TestimonialDetailComponent },
          { path: 'team', component: TeamComponent },
          { path: 'team/add', component: TeamAddComponent },
-         { path: 'team/detail/:uid', component: TeamDetailComponent }
+         { path: 'team/:uid', component: TeamDetailComponent }
        ]
   }
 ];

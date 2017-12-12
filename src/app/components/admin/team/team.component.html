@@ -2,7 +2,7 @@
   <div class="container">
     <div class="base-container">
       <h1>Team</h1>
-      <p><button class="btn" [routerLink]="['/team/add']">New Team</button></p>
+      <p><button class="btn" [routerLink]="['./add']">New Team</button></p>
       <div *ngIf="teams && teams.length">
         <div class="table-responsive">
           <table class="table table-striped">
@@ -22,7 +22,7 @@
                 <td>{{team.lastname}}</td>
                 <td>{{team.email}}</td>
                 <td>{{team.location}}</td>
-                <td><a [routerLink]="['/team/detail', team.id]">Detail</a></td>
+                <td><a [routerLink]="['./', team.id]">Detail</a></td>
                 <td>
                   <button class="interface-button" href="#" title="delete team"
                   (click)="delete(team)"><span class="icon-cross"></span></button>

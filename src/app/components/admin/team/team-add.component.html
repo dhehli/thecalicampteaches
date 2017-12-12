@@ -5,11 +5,11 @@
         <div class="col-md-6">
           <h1>Add Team</h1>
           <p>
-            <button class="btn btn-default" routerLink="/team">Back</button>
+            <button class="btn btn-default" [routerLink]="['../../team']">Back</button>
           </p>
           <div *ngIf="success">
             <div class="alert alert-success" role="alert">
-              Team created <a routerLink="/team">Back to List</a>
+              Team created <a [routerLink]="['../../team']">Back to List</a>
             </div>
           </div>
           <form (ngSubmit)="add(firstname.value, lastname.value, email.value, location.value, onlineState.value)" *ngIf="!success" enctype="multipart/form-data">

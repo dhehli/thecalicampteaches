@@ -6,11 +6,11 @@
           <div *ngIf="team">
             <h1>Edit Team</h1>
             <p>
-              <button class="btn btn-default" routerLink="/team">Back</button>
+              <button class="btn btn-default" [routerLink]="['../../team']">Back</button>
             </p>
             <div *ngIf="success">
               <div class="alert alert-success" role="alert">
-                Team updated <a routerLink="/team">Back to List</a>
+                Team updated <a [routerLink]="['../../team']">Back to List</a>
               </div>
             </div>
             <form (ngSubmit)="update(firstname.value, lastname.value, email.value, location.value, onlineState.value)" *ngIf="!success" enctype="multipart/form-data">

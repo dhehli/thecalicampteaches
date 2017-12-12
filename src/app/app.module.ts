@@ -87,7 +87,8 @@ import { PublicComponent } from './components/public/public.component';
     ForgotpasswordComponent,
     ResetpasswordComponent,
     HeaderAdminComponent,
-    PublicComponent
+    PublicComponent,
+    HeaderMemberComponent
   ],
   providers: [
     GuardAdmin,

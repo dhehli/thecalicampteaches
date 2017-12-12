@@ -6,11 +6,11 @@
           <div *ngIf="testimonial">
             <h1>Edit Testimonial</h1>
             <p>
-              <button class="btn btn-default" routerLink="/testimonial">Back</button>
+              <button class="btn btn-default" [routerLink]="['../../testimonial']">Back</button>
             </p>
             <div *ngIf="success">
               <div class="alert alert-success" role="alert">
-                Testimonial updated <a routerLink="/testimonial">Back to List</a>
+                Testimonial updated <a [routerLink]="['../../testimonial']">Back to List</a>
               </div>
             </div>
             <form (ngSubmit)="update(firstname.value, lastname.value, quote.value, onlineState.value)" *ngIf="!success" enctype="multipart/form-data">
