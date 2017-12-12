@@ -2,9 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-public',
-  templateUrl: './public.component.html',
-  styleUrls: ['./public.component.scss'],
-  encapsulation: ViewEncapsulation.None
+  templateUrl: './public.component.html'
 })
 export class PublicComponent implements OnInit {
 

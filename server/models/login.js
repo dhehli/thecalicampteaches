@@ -71,13 +71,12 @@ router.post('/login', (req, res) => {
 })
 
 router.get('/logout', (req, res) => {
-  console.log("logout")
   if (req.session) {
     req.session.destroy(err => {
       if(err) {
         return next(err);
       }
-      res.send()
+      res.send({logout: true})
     });
   }
 })

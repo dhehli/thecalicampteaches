@@ -8,7 +8,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 
 const httpOptions = {
-  headers: new HttpHeaders().set('Content-Type', 'application/json').set('Access-Control-Allow-Credentials', 'true')
+  headers: new HttpHeaders().set('Content-Type', 'application/json'),
+  withCredentials: true
 };
 
 @Injectable()

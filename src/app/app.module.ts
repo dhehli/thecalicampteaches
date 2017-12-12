@@ -103,7 +103,8 @@ import { LogoutService } from './shared/logout/logout.service';
     ForgotPasswordService,
     ResetPasswordService,
     TestimonialService,
-    TeamService
+    TeamService,
+    LogoutService
   ],
   bootstrap: [ AppComponent ]
 })
