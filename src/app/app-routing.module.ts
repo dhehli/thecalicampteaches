@@ -30,41 +30,43 @@ import { MemberComponent }  from './components/member/member.component';
 
 const publicRoutes: Routes = [
   {
-       path: '',
-       component: PublicComponent,
-       children: [
-         { path: '', redirectTo: '/home', pathMatch: 'full' },
-         { path: 'home', component: HomeComponent },
-         { path: 'signup', component: SignupComponent },
-         { path: 'login', component: LoginComponent },
-         { path: 'forgotpassword', component: ForgotpasswordComponent },
-         { path: 'resetpassword/:hash', component: ResetpasswordComponent },
-       ]
+   path: '',
+   component: PublicComponent,
+   children: [
+     { path: '', redirectTo: '/home', pathMatch: 'full' },
+     { path: 'home', component: HomeComponent },
+     { path: 'signup', component: SignupComponent },
+     { path: 'login', component: LoginComponent },
+     { path: 'forgotpassword', component: ForgotpasswordComponent },
+     { path: 'resetpassword/:hash', component: ResetpasswordComponent },
+   ]
   }
 ];
 
 const adminRoutes: Routes = [
   {
-       path: 'admin',
-       component: AdminComponent,
-       children: [
-         { path: 'testimonial', component: TestimonialComponent },
-         { path: 'testimonial/add', component: TestimonialAddComponent },
-         { path: 'testimonial/:uid', component: TestimonialDetailComponent },
-         { path: 'team', component: TeamComponent },
-         { path: 'team/add', component: TeamAddComponent },
-         { path: 'team/:uid', component: TeamDetailComponent }
-       ]
+   path: 'admin',
+   //canActivate: [GuardAdmin], // TODO: comment in
+   component: AdminComponent,
+   children: [
+     { path: 'testimonial', component: TestimonialComponent },
+     { path: 'testimonial/add', component: TestimonialAddComponent },
+     { path: 'testimonial/:uid', component: TestimonialDetailComponent },
+     { path: 'team', component: TeamComponent },
+     { path: 'team/add', component: TeamAddComponent },
+     { path: 'team/:uid', component: TeamDetailComponent }
+   ]
   }
 ];
 
 const memberRoutes: Routes = [
   {
-       path: 'member',
-       component: MemberComponent,
-       children: [
-         { path: 'member', component: MemberComponent, canActivate: [GuardMember] },
-       ]
+   path: 'member',
+   //canActivate: [GuardMember], // TODO: comment in
+   component: MemberComponent,
+   children: [
+     { path: 'member', component: MemberComponent, canActivate: [GuardMember] },
+   ]
   }
 ];
 
