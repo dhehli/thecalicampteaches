@@ -20,29 +20,47 @@ import { GuardMember } from './guard/guard-member';
 import { MemberComponent }  from './components/member/member.component';
 
 import { AdminComponent }  from './components/admin/admin.component';
+import { PublicComponent }  from './components/public/public.component';
 
 const publicRoutes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'signup', component: SignupComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'forgotpassword', component: ForgotpasswordComponent },
-  { path: 'resetpassword/:hash', component: ResetpasswordComponent },
+  {
+       path: '',
+       component: PublicComponent,
+       children: [
+         { path: '', redirectTo: '/home', pathMatch: 'full' },
+         { path: 'home', component: HomeComponent },
+         { path: 'signup', component: SignupComponent },
+         { path: 'login', component: LoginComponent },
+         { path: 'forgotpassword', component: ForgotpasswordComponent },
+         { path: 'resetpassword/:hash', component: ResetpasswordComponent },
+       ]
+  }
+
 ]
 
 const adminRoutes: Routes = [
-  { path: 'admin', component: AdminComponent, canActivate: [GuardAdmin] },
-  { path: 'testimonial', component: TestimonialComponent },
-  { path: 'testimonial/add', component: TestimonialAddComponent },
-  { path: 'testimonial/detail/:uid', component: TestimonialDetailComponent },
-  { path: 'team', component: TeamComponent },
-  { path: 'team/add', component: TeamAddComponent },
-  { path: 'team/detail/:uid', component: TeamDetailComponent }
-]
+  {
+       path: 'admin',
+       component: AdminComponent,
+       children: [
+         { path: 'testimonial', component: TestimonialComponent },
+         { path: 'testimonial/add', component: TestimonialAddComponent },
+         { path: 'testimonial/detail/:uid', component: TestimonialDetailComponent },
+         { path: 'team', component: TeamComponent },
+         { path: 'team/add', component: TeamAddComponent },
+         { path: 'team/detail/:uid', component: TeamDetailComponent }
+       ]
+  }
+];
 
 const memberRoutes: Routes = [
-  { path: 'member', component: MemberComponent, canActivate: [GuardMember] },
-
+  {
+       path: 'member',
+       component: MemberComponent,
+       children: [
+         { path: 'member', component: MemberComponent, canActivate: [GuardMember] },
+       ]
+  }
 ];
 
 @NgModule({

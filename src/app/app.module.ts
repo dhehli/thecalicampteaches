@@ -49,6 +49,7 @@ import { TeamHomeComponent } from './components/public/home/home-team.component'
 import { TestimonialHomeComponent } from './components/public/home/home-testimonials.component';
 import { HeaderAdminComponent } from './components/admin/header/header.component';
 import { HeaderMemberComponent } from './components/member/header/header.component';
+import { PublicComponent } from './components/public/public.component';
 
 @NgModule({
   imports: [
@@ -85,7 +86,8 @@ import { HeaderMemberComponent } from './components/member/header/header.compone
     TeamHomeComponent,
     ForgotpasswordComponent,
     ResetpasswordComponent,
-    HeaderAdminComponent
+    HeaderAdminComponent,
+    PublicComponent
   ],
   providers: [
     GuardAdmin,
