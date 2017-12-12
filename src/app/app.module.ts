@@ -12,7 +12,7 @@ import { AppRoutingModule }     from './app-routing.module';
 import { AppComponent }         from './app.component';
 import { MessageService }       from './message.service';
 
-import { HeaderComponent } from './shared/header/header.component';
+import { HeaderPublicComponent } from './components/public/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 
@@ -64,7 +64,7 @@ import { TeamService } from './components/team/team.service';
   ],
   declarations: [
     AppComponent,
-    HeaderComponent,
+    HeaderPublicComponent,
     FooterComponent,
     HomeComponent,
     SignupComponent,
