@@ -20,15 +20,15 @@ import { GuardAdmin } from './guard/guard-admin';
 import { GuardMember } from './guard/guard-member';
 import { AuthenticationService } from './guard/authentication.service';
 
-import { SignupComponent } from './components/signup/signup.component';
-import { UserService } from './components/signup/user.service';
-import { LoginComponent } from './components/login/login.component';
-import { LoginService } from './components/login/login.service';
+import { SignupComponent } from './components/public/signup/signup.component';
+import { UserService } from './components/public/signup/user.service';
+import { LoginComponent } from './components/public/login/login.component';
+import { LoginService } from './components/public/login/login.service';
 
-import { ForgotpasswordComponent } from './components/forgotpassword/forgotpassword.component';
-import { ResetpasswordComponent } from './components/forgotpassword/resetpassword.component';
-import { ForgotPasswordService } from './components/forgotpassword/forgotpassword.service';
-import { ResetPasswordService } from './components/forgotpassword/resetpassword.service';
+import { ForgotpasswordComponent } from './components/public/forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './components/public/forgotpassword/resetpassword.component';
+import { ForgotPasswordService } from './components/public/forgotpassword/forgotpassword.service';
+import { ResetPasswordService } from './components/public/forgotpassword/resetpassword.service';
 
 import { MemberComponent } from './components/member/member.component';
 import { AdminComponent } from './components/admin/admin.component';

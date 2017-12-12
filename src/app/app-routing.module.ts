@@ -2,10 +2,10 @@ import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { HomeComponent }  from './components/home/home.component';
-import { SignupComponent }  from './components/signup/signup.component';
-import { LoginComponent }  from './components/login/login.component';
-import { ForgotpasswordComponent }  from './components/forgotpassword/forgotpassword.component';
-import { ResetpasswordComponent } from './components/forgotpassword/resetpassword.component';
+import { SignupComponent }  from './components/public/signup/signup.component';
+import { LoginComponent }  from './components/public/login/login.component';
+import { ForgotpasswordComponent }  from './components/public/forgotpassword/forgotpassword.component';
+import { ResetpasswordComponent } from './components/public/forgotpassword/resetpassword.component';
 
 import { TestimonialComponent }  from './components/testimonial/testimonial.component';
 import { TestimonialAddComponent }  from './components/testimonial/testimonial-add.component';
