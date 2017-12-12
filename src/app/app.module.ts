@@ -14,7 +14,7 @@ import { MessageService }       from './message.service';
 
 import { HeaderPublicComponent } from './components/public/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
-import { HomeComponent } from './components/home/home.component';
+import { HomeComponent } from './components/public/home/home.component';
 
 import { GuardAdmin } from './guard/guard-admin';
 import { GuardMember } from './guard/guard-member';
@@ -36,13 +36,13 @@ import { AdminComponent } from './components/admin/admin.component';
 import { TestimonialComponent } from './components/testimonial/testimonial.component';
 import { TestimonialAddComponent } from './components/testimonial/testimonial-add.component';
 import { TestimonialDetailComponent } from './components/testimonial/testimonial-detail.component';
-import { TestimonialHomeComponent } from './components/home/home-testimonials.component';
+import { TestimonialHomeComponent } from './components/public/home/home-testimonials.component';
 import { TestimonialService } from './components/testimonial/testimonial.service';
 
 import { TeamComponent } from './components/team/team.component';
 import { TeamAddComponent } from './components/team/team-add.component';
 import { TeamDetailComponent } from './components/team/team-detail.component';
-import { TeamHomeComponent } from './components/home/home-team.component';
+import { TeamHomeComponent } from './components/public/home/home-team.component';
 import { TeamService } from './components/team/team.service';
 
 
