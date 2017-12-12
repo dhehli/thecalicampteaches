@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { Testimonial } from '../../testimonial/testimonial';
-import { TestimonialService } from '../../testimonial/testimonial.service';
+import { Testimonial } from '../../admin/testimonial/testimonial';
+import { TestimonialService } from '../../admin/testimonial/testimonial.service';
 
 
 @Component({

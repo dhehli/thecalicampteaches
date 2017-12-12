@@ -6,7 +6,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Testimonial } from './testimonial';
-import { MessageService } from '../../message.service';
+import { MessageService } from '../message/message.service';
 
 const httpOptions = {
   withCredentials: true

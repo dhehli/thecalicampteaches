@@ -10,7 +10,7 @@ import { Cloudinary } from 'cloudinary-core';
 import { AppRoutingModule }     from './app-routing.module';
 
 import { AppComponent }         from './app.component';
-import { MessageService }       from './message.service';
+import { MessageService }       from './components/admin/message/message.service';
 
 import { HeaderPublicComponent } from './components/public/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -33,18 +33,20 @@ import { ResetPasswordService } from './components/public/forgotpassword/resetpa
 import { MemberComponent } from './components/member/member.component';
 import { AdminComponent } from './components/admin/admin.component';
 
-import { TestimonialComponent } from './components/testimonial/testimonial.component';
-import { TestimonialAddComponent } from './components/testimonial/testimonial-add.component';
-import { TestimonialDetailComponent } from './components/testimonial/testimonial-detail.component';
-import { TestimonialHomeComponent } from './components/public/home/home-testimonials.component';
-import { TestimonialService } from './components/testimonial/testimonial.service';
+import { TestimonialComponent } from './components/admin/testimonial/testimonial.component';
+import { TestimonialAddComponent } from './components/admin/testimonial/testimonial-add.component';
+import { TestimonialDetailComponent } from './components/admin/testimonial/testimonial-detail.component';
 
-import { TeamComponent } from './components/team/team.component';
-import { TeamAddComponent } from './components/team/team-add.component';
-import { TeamDetailComponent } from './components/team/team-detail.component';
+import { TestimonialService } from './components/admin/testimonial/testimonial.service';
+
+import { TeamComponent } from './components/admin/team/team.component';
+import { TeamAddComponent } from './components/admin/team/team-add.component';
+import { TeamDetailComponent } from './components/admin/team/team-detail.component';
+
+import { TeamService } from './components/admin/team/team.service';
+
 import { TeamHomeComponent } from './components/public/home/home-team.component';
-import { TeamService } from './components/team/team.service';
-
+import { TestimonialHomeComponent } from './components/public/home/home-testimonials.component';
 
 @NgModule({
   imports: [

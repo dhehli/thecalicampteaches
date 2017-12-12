@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { Team } from '../../team/team';
-import { TeamService } from '../../team/team.service';
+import { Team } from '../../admin/team/team';
+import { TeamService } from '../../admin/team/team.service';
 
 @Component({
   selector: 'team-home',

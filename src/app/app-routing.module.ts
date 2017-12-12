@@ -7,13 +7,13 @@ import { LoginComponent }  from './components/public/login/login.component';
 import { ForgotpasswordComponent }  from './components/public/forgotpassword/forgotpassword.component';
 import { ResetpasswordComponent } from './components/public/forgotpassword/resetpassword.component';
 
-import { TestimonialComponent }  from './components/testimonial/testimonial.component';
-import { TestimonialAddComponent }  from './components/testimonial/testimonial-add.component';
-import { TestimonialDetailComponent }  from './components/testimonial/testimonial-detail.component';
+import { TestimonialComponent }  from './components/admin/testimonial/testimonial.component';
+import { TestimonialAddComponent }  from './components/admin/testimonial/testimonial-add.component';
+import { TestimonialDetailComponent }  from './components/admin/testimonial/testimonial-detail.component';
 
-import { TeamComponent }  from './components/team/team.component';
-import { TeamAddComponent }  from './components/team/team-add.component';
-import { TeamDetailComponent }  from './components/team/team-detail.component';
+import { TeamComponent }  from './components/admin/team/team.component';
+import { TeamAddComponent }  from './components/admin/team/team-add.component';
+import { TeamDetailComponent }  from './components/admin/team/team-detail.component';
 
 import { GuardAdmin } from './guard/guard-admin';
 import { GuardMember } from './guard/guard-member';
