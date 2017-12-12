@@ -50,6 +50,8 @@ import { TestimonialHomeComponent } from './components/public/home/home-testimon
 import { HeaderAdminComponent } from './components/admin/header/header.component';
 import { HeaderMemberComponent } from './components/member/header/header.component';
 import { PublicComponent } from './components/public/public.component';
+import { LogoutComponent } from './shared/logout/logout.component';
+import { LogoutService } from './shared/logout/logout.service';
 
 @NgModule({
   imports: [
@@ -88,7 +90,8 @@ import { PublicComponent } from './components/public/public.component';
     ResetpasswordComponent,
     HeaderAdminComponent,
     PublicComponent,
-    HeaderMemberComponent
+    HeaderMemberComponent,
+    LogoutComponent
   ],
   providers: [
     GuardAdmin,
