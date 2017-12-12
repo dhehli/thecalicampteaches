@@ -52,6 +52,7 @@ import { HeaderMemberComponent } from './components/member/header/header.compone
 import { PublicComponent } from './components/public/public.component';
 import { LogoutComponent } from './shared/logout/logout.component';
 import { LogoutService } from './shared/logout/logout.service';
+import { OrderComponent } from './components/member/order/order.component';
 
 @NgModule({
   imports: [
@@ -91,7 +92,8 @@ import { LogoutService } from './shared/logout/logout.service';
     HeaderAdminComponent,
     PublicComponent,
     HeaderMemberComponent,
-    LogoutComponent
+    LogoutComponent,
+    OrderComponent
   ],
   providers: [
     GuardAdmin,
