@@ -66,8 +66,9 @@ const memberRoutes: Routes = [
    //canActivate: [GuardMember], // TODO: comment in
    component: MemberComponent,
    children: [
+     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
      { path: 'dashboard', component: MemberDashboard },
-     { path: 'member', component: MemberComponent },
+
    ]
   }
 ];
