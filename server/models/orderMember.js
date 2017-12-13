@@ -35,10 +35,11 @@ router.get(`/${table}/:uid`, (req, res) => {
 })
 
 //Post
-router.post(`/${table}`, upload.single('image'), (req, res) => {
+router.post(`/${table}`, upload.single('video'), (req, res) => {
  const userId = req.session.userId;
 
  req.checkBody("title", "No title.").notEmpty().trim();
+ req.checkBody("userComment", "No Comment.").notEmpty().trim();
 
  let errors = req.validationErrors() || [];
 
@@ -51,13 +52,14 @@ router.post(`/${table}`, upload.single('image'), (req, res) => {
    return res.json({errors: errors});
  }
 
- const {title} = req.body;
+ const {title, userComment} = req.body;
 
  cloudinaryUpload(req.file.path)
  .then(video => {
 
    const data = {
      title,
+     userComment,
      video,
      userId,
      orderState: "new",
@@ -81,8 +83,7 @@ router.delete(`/${table}/:uid`, (req, res) => {
  const userId = req.session.userId;
 
  r.table(table)
- .get(uid)
- .filter({userId})
+ .filter({ id: uid, userId})
  .delete()
  .run()
  .then(response => res.status(200).json(response))

@@ -1,1 +1,42 @@
-<p>Order add</p>
+<section>
+  <div class="container">
+    <div class="base-container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>Add Video</h1>
+          <p>
+            <button class="btn btn-default" [routerLink]="['../../order']">Back</button>
+          </p>
+          <div *ngIf="success">
+            <div class="alert alert-success" role="alert">
+              Video uploaded <a [routerLink]="['../../order']">Back to List</a>
+            </div>
+          </div>
+          <form (ngSubmit)="add(title.value, userComment.value)" *ngIf="!success" enctype="multipart/form-data">
+            <div class="form-group">
+              <input type="text" class="form-control {{error && error.title && 'is-invalid'}}" #title placeholder="Title" required>
+              <div class="invalid-feedback">
+                {{error && error.title}}
+              </div>
+            </div>
+            <div class="form-group">
+              <textarea type="text" class="form-control {{error && error.userComment && 'is-invalid'}}" placeholder="Comment" #userComment required></textarea>
+              <div class="invalid-feedback">
+                {{error && error.lastname}}
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="file" class="form-control {{error && error.file && 'is-invalid'}}" id="file" name="file">
+              <div class="invalid-feedback">
+                {{error && error.file}}
+              </div>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
