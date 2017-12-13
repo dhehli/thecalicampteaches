@@ -1,37 +1,31 @@
-<section>
-  <div class="container">
-    <div class="base-container">
-      <h1>Your Orders</h1>
-      <!--<p><button class="btn" [routerLink]="['./add']">New Team</button></p>
-      <div *ngIf="teams && teams.length">
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>Firstname</th>
-                <th>Lastname</th>
-                <th>Email</th>
-                <th>Location</th>
-                <th></th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let team of teams">
-                <td>{{team.firstname}}</td>
-                <td>{{team.lastname}}</td>
-                <td>{{team.email}}</td>
-                <td>{{team.location}}</td>
-                <td><a [routerLink]="['./', team.id]">Detail</a></td>
-                <td>
-                  <button class="interface-button" href="#" title="delete team"
-                  (click)="delete(team)"><span class="icon-cross"></span></button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>-->
-    </div>
+<p><button class="btn" [routerLink]="['./add']">Upload new Video</button></p>
+<h2>Your Videouploads</h2>
+<div *ngIf="teams && teams.length">
+  <div class="table-responsive">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th>Location</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let team of teams">
+          <td>{{team.firstname}}</td>
+          <td>{{team.lastname}}</td>
+          <td>{{team.email}}</td>
+          <td>{{team.location}}</td>
+          <td><a [routerLink]="['./', team.id]">Detail</a></td>
+          <td>
+            <button class="interface-button" href="#" title="delete team"
+            (click)="delete(team)"><span class="icon-cross"></span></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-</section>
+</div>

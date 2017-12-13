@@ -50,6 +50,7 @@ const adminRoutes: Routes = [
    //canActivate: [GuardAdmin], // TODO: comment in
    component: AdminComponent,
    children: [
+     { path: '', redirectTo: 'testimonial', pathMatch: 'full' },
      { path: 'testimonial', component: TestimonialComponent },
      { path: 'testimonial/add', component: TestimonialAddComponent },
      { path: 'testimonial/:uid', component: TestimonialDetailComponent },

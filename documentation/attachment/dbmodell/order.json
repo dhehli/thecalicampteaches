@@ -5,5 +5,9 @@
   "title": "string",
   "orderState": "string",
   "created": "date",
-  "video": "object"
+  "userComment": "string",
+  "video": "object",
+  "comments": [
+    {"id": "string", "comment": "string", "crated": "date", "adminId": "string"}
+  ]
 }
