@@ -53,6 +53,7 @@ import { PublicComponent } from './components/public/public.component';
 import { LogoutComponent } from './shared/logout/logout.component';
 import { LogoutService } from './shared/logout/logout.service';
 import { OrderComponent } from './components/member/order/order.component';
+import { MemberDashboard } from './components/member/dashboard/dashboard.component';
 
 @NgModule({
   imports: [
@@ -93,7 +94,8 @@ import { OrderComponent } from './components/member/order/order.component';
     PublicComponent,
     HeaderMemberComponent,
     LogoutComponent,
-    OrderComponent
+    OrderComponent,
+    MemberDashboard
   ],
   providers: [
     GuardAdmin,

@@ -26,6 +26,7 @@ import { TeamDetailComponent }  from './components/admin/team/team-detail.compon
 //Member Components
 import { GuardMember } from './guard/guard-member';
 import { MemberComponent }  from './components/member/member.component';
+import { MemberDashboard }  from './components/member/dashboard/dashboard.component';
 
 
 const publicRoutes: Routes = [
@@ -65,7 +66,8 @@ const memberRoutes: Routes = [
    //canActivate: [GuardMember], // TODO: comment in
    component: MemberComponent,
    children: [
-     { path: 'member', component: MemberComponent, canActivate: [GuardMember] },
+     { path: 'dashboard', component: MemberDashboard },
+     { path: 'member', component: MemberComponent },
    ]
   }
 ];
