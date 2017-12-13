@@ -2,7 +2,8 @@
   "id": "string",
   "userId": "string",
   "adminId": "string",
-  "state": "string",
+  "title": "string",
+  "orderState": "string",
   "created": "date",
   "video": "object"
 }

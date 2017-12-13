@@ -15,6 +15,7 @@ import forgotPassword from './models/forgotPassword'
 import resetPassword from './models/resetPassword'
 import testimonial from './models/testimonial';
 import team from './models/team';
+import orderMember from './models/orderMember'
 
 const app = express();
 
@@ -51,7 +52,7 @@ function isAdmin(req, res, next) {
   }
 }
 
-// Set api routes
+// Public Routes
 app.use('/api', authCheck);
 app.use('/api', signup);
 app.use('/api', login);
@@ -61,6 +62,9 @@ app.use('/api', resetPassword);
 //Admin Routes
 app.use('/api', testimonial);
 app.use('/api', team);
+
+//Member Routes
+app.use('/api', orderMember);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

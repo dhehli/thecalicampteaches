@@ -12,7 +12,7 @@ const table = 'order';
 
 // Get All
 router.get(`/${table}`, (req, res) => {
-  const userId = req.session.userId;
+ const userId = req.session.userId;
 
  r.table(table)
  .filter({ userId })
@@ -36,16 +36,14 @@ router.get(`/${table}/:uid`, (req, res) => {
 
 //Post
 router.post(`/${table}`, upload.single('image'), (req, res) => {
+ const userId = req.session.userId;
 
- req.checkBody("video", "No firstname.").notEmpty().trim();
- req.checkBody("lastname", "No lastname.").notEmpty().trim();
- req.checkBody("quote", "No quote.").notEmpty().trim();
- req.checkBody("onlineState", "No online state.").isBoolean();
+ req.checkBody("title", "No title.").notEmpty().trim();
 
  let errors = req.validationErrors() || [];
 
  if(!req.file){
-   errors.push({param: 'file', msg: 'No File'})
+   errors.push({param: 'file', msg: 'No Video'})
  }
 
  if(!_.isEmpty(errors)){
@@ -53,18 +51,17 @@ router.post(`/${table}`, upload.single('image'), (req, res) => {
    return res.json({errors: errors});
  }
 
- const {firstname, lastname, quote, onlineState} = req.body;
+ const {title} = req.body;
 
  cloudinaryUpload(req.file.path)
- .then(image => {
+ .then(video => {
 
    const data = {
-     firstname,
-     lastname,
-     quote,
-     image,
-     created: new Date(),
-     onlineState
+     title,
+     video,
+     userId,
+     orderState: "new",
+     created: new Date()
    }
 
    r.table(table)
@@ -78,61 +75,17 @@ router.post(`/${table}`, upload.single('image'), (req, res) => {
  .catch(err => res.status(500).send({error: err}))
 })
 
-//Put
-router.put(`/${table}/:uid`, upload.single('image'), (req, res) => {
- const uid = req.params.uid;
-
- req.checkBody("firstname", "No firstname.").notEmpty().trim();
- req.checkBody("lastname", "No lastname.").notEmpty().trim();
- req.checkBody("quote", "No quote.").notEmpty().trim();
- req.checkBody("onlineState", "No online state.").isBoolean();
-
- const errors = req.validationErrors();
-
- if(errors){
-   return res.json({errors: errors});
- }
-
- const {firstname, lastname, quote, onlineState} = req.body;
-
- const data = {
-   firstname,
-   lastname,
-   quote,
-   onlineState
- }
-
- if(req.file){
-   // TODO: delete old file cloudinary.v2.uploader.destroy('zombie', function(error, result){console.log(result)});
-   cloudinaryUpload(req.file.path)
-   .then(image => {
-     data.image = image;
-     fs.unlink(req.file.path, e => e ? console.error(e) : '')
-     insert();
-   })
- }else{
-   insert();
- }
-
- function insert(){
-   return r.table(table)
-   .get(uid)
-   .update(data)
-   .run()
-   .then(response =>	res.status(200).json(response))
-   .error(err => res.status(500).send({error: err}))
- }
-})
-
 //Delete
 router.delete(`/${table}/:uid`, (req, res) => {
  const uid = req.params.uid;
+ const userId = req.session.userId;
 
  r.table(table)
  .get(uid)
+ .filter({userId})
  .delete()
  .run()
- .then(response =>	res.status(200).json(response))
+ .then(response => res.status(200).json(response))
  .error(err => res.status(500).send({error: err}))
 })
 
