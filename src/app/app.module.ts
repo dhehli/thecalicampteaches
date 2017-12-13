@@ -52,8 +52,11 @@ import { HeaderMemberComponent } from './components/member/header/header.compone
 import { PublicComponent } from './components/public/public.component';
 import { LogoutComponent } from './shared/logout/logout.component';
 import { LogoutService } from './shared/logout/logout.service';
-import { OrderComponent } from './components/member/order/order.component';
 import { MemberDashboard } from './components/member/dashboard/dashboard.component';
+
+import { OrderMemberComponent } from './components/member/order/order.component';
+import { OrderDetailMemberComponent } from './components/member/order/order-detail.component';
+import { OrderAddMemberComponent } from './components/member/order/order-add.component';
 
 @NgModule({
   imports: [
@@ -94,8 +97,10 @@ import { MemberDashboard } from './components/member/dashboard/dashboard.compone
     PublicComponent,
     HeaderMemberComponent,
     LogoutComponent,
-    OrderComponent,
-    MemberDashboard
+    MemberDashboard,
+    OrderMemberComponent,
+    OrderDetailMemberComponent,
+    OrderAddMemberComponent
   ],
   providers: [
     GuardAdmin,

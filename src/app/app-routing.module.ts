@@ -27,7 +27,9 @@ import { TeamDetailComponent }  from './components/admin/team/team-detail.compon
 import { GuardMember } from './guard/guard-member';
 import { MemberComponent }  from './components/member/member.component';
 import { MemberDashboard }  from './components/member/dashboard/dashboard.component';
-
+import { OrderMemberComponent }  from './components/member/order/order.component';
+import { OrderDetailMemberComponent }  from './components/member/order/order-detail.component';
+import { OrderAddMemberComponent }  from './components/member/order/order-add.component';
 
 const publicRoutes: Routes = [
   {
@@ -39,7 +41,7 @@ const publicRoutes: Routes = [
      { path: 'signup', component: SignupComponent },
      { path: 'login', component: LoginComponent },
      { path: 'forgotpassword', component: ForgotpasswordComponent },
-     { path: 'resetpassword/:hash', component: ResetpasswordComponent },
+     { path: 'resetpassword/:hash', component: ResetpasswordComponent }
    ]
   }
 ];
@@ -69,7 +71,9 @@ const memberRoutes: Routes = [
    children: [
      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
      { path: 'dashboard', component: MemberDashboard },
-
+     { path: 'order', component: OrderMemberComponent },
+     { path: 'order/add', component: OrderAddMemberComponent },
+     { path: 'order/:uid', component: OrderDetailMemberComponent }
    ]
   }
 ];
