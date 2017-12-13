@@ -57,6 +57,7 @@ import { MemberDashboard } from './components/member/dashboard/dashboard.compone
 import { OrderMemberComponent } from './components/member/order/order.component';
 import { OrderDetailMemberComponent } from './components/member/order/order-detail.component';
 import { OrderAddMemberComponent } from './components/member/order/order-add.component';
+import { OrderServiceMember } from './components/member/order/order.service';
 
 @NgModule({
   imports: [
@@ -113,7 +114,8 @@ import { OrderAddMemberComponent } from './components/member/order/order-add.com
     ResetPasswordService,
     TestimonialService,
     TeamService,
-    LogoutService
+    LogoutService,
+    OrderServiceMember
   ],
   bootstrap: [ AppComponent ]
 })

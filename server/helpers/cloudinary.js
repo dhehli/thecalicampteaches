@@ -4,11 +4,18 @@ import config from 'config';
 cloudinary.config(config.get('cloudinary'));
 
 
-function cloudinaryUpload(filePath) {
+function cloudinaryUpload(filePath, fileType) {
   return new Promise((resolve, reject) => {
-    cloudinary.uploader.upload(filePath, response => {
-      resolve(response);
-    });
+    switch(fileType) {
+      case "image":
+        cloudinary.uploader.upload(filePath, response => {
+          resolve(response);
+        }, { resource_type: "image" });
+      case "video":
+        cloudinary.uploader.upload(filePath, response => {
+          resolve(response);
+        }, { resource_type: "video" });
+    }
   });
 }
 

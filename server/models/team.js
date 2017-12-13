@@ -51,7 +51,7 @@ router.post(`/${table}`, upload.single('image'), (req, res) => {
 
  const {firstname, lastname, email, location, onlineState} = req.body;
 
- cloudinaryUpload(req.file.path)
+ cloudinaryUpload(req.file.path, 'image')
  .then(image => {
 
    const data = {
@@ -103,7 +103,7 @@ router.put(`/${table}/:uid`, upload.single('image'), (req, res) => {
 
  if(req.file){
        // TODO: restriction for file type
-   cloudinaryUpload(req.file.path)
+   cloudinaryUpload(req.file.path, 'image')
    .then(image => {
      data.image = image;
      fs.unlink(req.file.path, e => e ? console.error(e) : '')

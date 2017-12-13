@@ -44,7 +44,7 @@ router.post(`/${table}`, upload.single('video'), (req, res) => {
  let errors = req.validationErrors() || [];
 
  if(!req.file){
-   errors.push({param: 'file', msg: 'No Video'})
+   errors.push({param: 'video', msg: 'No Video'})
  }
 
  if(!_.isEmpty(errors)){
@@ -54,7 +54,7 @@ router.post(`/${table}`, upload.single('video'), (req, res) => {
 
  const {title, userComment} = req.body;
 
- cloudinaryUpload(req.file.path)
+ cloudinaryUpload(req.file.path, 'video')
  .then(video => {
 
    const data = {

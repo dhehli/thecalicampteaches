@@ -50,7 +50,7 @@ router.post(`/${table}`, upload.single('image'), (req, res) => {
 
   const {firstname, lastname, quote, onlineState} = req.body;
 
-  cloudinaryUpload(req.file.path)
+  cloudinaryUpload(req.file.path, 'image')
   .then(image => {
 
     const data = {
@@ -99,7 +99,7 @@ router.put(`/${table}/:uid`, upload.single('image'), (req, res) => {
 
   if(req.file){
     // TODO: delete old file cloudinary.v2.uploader.destroy('zombie', function(error, result){console.log(result)});
-    cloudinaryUpload(req.file.path)
+    cloudinaryUpload(req.file.path, 'image')
     .then(image => {
       data.image = image;
       fs.unlink(req.file.path, e => e ? console.error(e) : '')
