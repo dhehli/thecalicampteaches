@@ -52,7 +52,6 @@ import { HeaderMemberComponent } from './components/member/header/header.compone
 import { PublicComponent } from './components/public/public.component';
 import { LogoutComponent } from './shared/logout/logout.component';
 import { LogoutService } from './shared/logout/logout.service';
-import { MemberDashboard } from './components/member/dashboard/dashboard.component';
 
 import { OrderMemberComponent } from './components/member/order/order.component';
 import { OrderDetailMemberComponent } from './components/member/order/order-detail.component';
@@ -98,7 +97,6 @@ import { OrderServiceMember } from './components/member/order/order.service';
     PublicComponent,
     HeaderMemberComponent,
     LogoutComponent,
-    MemberDashboard,
     OrderMemberComponent,
     OrderDetailMemberComponent,
     OrderAddMemberComponent

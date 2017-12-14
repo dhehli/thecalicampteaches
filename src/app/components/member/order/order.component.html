@@ -2,6 +2,8 @@
   <div class="container">
     <div class="base-container">
       <h1>Your Orders</h1>
+      <p>Welcome to your memberarea.<br/>
+      Please use the button below to place your first order.</p>
       <p><button class="btn" [routerLink]="['./add']">New Order</button></p>
       <div *ngIf="orders && orders.length">
         <div class="table-responsive">
