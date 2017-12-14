@@ -16,6 +16,7 @@ import resetPassword from './models/resetPassword'
 import testimonial from './models/testimonial';
 import team from './models/team';
 import orderMember from './models/orderMember'
+import orderAdmin from './models/orderAdmin'
 
 const app = express();
 
@@ -60,6 +61,7 @@ app.use('/api', forgotPassword);
 app.use('/api', resetPassword);
 
 //Admin Routes
+app.use('/api', orderAdmin);
 app.use('/api', testimonial);
 app.use('/api', team);
 

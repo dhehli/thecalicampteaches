@@ -30,6 +30,7 @@ import { OrderDetailAdminComponent }  from './components/admin/order/order-detai
 //Member Components
 import { GuardMember } from './guard/guard-member';
 import { MemberComponent }  from './components/member/member.component';
+
 import { OrderMemberComponent }  from './components/member/order/order.component';
 import { OrderDetailMemberComponent }  from './components/member/order/order-detail.component';
 import { OrderAddMemberComponent }  from './components/member/order/order-add.component';
@@ -55,7 +56,7 @@ const adminRoutes: Routes = [
    //canActivate: [GuardAdmin], // TODO: comment in
    component: AdminComponent,
    children: [
-     { path: '', redirectTo: 'testimonial', pathMatch: 'full' },
+     { path: '', redirectTo: 'order', pathMatch: 'full' },
      { path: 'testimonial', component: TestimonialComponent },
      { path: 'testimonial/add', component: TestimonialAddComponent },
      { path: 'testimonial/:uid', component: TestimonialDetailComponent },

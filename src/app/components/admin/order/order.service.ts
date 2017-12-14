@@ -15,14 +15,14 @@ const httpOptions = {
 @Injectable()
 export class OrderServiceAdmin {
 
-  private orderUrl = 'http://localhost:3000/api/order';  // URL to web api
+  private orderUrl = 'http://localhost:3000/api/orderadmin';  // URL to web api
 
   constructor(
     private http: HttpClient,
     private messageService: MessageService) { }
 
   /** GET orderes from the server */
-  getOrders (): Observable<Order[]> {
+  getOrders (filter): Observable<Order[]> {
     return this.http.get<Order[]>(this.orderUrl, httpOptions)
       .pipe(
         tap(orderes => this.log(`fetched orderes`)),
@@ -53,16 +53,6 @@ export class OrderServiceAdmin {
     );
   }
 
-  //////// Save methods //////////
-
-  /** POST: add a new order to the server */
-  addOrder (order: FormData): Observable<any> {
-    return this.http.post<FormData>(this.orderUrl, order, httpOptions).pipe(
-      tap((order: FormData) => this.log(`add`)),
-      catchError(this.handleError<FormData>('addOrder'))
-    );
-  }
-
   /** DELETE: delete the order from the server */
   deleteOrder (order: Order | number): Observable<Order> {
     const id = typeof order === 'number' ? order : order.id;
@@ -77,8 +67,6 @@ export class OrderServiceAdmin {
   /** PUT: update the testimonial on the server */
   updateOrder(orderId: string): Observable<any> {
     const url = `${this.orderUrl}/${orderId}`;
-
-    console.log(url)
 
     return this.http.put(url, httpOptions).pipe(
       tap(_ => this.log('update')),

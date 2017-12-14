@@ -1,3 +1,40 @@
-<p>
-  order works!
-</p>
+<section>
+  <div class="container">
+    <div class="base-container">
+      <h1>Orders</h1>
+      <div *ngIf="orders && orders.length">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>State</th>
+                <th>Title</th>
+                <th>Comment</th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orders">
+                <td>
+                  <span class="badge badge-success" *ngIf="order.orderState === 'new'">new</span>
+                  <span class="badge badge-warning" *ngIf="order.orderState === 'progress'">in progress</span>
+                  <span class="badge badge-secondary" *ngIf="order.orderState === 'done'">done</span>
+                </td>
+                <td>{{order.title}}</td>
+                <td>{{order.userComment}}</td>
+                <td>{{order.created | date:'MM.dd.yyyy' }}</td>
+                <td><a [routerLink]="['./', order.id]">Detail</a></td>
+                <td>
+                  <button class="interface-button" href="#" title="delete order"
+                  (click)="delete(order)"><span class="icon-cross"></span></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
