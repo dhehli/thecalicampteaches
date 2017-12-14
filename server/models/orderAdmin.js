@@ -80,13 +80,10 @@ router.delete(`/${url}/:orderId/:commentId`, (req, res) => {
 
  r.table(table)
  .filter({ id: orderId })
- .update(function(row){
+ .update(row => {
    return {
-    'comments': row('comments')
-      .filter(function (comment) {
-        return comment('id').ne(commentId)
-      })
-    }
+    'comments': row('comments').filter(comment => comment('id').ne(commentId))
+   }
  })
  .run()
  .then(response => res.status(200).json(response))

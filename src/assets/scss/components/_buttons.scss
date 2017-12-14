@@ -19,3 +19,16 @@
 .logout{
   cursor: pointer;
 }
+
+.delete-comment{
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.interface-button{
+  border: none;
+  background: none;
+  cursor: pointer;
+}
