@@ -75,6 +75,15 @@ export class OrderServiceAdmin {
     );
   }
 
+  deleteComment(orderId: string, commentId: string): Observable<any> {
+    const url = `${this.orderUrl}/${orderId}/${commentId}`;
+
+    return this.http.delete<Order>(url, httpOptions).pipe(
+      tap(_ => this.log(`deleted comment id=${commentId}`)),
+      catchError(this.handleError<Order>('deleteComment'))
+    );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

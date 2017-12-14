@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import $ from 'jquery'
 
 import { Order } from './order';
 import { OrderServiceAdmin } from './order.service';
@@ -37,14 +38,21 @@ export class OrderDetailAdminComponent implements OnInit {
           order.errors.forEach(e => this.error[e.param] = e.msg);
         }else{
           this.getOrder();
+          $('#comment').val("");
         }
-      });
+    });
+  }
+
+  deleteComment(commentId: string): void{
+    const orderId = this.route.snapshot.paramMap.get('uid');
+
+    this.orderService.deleteComment(orderId, commentId).subscribe();
+    this.getOrder();
   }
 }
 
 
 // TODO:
 /*userdaten anzeigen in admin,
-comment nach submit löschen,
 orderState update mit mail
 delte comment*/

@@ -25,14 +25,15 @@
             <div *ngIf="order.comments">
               <div *ngFor="let comment of order.comments">
                 <div class="alert alert-secondary" role="alert">
-                  <small>{{comment.created | date:'MM.dd.yyyy' }}</small> 
+                  <small>{{comment.created | date:'MM.dd.yyyy' }}</small>
                   <p>{{comment.comment}}</p>
+                  <a (click)="deleteComment(comment.id)" class="delete-comment">delete</a>
                 </div>
               </div>
             </div>
             <form (ngSubmit)="addComment(comment.value)" *ngIf="!success">
               <div class="form-group">
-                <textarea type="text" class="form-control {{error && error.comment && 'is-invalid'}}" placeholder="Comment" #comment required></textarea>
+                <textarea type="text" class="form-control {{error && error.comment && 'is-invalid'}}" placeholder="Comment" id="comment" #comment required></textarea>
                 <div class="invalid-feedback">
                   {{error && error.comment}}
                 </div>

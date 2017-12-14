@@ -53,8 +53,6 @@ router.put(`/${url}/:uid`, (req, res) => {
    created: new Date()
  }
 
- console.log(data)
-
  r.table(table)
  .filter({ id: uid})
  .update({comments: r.row('comments').append(data)})
@@ -63,14 +61,33 @@ router.put(`/${url}/:uid`, (req, res) => {
  .error(err => res.status(500).send({error: err}))
 })
 
-//Delete
+//Delete Order
 router.delete(`/${url}/:uid`, (req, res) => {
  const uid = req.params.uid;
- const userId = req.session.userId;
 
  r.table(table)
- .filter({ id: uid, userId})
+ .filter({ id: uid })
  .delete()
+ .run()
+ .then(response => res.status(200).json(response))
+ .error(err => res.status(500).send({error: err}))
+})
+
+//Delete Comment
+router.delete(`/${url}/:orderId/:commentId`, (req, res) => {
+ const orderId = req.params.orderId;
+ const commentId = req.params.commentId;
+
+ r.table(table)
+ .filter({ id: orderId })
+ .update(function(row){
+   return {
+    'comments': row('comments')
+      .filter(function (comment) {
+        return comment('id').ne(commentId)
+      })
+    }
+ })
  .run()
  .then(response => res.status(200).json(response))
  .error(err => res.status(500).send({error: err}))
