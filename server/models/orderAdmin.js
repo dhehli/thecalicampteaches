@@ -55,7 +55,10 @@ router.put(`/${url}/:uid`, (req, res) => {
 
  r.table(table)
  .filter({ id: uid})
- .update({comments: r.row('comments').append(data)})
+ .update({
+   orderState: "progress",
+   hasUnreadComment: true,
+   comments: r.row('comments').append(data)})
  .run()
  .then(response => res.status(200).json(response))
  .error(err => res.status(500).send({error: err}))
