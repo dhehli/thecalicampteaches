@@ -10,7 +10,9 @@ import { TestimonialService } from './testimonial.service';
 export class TestimonialComponent implements OnInit {
   testimonials: Testimonial[];
 
-  constructor(private testimonialService: TestimonialService) { }
+  constructor(
+    private testimonialService: TestimonialService
+  ) { }
 
 
   ngOnInit() {

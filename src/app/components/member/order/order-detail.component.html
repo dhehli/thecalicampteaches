@@ -1,1 +1,22 @@
-<p>Order detail</p>
+<section>
+  <div class="container">
+    <div class="base-container">
+      <div class="row">
+        <div class="col-md-12">
+          <div *ngIf="order">
+            <h1>Order Detail</h1>
+            <p>
+              <button class="btn btn-default" [routerLink]="['../../order']">Back</button>
+            </p>
+            <div class="flex-video">
+              <cl-video public-id="{{order.video.public_id}}" controls="true" ></cl-video>
+            </div>
+            <h2>{{order.title}}</h2>
+            <p><small>{{order.created | date:'MM.dd.yyyy' }}</small></p>
+            <p>{{order.userComment}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

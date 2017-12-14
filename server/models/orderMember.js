@@ -15,6 +15,7 @@ router.get(`/${table}`, (req, res) => {
  const userId = req.session.userId;
 
  r.table(table)
+ .orderBy('created')
  .filter({ userId })
  .run()
  .then(response =>	res.json(response))
@@ -27,10 +28,9 @@ router.get(`/${table}/:uid`, (req, res) => {
  const userId = req.session.userId;
 
  r.table(table)
- .get(uid)
- .filter({userId})
+ .filter({ id: uid, userId})
  .run()
- .then(response =>	res.json(response))
+ .then(response => res.json(response))
  .error(err => res.status(500).send({error: err}))
 })
 

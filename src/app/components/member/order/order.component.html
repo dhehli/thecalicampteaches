@@ -1,1 +1,35 @@
-<p>Order main</p>
+<section>
+  <div class="container">
+    <div class="base-container">
+      <h1>Your Orders</h1>
+      <p><button class="btn" [routerLink]="['./add']">New Order</button></p>
+      <div *ngIf="orders && orders.length">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Comment</th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orders">
+                <td>{{order.title}}</td>
+                <td>{{order.userComment}}</td>
+                <td>{{order.created | date:'MM.dd.yyyy' }}</td>
+                <td><a [routerLink]="['./', order.id]">Detail</a></td>
+                <td>
+                  <button class="interface-button" href="#" title="delete order"
+                  (click)="delete(order)"><span class="icon-cross"></span></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
