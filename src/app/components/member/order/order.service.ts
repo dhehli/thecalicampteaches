@@ -74,6 +74,18 @@ export class OrderServiceMember {
     );
   }
 
+  /** PUT: update the testimonial on the server */
+  updateOrder(orderId: string): Observable<any> {
+    const url = `${this.orderUrl}/${orderId}`;
+
+    console.log(url)
+
+    return this.http.put(url, httpOptions).pipe(
+      tap(_ => this.log('update')),
+      catchError(this.handleError<any>('updateTestimonial'))
+    );
+  }
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.

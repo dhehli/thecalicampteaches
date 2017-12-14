@@ -8,6 +8,7 @@
           <table class="table table-striped">
             <thead>
               <tr>
+                <th></th>
                 <th>Title</th>
                 <th>Comment</th>
                 <th>Date</th>
@@ -17,6 +18,9 @@
             </thead>
             <tbody>
               <tr *ngFor="let order of orders">
+                <td>
+                  <span class="badge badge-success" *ngIf="order.hasUnreadComment">New Comment</span>
+                </td>
                 <td>{{order.title}}</td>
                 <td>{{order.userComment}}</td>
                 <td>{{order.created | date:'MM.dd.yyyy' }}</td>

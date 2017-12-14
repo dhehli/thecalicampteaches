@@ -131,7 +131,7 @@ router.delete(`/${table}/:uid`, (req, res) => {
  .get(uid)
  .delete()
  .run()
- .then(response =>	res.status(200).json(response))
+ .then(response => res.status(200).json(response))
  .error(err => res.status(500).send({error: err}))
 })
 
