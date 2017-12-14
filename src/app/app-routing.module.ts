@@ -23,6 +23,10 @@ import { TeamComponent }  from './components/admin/team/team.component';
 import { TeamAddComponent }  from './components/admin/team/team-add.component';
 import { TeamDetailComponent }  from './components/admin/team/team-detail.component';
 
+import { OrderAdminComponent }  from './components/admin/order/order.component';
+import { OrderDetailAdminComponent }  from './components/admin/order/order-detail.component';
+
+
 //Member Components
 import { GuardMember } from './guard/guard-member';
 import { MemberComponent }  from './components/member/member.component';
@@ -57,7 +61,9 @@ const adminRoutes: Routes = [
      { path: 'testimonial/:uid', component: TestimonialDetailComponent },
      { path: 'team', component: TeamComponent },
      { path: 'team/add', component: TeamAddComponent },
-     { path: 'team/:uid', component: TeamDetailComponent }
+     { path: 'team/:uid', component: TeamDetailComponent },
+     { path: 'order', component: OrderAdminComponent },
+     { path: 'order/:uid', component: OrderDetailAdminComponent }
    ]
   }
 ];

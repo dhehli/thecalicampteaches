@@ -58,6 +58,10 @@ import { OrderDetailMemberComponent } from './components/member/order/order-deta
 import { OrderAddMemberComponent } from './components/member/order/order-add.component';
 import { OrderServiceMember } from './components/member/order/order.service';
 
+import { OrderAdminComponent } from './components/admin/order/order.component';
+import { OrderDetailAdminComponent } from './components/admin/order/order-detail.component';
+import { OrderServiceAdmin } from './components/admin/order/order.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -99,7 +103,9 @@ import { OrderServiceMember } from './components/member/order/order.service';
     LogoutComponent,
     OrderMemberComponent,
     OrderDetailMemberComponent,
-    OrderAddMemberComponent
+    OrderAddMemberComponent,
+    OrderAdminComponent,
+    OrderDetailAdminComponent
   ],
   providers: [
     GuardAdmin,
@@ -113,7 +119,8 @@ import { OrderServiceMember } from './components/member/order/order.service';
     TestimonialService,
     TeamService,
     LogoutService,
-    OrderServiceMember
+    OrderServiceMember,
+    OrderServiceAdmin
   ],
   bootstrap: [ AppComponent ]
 })

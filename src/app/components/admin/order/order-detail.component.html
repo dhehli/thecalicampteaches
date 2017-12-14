@@ -1,0 +1,38 @@
+<section>
+  <div class="container">
+    <div class="base-container">
+      <div class="row">
+        <div class="col-md-12">
+          <div *ngIf="order">
+            <h1>Order Detail</h1>
+            <p>
+              <button class="btn btn-default" [routerLink]="['../../order']">Back</button>
+            </p>
+            <div class="flex-video">
+              <cl-video public-id="{{order.video.public_id}}" controls="true" ></cl-video>
+            </div>
+
+            <h2>{{order.title}}</h2>
+            <p><small>{{order.created | date:'MM.dd.yyyy' }}</small></p>
+            <p>{{order.userComment}}</p>
+
+            <h2>Comments from our Surfguide</h2>
+            <div *ngIf="!order.comments">
+              <div class="alert alert-warning" role="alert">
+                This video has no comments yet. We will do it ASAP.
+              </div>
+            </div>
+            <div *ngIf="order.comments">
+              <div *ngFor="let comment of order.comments">
+                <div class="alert alert-secondary" role="alert">
+                  <small>{{comment.created}}</small> <!-- todo: add dateformat -->
+                  <p>{{comment.comment}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
