@@ -54,5 +54,6 @@ export class OrderDetailAdminComponent implements OnInit {
 
 // TODO:
 /*
-orderState update mit mail
+orderState update mit mail,
+mail nach order creation von user
 */
