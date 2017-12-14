@@ -46,4 +46,5 @@ export class OrderDetailAdminComponent implements OnInit {
 // TODO:
 /*userdaten anzeigen in admin,
 comment nach submit löschen,
-orderState update mit mail*/
+orderState update mit mail
+delte comment*/
