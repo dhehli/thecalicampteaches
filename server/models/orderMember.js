@@ -73,6 +73,7 @@ router.post(`/${table}`, upload.single('video'), (req, res) => {
    const data = {
      title,
      userComment,
+     comments: [],
      video,
      userId,
      orderState: "new",

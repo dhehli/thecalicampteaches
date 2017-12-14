@@ -10,6 +10,7 @@ import { OrderServiceAdmin } from './order.service';
 })
 export class OrderDetailAdminComponent implements OnInit {
   order: Order;
+  error = {};
 
   constructor(
     private orderService: OrderServiceAdmin,
@@ -26,5 +27,23 @@ export class OrderDetailAdminComponent implements OnInit {
       .subscribe(order => this.order = order[0]);
   }
 
+  addComment(comment: string): void {
+    const id = this.route.snapshot.paramMap.get('uid');
+    this.orderService.updateOrder(id, comment)
+      .subscribe(order => {
+        this.error = [];
 
+        if(order.errors){
+          order.errors.forEach(e => this.error[e.param] = e.msg);
+        }else{
+          this.getOrder();
+        }
+      });
+  }
 }
+
+
+// TODO:
+/*userdaten anzeigen in admin,
+comment nach submit löschen,
+orderState update mit mail*/

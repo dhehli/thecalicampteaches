@@ -9,6 +9,7 @@ import { Order } from './order';
 import { MessageService } from '../../admin/message/message.service';
 
 const httpOptions = {
+  headers: new HttpHeaders().set('Content-Type', 'application/json'),
   withCredentials: true
 };
 
@@ -22,7 +23,7 @@ export class OrderServiceAdmin {
     private messageService: MessageService) { }
 
   /** GET orderes from the server */
-  getOrders (filter): Observable<Order[]> {
+  getOrders (): Observable<Order[]> {
     return this.http.get<Order[]>(this.orderUrl, httpOptions)
       .pipe(
         tap(orderes => this.log(`fetched orderes`)),
@@ -65,10 +66,10 @@ export class OrderServiceAdmin {
   }
 
   /** PUT: update the testimonial on the server */
-  updateOrder(orderId: string): Observable<any> {
+  updateOrder(orderId: string, comment: string): Observable<any> {
     const url = `${this.orderUrl}/${orderId}`;
 
-    return this.http.put(url, httpOptions).pipe(
+    return this.http.put(url, JSON.stringify({comment}), httpOptions).pipe(
       tap(_ => this.log('update')),
       catchError(this.handleError<any>('updateTestimonial'))
     );

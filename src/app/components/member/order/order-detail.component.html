@@ -17,7 +17,7 @@
             <p>{{order.userComment}}</p>
 
             <h2>Comments from our Surfguide</h2>
-            <div *ngIf="!order.comments">
+            <div *ngIf="!order.comments || !order.comments.length">
               <div class="alert alert-warning" role="alert">
                 This video has no comments yet. We will do it ASAP.
               </div>

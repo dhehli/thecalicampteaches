@@ -19,7 +19,7 @@ export class OrderAdminComponent implements OnInit {
   }
 
   getOrders(): void {
-    this.orderService.getOrders({orderState: 'new'})
+    this.orderService.getOrders()
     .subscribe(order => this.orders = order);
   }
 

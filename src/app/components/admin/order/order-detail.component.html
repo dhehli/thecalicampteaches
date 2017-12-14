@@ -16,7 +16,7 @@
             <p><small>{{order.created | date:'MM.dd.yyyy' }}</small></p>
             <p>{{order.userComment}}</p>
 
-            <h2>Comments from our Surfguide</h2>
+            <h2>Comments you added</h2>
             <div *ngIf="!order.comments">
               <div class="alert alert-warning" role="alert">
                 This video has no comments yet. We will do it ASAP.
@@ -25,11 +25,22 @@
             <div *ngIf="order.comments">
               <div *ngFor="let comment of order.comments">
                 <div class="alert alert-secondary" role="alert">
-                  <small>{{comment.created}}</small> <!-- todo: add dateformat -->
+                  <small>{{comment.created | date:'MM.dd.yyyy' }}</small> 
                   <p>{{comment.comment}}</p>
                 </div>
               </div>
             </div>
+            <form (ngSubmit)="addComment(comment.value)" *ngIf="!success">
+              <div class="form-group">
+                <textarea type="text" class="form-control {{error && error.comment && 'is-invalid'}}" placeholder="Comment" #comment required></textarea>
+                <div class="invalid-feedback">
+                  {{error && error.comment}}
+                </div>
+              </div>
+              <div class="form-group">
+                <button type="submit" class="btn">Create</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
