@@ -5,10 +5,20 @@ import r from '../connection/connection'
 import fs from 'fs';
 import upload from '../helpers/multer'
 import cloudinaryUpload from '../helpers/cloudinary'
+let mailgun = require('mailgun-js')(config.get('mailgun'));
 
 const router = express.Router();
 
 const table = 'order';
+
+
+//Find User By ID
+function findUserById(userId){
+  return r.table('user')
+  .filter({ userId })
+  .run()
+  .then(response => response)
+}
 
 // Get All
 router.get(`/${table}`, (req, res) => {
@@ -84,8 +94,32 @@ router.post(`/${table}`, upload.single('video'), (req, res) => {
    .insert(data)
    .run()
    .then(response =>	{
-     fs.unlink(req.file.path, e => e ? console.error(e) : '')
-     return res.status(201).json(response)
+
+    findUserById(userId)
+    .then(user => {
+      const {email, firstname, lastname} = user[0];
+
+      const data = {
+        from: email,
+        to: config.get('defaultMail'),
+        subject: `Your recevied a new order from ${firstname} ${lastname}`,
+        html: `
+          <p>
+            Order title is ${title}<br>
+            Pleae login with your admin account to see the new order.
+          <p>
+        `
+      };
+
+      mailgun.messages().send(data, (err, body) => {
+        if (err) {
+          return res.json({errors: [{param: 'mail', msg: 'Mailing failure'}]});
+        }
+
+       fs.unlink(req.file.path, e => e ? console.error(e) : '')
+       return res.status(201).json(response)
+     })
+    })
    })
  })
  .catch(err => res.status(500).send({error: err}))
