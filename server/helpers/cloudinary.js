@@ -10,11 +10,13 @@ function cloudinaryUpload(filePath, fileType) {
       case "image":
         cloudinary.uploader.upload(filePath, response => {
           resolve(response);
-        }, { resource_type: "auto" });
+        }, { resource_type: "image" });
+        break;
       case "video":
         cloudinary.uploader.upload(filePath, response => {
           resolve(response);
         }, { resource_type: "video" });
+        break;
     }
   });
 }
