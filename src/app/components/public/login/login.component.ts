@@ -9,7 +9,7 @@ import { LoginService }   from './login.service';
 })
 export class LoginComponent implements OnInit {
   error = {};
-  isSubmitting: false;
+  isSubmitting: boolean;
 
   constructor(
     private router: Router,

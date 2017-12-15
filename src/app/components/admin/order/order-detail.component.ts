@@ -12,7 +12,7 @@ import { OrderServiceAdmin } from './order.service';
 export class OrderDetailAdminComponent implements OnInit {
   order: Order;
   error = {};
-  isSubmitting: false;
+  isSubmitting: boolean;
 
   constructor(
     private orderService: OrderServiceAdmin,

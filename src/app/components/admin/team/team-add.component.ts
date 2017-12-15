@@ -11,7 +11,7 @@ import { TeamService } from './team.service';
 export class TeamAddComponent implements OnInit {
   error = {};
   success: boolean;
-  isSubmitting: false;
+  isSubmitting: boolean;
 
   constructor(
     private teamService: TeamService

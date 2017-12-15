@@ -9,7 +9,7 @@ import { ForgotPasswordService }   from './forgotpassword.service';
 export class ForgotpasswordComponent implements OnInit {
   error = {};
   success: boolean;
-  isSubmitting: false;
+  isSubmitting: boolean;
 
   constructor(
     private forgotPasswordService: ForgotPasswordService

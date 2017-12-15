@@ -53,7 +53,7 @@ const publicRoutes: Routes = [
 const adminRoutes: Routes = [
   {
    path: 'admin',
-   //canActivate: [GuardAdmin], // TODO: comment in
+   canActivate: [GuardAdmin],
    component: AdminComponent,
    children: [
      { path: '', redirectTo: 'order', pathMatch: 'full' },
@@ -72,7 +72,7 @@ const adminRoutes: Routes = [
 const memberRoutes: Routes = [
   {
    path: 'member',
-   //canActivate: [GuardMember], // TODO: comment in
+   canActivate: [GuardMember],
    component: MemberComponent,
    children: [
      { path: '', redirectTo: 'order', pathMatch: 'full' },

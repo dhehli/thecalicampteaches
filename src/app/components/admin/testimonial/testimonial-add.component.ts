@@ -11,7 +11,7 @@ import { TestimonialService } from './testimonial.service';
 export class TestimonialAddComponent implements OnInit {
   error = {};
   success: boolean;
-  isSubmitting: false;
+  isSubmitting: boolean;
 
   constructor(
     private testimonialService: TestimonialService,

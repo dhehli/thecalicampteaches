@@ -10,7 +10,7 @@ import { UserService }   from './user.service';
 export class SignupComponent implements OnInit {
   error = {};
   success: boolean;
-  isSubmitting: false;
+  isSubmitting: boolean;
 
   constructor(
     private userService: UserService

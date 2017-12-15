@@ -11,6 +11,7 @@ import { OrderServiceMember } from './order.service';
 export class OrderAddMemberComponent implements OnInit {
   error = {};
   success: boolean;
+  isSubmitting: boolean;
 
   constructor(
     private orderService: OrderServiceMember
@@ -20,6 +21,7 @@ export class OrderAddMemberComponent implements OnInit {
   }
 
   add(title: string, userComment: string): void {
+    this.isSubmitting = true;
     let formData = new FormData();
 
     let video = $("#video")[0].files[0];
@@ -32,6 +34,7 @@ export class OrderAddMemberComponent implements OnInit {
 
     this.orderService.addOrder(formData)
     .subscribe(order => {
+      this.isSubmitting = false;
       this.error = [];
 
       if(order.errors){

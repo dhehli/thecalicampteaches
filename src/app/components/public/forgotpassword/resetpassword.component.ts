@@ -10,7 +10,7 @@ import { ResetPasswordService }   from './resetpassword.service';
 export class ResetpasswordComponent implements OnInit {
   showForm: boolean;
   success: boolean;
-  isSubmitting: false;
+  isSubmitting: boolean;
 
   constructor(
     private resetPasswordService: ResetPasswordService,
@@ -34,9 +34,9 @@ export class ResetpasswordComponent implements OnInit {
 
 
     this.resetPasswordService.resetPassword(hash, password)
-    .then(reseted => reseted.updated ? this.success = true : this.success = false);
-    this.isSubmitting = false;
+    .then(reseted => {
+      this.isSubmitting = false;
+      return reseted.updated ? this.success = true : this.success = false;
+    })
   }
-
-
 }

@@ -36,9 +36,7 @@ function isMember(req, res, next) {
   if (req.session && req.session.userId) {
     return next();
   } else {
-    var err = new Error('You must be logged in to view this page.');
-    err.status = 401;
-    return next(err);
+    return
   }
 }
 
@@ -47,9 +45,7 @@ function isAdmin(req, res, next) {
   if (req.session && req.session.userId && req.session.admin) {
     return next();
   } else {
-    var err = new Error('You must be admin in to view this page.');
-    err.status = 401;
-    return next(err);
+    return
   }
 }
 
@@ -60,13 +56,14 @@ app.use('/api', login);
 app.use('/api', forgotPassword);
 app.use('/api', resetPassword);
 
+//Member Routes
+app.use('/api', isMember, orderMember);
+
 //Admin Routes
 app.use('/api', orderAdmin);
 app.use('/api', testimonial);
 app.use('/api', team);
 
-//Member Routes
-app.use('/api', orderMember);
 
 // Catch all other routes and return the index file
 app.get('*', (req, res) => {

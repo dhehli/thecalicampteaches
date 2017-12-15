@@ -10,7 +10,7 @@ function cloudinaryUpload(filePath, fileType) {
       case "image":
         cloudinary.uploader.upload(filePath, response => {
           resolve(response);
-        }, { resource_type: "image" });
+        }, { resource_type: "auto" });
       case "video":
         cloudinary.uploader.upload(filePath, response => {
           resolve(response);

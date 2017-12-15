@@ -13,7 +13,7 @@ export class TeamDetailComponent implements OnInit {
   team: Team;
   error = {};
   success: boolean;
-  isSubmitting: false;
+  isSubmitting: boolean;
 
   constructor(
     private teamService: TeamService,

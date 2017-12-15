@@ -13,7 +13,7 @@ export class TestimonialDetailComponent implements OnInit {
   testimonial: Testimonial;
   error = {};
   success: boolean;
-  isSubmitting: false;
+  isSubmitting: boolean;
 
   constructor(
     private testimonialService: TestimonialService,
