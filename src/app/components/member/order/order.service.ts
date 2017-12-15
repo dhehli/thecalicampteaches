@@ -12,6 +12,11 @@ const httpOptions = {
   withCredentials: true
 };
 
+const httpOptionsJson = {
+  headers: new HttpHeaders().set('Content-Type', 'application/json'),
+  withCredentials: true
+};
+
 @Injectable()
 export class OrderServiceMember {
 
@@ -23,7 +28,7 @@ export class OrderServiceMember {
 
   /** GET orderes from the server */
   getOrders (): Observable<Order[]> {
-    return this.http.get<Order[]>(this.orderUrl, httpOptions)
+    return this.http.get<Order[]>(this.orderUrl, httpOptionsJson)
       .pipe(
         tap(orderes => this.log(`fetched orderes`)),
         catchError(this.handleError('getOrderes', []))
@@ -47,7 +52,7 @@ export class OrderServiceMember {
   /** GET order by id. Will 404 if id not found */
   getOrder(id: string): Observable<Order> {
     const url = `${this.orderUrl}/${id}`;
-    return this.http.get<Order>(url, httpOptions).pipe(
+    return this.http.get<Order>(url, httpOptionsJson).pipe(
       tap(_ => this.log(`fetched order id=${id}`)),
       catchError(this.handleError<Order>(`getOrder id=${id}`))
     );
@@ -73,19 +78,7 @@ export class OrderServiceMember {
       catchError(this.handleError<Order>('deleteOrder'))
     );
   }
-
-  /** PUT: update the testimonial on the server */
-  updateOrder(orderId: string): Observable<any> {
-    const url = `${this.orderUrl}/${orderId}`;
-
-    console.log(url)
-
-    return this.http.put(url, httpOptions).pipe(
-      tap(_ => this.log('update')),
-      catchError(this.handleError<any>('updateTestimonial'))
-    );
-  }
-
+  
   /**
    * Handle Http operation that failed.
    * Let the app continue.

@@ -18,7 +18,6 @@ export class OrderDetailMemberComponent implements OnInit {
 
   ngOnInit() {
     this.getOrder();
-    this.updateOrder();
   }
 
   getOrder(): void {
@@ -26,11 +25,4 @@ export class OrderDetailMemberComponent implements OnInit {
     this.orderService.getOrder(id)
       .subscribe(order => this.order = order[0]);
   }
-
-  updateOrder(): void {
-    const id = this.route.snapshot.paramMap.get('uid');
-    this.orderService.updateOrder(id)
-      .subscribe();
-  }
-
 }

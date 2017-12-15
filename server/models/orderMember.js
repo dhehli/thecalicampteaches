@@ -40,20 +40,17 @@ router.get(`/${table}/:uid`, (req, res) => {
  r.table(table)
  .filter({ id: uid, userId})
  .run()
- .then(response => res.json(response))
- .error(err => res.status(500).send({error: err}))
-})
+ .then(response => {
 
-//Get by Uid
-router.put(`/${table}/:uid`, (req, res) => {
- const uid = req.params.uid;
- const userId = req.session.userId;
+   r.table(table)
+   .filter({ id: uid, userId})
+   .update({hasUnreadComment: false})
+   .run()
+   .then()
+   .error(err => res.status(500).send({error: err}))
 
- r.table(table)
- .filter({ id: uid, userId})
- .update({hasUnreadComment: false})
- .run()
- .then(response => res.status(200).json(response))
+   return res.json(response);
+ })
  .error(err => res.status(500).send({error: err}))
 })
 
