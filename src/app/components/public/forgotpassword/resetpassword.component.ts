@@ -10,6 +10,7 @@ import { ResetPasswordService }   from './resetpassword.service';
 export class ResetpasswordComponent implements OnInit {
   showForm: boolean;
   success: boolean;
+  isSubmitting: false;
 
   constructor(
     private resetPasswordService: ResetPasswordService,
@@ -28,11 +29,13 @@ export class ResetpasswordComponent implements OnInit {
   }
 
   resetPassword(password: string): void {
+    this.isSubmitting = true;
     const hash = this.route.snapshot.paramMap.get('hash');
 
 
     this.resetPasswordService.resetPassword(hash, password)
     .then(reseted => reseted.updated ? this.success = true : this.success = false);
+    this.isSubmitting = false;
   }
 
 

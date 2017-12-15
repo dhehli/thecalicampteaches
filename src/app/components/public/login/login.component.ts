@@ -9,6 +9,7 @@ import { LoginService }   from './login.service';
 })
 export class LoginComponent implements OnInit {
   error = {};
+  isSubmitting: false;
 
   constructor(
     private router: Router,
@@ -18,10 +19,8 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
   }
 
-  login(
-    email: string,
-    password: string
-  ): void {
+  login(email: string, password: string): void {
+    this.isSubmitting = true;
 
     const user = {
       email,
@@ -30,6 +29,7 @@ export class LoginComponent implements OnInit {
 
     this.loginService.login(user)
     .then(response => {
+      this.isSubmitting = false;
       this.error = [];
 
       if(response.errors){

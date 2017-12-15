@@ -13,6 +13,7 @@ export class TestimonialDetailComponent implements OnInit {
   testimonial: Testimonial;
   error = {};
   success: boolean;
+  isSubmitting: false;
 
   constructor(
     private testimonialService: TestimonialService,
@@ -30,6 +31,7 @@ export class TestimonialDetailComponent implements OnInit {
   }
 
   update(firstname: string, lastname: string, quote: string, onlineState: string): void {
+    this.isSubmitting = true;
     let formData = new FormData();
 
     let file = $("#image")[0].files[0];
@@ -43,6 +45,7 @@ export class TestimonialDetailComponent implements OnInit {
 
     this.testimonialService.updateTestimonial(formData)
     .subscribe(testimonial => {
+      this.isSubmitting = false;
       this.error = [];
 
       if(testimonial.errors){

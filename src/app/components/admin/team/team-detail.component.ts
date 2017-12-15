@@ -13,6 +13,7 @@ export class TeamDetailComponent implements OnInit {
   team: Team;
   error = {};
   success: boolean;
+  isSubmitting: false;
 
   constructor(
     private teamService: TeamService,
@@ -30,6 +31,7 @@ export class TeamDetailComponent implements OnInit {
   }
 
   update(firstname: string, lastname: string, email: string, location: string, onlineState: string): void {
+    this.isSubmitting = true;
     let formData = new FormData();
 
     let file = $("#image")[0].files[0];
@@ -44,6 +46,7 @@ export class TeamDetailComponent implements OnInit {
 
     this.teamService.updateTeam(formData)
     .subscribe(team => {
+      this.isSubmitting = false;
       this.error = [];
 
       if(team.errors){

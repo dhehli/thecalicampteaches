@@ -9,6 +9,7 @@ import { ForgotPasswordService }   from './forgotpassword.service';
 export class ForgotpasswordComponent implements OnInit {
   error = {};
   success: boolean;
+  isSubmitting: false;
 
   constructor(
     private forgotPasswordService: ForgotPasswordService
@@ -17,9 +18,10 @@ export class ForgotpasswordComponent implements OnInit {
   ngOnInit() { }
 
   forgot(email: string){
-
+    this.isSubmitting = true;
     this.forgotPasswordService.forgot(email)
     .then(response => {
+      this.isSubmitting = false;
       this.error = [];
 
       if(response.errors){

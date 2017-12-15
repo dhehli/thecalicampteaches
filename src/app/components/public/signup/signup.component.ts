@@ -10,6 +10,7 @@ import { UserService }   from './user.service';
 export class SignupComponent implements OnInit {
   error = {};
   success: boolean;
+  isSubmitting: false;
 
   constructor(
     private userService: UserService
@@ -24,6 +25,7 @@ export class SignupComponent implements OnInit {
     email: string,
     password: string
   ): void {
+    this.isSubmitting = true;
 
     const user = {
       salutation,
@@ -35,6 +37,7 @@ export class SignupComponent implements OnInit {
 
     this.userService.addUser(user)
     .then(response => {
+      this.isSubmitting = false;
       this.error = [];
 
       if(response.errors){

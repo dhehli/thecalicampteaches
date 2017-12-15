@@ -12,6 +12,7 @@ import { OrderServiceAdmin } from './order.service';
 export class OrderDetailAdminComponent implements OnInit {
   order: Order;
   error = {};
+  isSubmitting: false;
 
   constructor(
     private orderService: OrderServiceAdmin,
@@ -29,9 +30,11 @@ export class OrderDetailAdminComponent implements OnInit {
   }
 
   addComment(comment: string): void {
+    this.isSubmitting = true;
     const id = this.route.snapshot.paramMap.get('uid');
     this.orderService.updateOrder(id, comment)
       .subscribe(order => {
+        this.isSubmitting = false;
         this.error = [];
 
         if(order.errors){
