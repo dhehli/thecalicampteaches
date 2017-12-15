@@ -63,6 +63,7 @@ import { OrderDetailAdminComponent } from './components/admin/order/order-detail
 import { OrderServiceAdmin } from './components/admin/order/order.service';
 
 import { TeamServicePublic } from './components/public/home/home-team.service';
+import { TestimonialServicePublic } from './components/public/home/home-testimonial.service';
 
 @NgModule({
   imports: [
@@ -123,7 +124,8 @@ import { TeamServicePublic } from './components/public/home/home-team.service';
     LogoutService,
     OrderServiceMember,
     OrderServiceAdmin,
-    TeamServicePublic
+    TeamServicePublic,
+    TestimonialServicePublic
   ],
   bootstrap: [ AppComponent ]
 })

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Testimonial } from '../../admin/testimonial/testimonial';
-import { TestimonialService } from '../../admin/testimonial/testimonial.service';
+import { TestimonialServicePublic } from './home-testimonial.service';
 
 
 @Component({
@@ -11,7 +11,7 @@ import { TestimonialService } from '../../admin/testimonial/testimonial.service'
 export class TestimonialHomeComponent implements OnInit {
   testimonials: Testimonial[];
 
-  constructor(private testimonialService: TestimonialService) { }
+  constructor(private testimonialService: TestimonialServicePublic) { }
 
   ngOnInit() {
     this.getTestimonials();

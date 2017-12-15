@@ -14,6 +14,7 @@ import login from './models/login';
 import forgotPassword from './models/forgotPassword'
 import resetPassword from './models/resetPassword'
 import testimonial from './models/testimonial';
+import testimonialPublic from './models/testimonialPublic';
 import teamAdmin from './models/teamAdmin';
 import teamPublic from './models/teamPublic';
 import orderMember from './models/orderMember'
@@ -62,6 +63,7 @@ app.use('/api', forgotPassword);
 app.use('/api', resetPassword);
 app.use('/api', resetPassword);
 app.use('/api', teamPublic);
+app.use('/api', testimonialPublic);
 //Member Routes
 app.use('/api', isMember, orderMember);
 
