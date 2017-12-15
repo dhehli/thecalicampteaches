@@ -49,11 +49,15 @@ export class OrderDetailAdminComponent implements OnInit {
     this.orderService.deleteComment(orderId, commentId).subscribe();
     this.getOrder();
   }
+
+  sendCommentMail() : void{
+    const orderId = this.route.snapshot.paramMap.get('uid');
+    console.log("send mail")
+  }
 }
 
 
 // TODO:
 /*
 orderState update mit mail,
-mail nach order creation von user
 */

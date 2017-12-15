@@ -15,7 +15,7 @@ const table = 'order';
 //Find User By ID
 function findUserById(userId){
   return r.table('user')
-  .filter({ userId })
+  .filter({ id: userId })
   .run()
   .then(response => response)
 }
