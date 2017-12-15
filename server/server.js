@@ -60,9 +60,9 @@ app.use('/api', resetPassword);
 app.use('/api', isMember, orderMember);
 
 //Admin Routes
-app.use('/api', orderAdmin);
-app.use('/api', testimonial);
-app.use('/api', team);
+app.use('/api', isAdmin, orderAdmin);
+app.use('/api', isAdmin, testimonial);
+app.use('/api', isAdmin, team);
 
 
 // Catch all other routes and return the index file
