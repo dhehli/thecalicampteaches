@@ -55,12 +55,8 @@ export class OrderDetailAdminComponent implements OnInit {
 
   sendCommentMail() : void{
     const orderId = this.route.snapshot.paramMap.get('uid');
-    console.log("send mail")
+
+    this.orderService.sendCommentMail(orderId).subscribe();
+    this.getOrder();
   }
 }
-
-
-// TODO:
-/*
-orderState update mit mail,
-*/
