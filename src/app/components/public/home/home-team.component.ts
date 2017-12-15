@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Team } from '../../admin/team/team';
-import { TeamService } from '../../admin/team/team.service';
+import { TeamServicePublic } from './home-team.service';
 
 @Component({
   selector: 'team-home',
@@ -10,7 +10,7 @@ import { TeamService } from '../../admin/team/team.service';
 export class TeamHomeComponent implements OnInit {
   teams: Team[];
 
-  constructor(private teamService: TeamService) { }
+  constructor(private teamService: TeamServicePublic) { }
 
   ngOnInit() {
     this.getTeams();
@@ -20,5 +20,4 @@ export class TeamHomeComponent implements OnInit {
     this.teamService.getTeams()
     .subscribe(teams => this.teams = teams);
   }
-
 }

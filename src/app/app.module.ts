@@ -62,6 +62,8 @@ import { OrderAdminComponent } from './components/admin/order/order.component';
 import { OrderDetailAdminComponent } from './components/admin/order/order-detail.component';
 import { OrderServiceAdmin } from './components/admin/order/order.service';
 
+import { TeamServicePublic } from './components/public/home/home-team.service';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -120,7 +122,8 @@ import { OrderServiceAdmin } from './components/admin/order/order.service';
     TeamService,
     LogoutService,
     OrderServiceMember,
-    OrderServiceAdmin
+    OrderServiceAdmin,
+    TeamServicePublic
   ],
   bootstrap: [ AppComponent ]
 })

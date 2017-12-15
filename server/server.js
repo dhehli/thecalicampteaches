@@ -14,7 +14,8 @@ import login from './models/login';
 import forgotPassword from './models/forgotPassword'
 import resetPassword from './models/resetPassword'
 import testimonial from './models/testimonial';
-import team from './models/team';
+import teamAdmin from './models/teamAdmin';
+import teamPublic from './models/teamPublic';
 import orderMember from './models/orderMember'
 import orderAdmin from './models/orderAdmin'
 
@@ -36,7 +37,9 @@ function isMember(req, res, next) {
   if (req.session && req.session.userId) {
     return next();
   } else {
-    return
+    var err = new Error('You must be logged in to view this page.');
+    err.status = 401;
+    return next(err);
   }
 }
 
@@ -45,7 +48,9 @@ function isAdmin(req, res, next) {
   if (req.session && req.session.userId && req.session.admin) {
     return next();
   } else {
-    return
+    var err = new Error('You must be admin in to view this page.');
+    err.status = 401;
+    return next(err);
   }
 }
 
@@ -55,14 +60,15 @@ app.use('/api', signup);
 app.use('/api', login);
 app.use('/api', forgotPassword);
 app.use('/api', resetPassword);
-
+app.use('/api', resetPassword);
+app.use('/api', teamPublic);
 //Member Routes
 app.use('/api', isMember, orderMember);
 
 //Admin Routes
 app.use('/api', isAdmin, orderAdmin);
 app.use('/api', isAdmin, testimonial);
-app.use('/api', isAdmin, team);
+app.use('/api', isAdmin, teamAdmin);
 
 
 // Catch all other routes and return the index file
