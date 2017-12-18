@@ -64,6 +64,7 @@ app.use('/api', resetPassword);
 app.use('/api', resetPassword);
 app.use('/api', teamPublic);
 app.use('/api', testimonialPublic);
+
 //Member Routes
 app.use('/api', isMember, orderMember);
 

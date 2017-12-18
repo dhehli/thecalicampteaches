@@ -46,7 +46,8 @@ router.get(`/${table}/:uid`, (req, res) => {
 
 //Get by Uid
 router.put(`/${table}/:uid`, (req, res) => {
- const uid = req.params.uid;
+  console.log("put server order");
+ /*const uid = req.params.uid;
  const userId = req.session.userId;
 
  r.table(table)
@@ -54,7 +55,7 @@ router.put(`/${table}/:uid`, (req, res) => {
  .update({hasUnreadComment: false})
  .run()
  .then(response => res.status(200).json(response))
- .error(err => res.status(500).send({error: err}))
+ .error(err => res.status(500).send({error: err}))*/
 })
 
 //Post

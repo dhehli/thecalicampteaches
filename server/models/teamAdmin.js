@@ -102,7 +102,6 @@ router.put(`/${table}/:uid`, upload.single('image'), (req, res) => {
  }
 
  if(req.file){
-       // TODO: restriction for file type
    cloudinaryUpload(req.file.path, 'image')
    .then(image => {
      data.image = image;
