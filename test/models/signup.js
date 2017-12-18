@@ -1,5 +1,6 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
+import r from '../../server/connection/connection';
 
 let should = chai.should();
 chai.use(chaiHttp);
@@ -7,6 +8,14 @@ chai.use(chaiHttp);
 var assert = require('assert');
 
 describe('/POST signup', () => {
+
+  before((done) => {
+    r.table('user')
+    .delete()
+    .run()
+    .then(e => done())
+    .error(e => fail());
+  })
 
   it('it should not post a user without salutation', (done) => {
     let user = {}
