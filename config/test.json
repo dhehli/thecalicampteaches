@@ -1,0 +1,27 @@
+{
+  "rethinkdb": {
+    "host": "localhost",
+    "port": 28015,
+    "db": "thecalicampteachestest"
+  },
+  "cloudinary": {
+    "cloud_name": "dfjnd1tqe",
+    "api_key": "172155386425644",
+    "api_secret": "SvLfxi3JV1qsuHynVKv-kI50Zcw"
+  },
+  "cors": {
+    "origin": "http://localhost:4200",
+    "credentials": true
+  },
+  "session":{
+    "secret": "holy cow",
+    "resave": false,
+    "saveUninitialized": true,
+    "expires": 100000000000
+  },
+  "mailgun":{
+    "apiKey": "key-a1b6f4f68d6bb974dc6c023fd56db613",
+    "domain": "mailgun.netlive.ch"
+  },
+  "defaultMail": "dhehli@netlive.ch"
+}
