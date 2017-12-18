@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 
 var assert = require('assert');
 
-describe('/GET testimonialpublic', () => {
+describe('/GET teampublic', () => {
   it('it should GET all the teams', (done) => {
     chai.request('http://localhost:3000/api/teampublic').get('').end((err, res) => {
       res.should.have.status(200);

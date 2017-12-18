@@ -6,15 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-<<<<<<< HEAD
-<<<<<<< HEAD
     "test": "mocha",
-=======
-    "test": "ng test",
->>>>>>> parent of a658ea5... add tests
-=======
-    "test": "mocha --timeout 10000",
->>>>>>> parent of 917bbf5... add test setup
     "lint": "tslint ./src/**/*.ts -t verbose",
     "e2e": "ng e2e",
     "server": "nodemon index.js",
