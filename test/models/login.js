@@ -7,7 +7,7 @@ chai.use(chaiHttp);
 
 let assert = require('assert');
 
-const url = 'http://localhost:3000/api/signup';
+const url = 'http://localhost:3000/api/login';
 
 describe('/POST signup', () => {
 
