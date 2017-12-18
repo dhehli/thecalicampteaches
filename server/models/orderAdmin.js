@@ -99,7 +99,6 @@ router.put(`/${url}/mail/:uid`, (req, res) => {
 
       const {email} = user[0];
 
-      console.log(email);
       const mailData = {
         from: config.get('defaultMail'),
         to: email,

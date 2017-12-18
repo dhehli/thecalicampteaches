@@ -84,6 +84,18 @@ export class OrderServiceAdmin {
     );
   }
 
+
+  /** PUT: update the testimonial on the server */
+  sendCommentMail(orderId: string): Observable<any> {
+    const url = `${this.orderUrl}/mail/${orderId}`;
+
+    return this.http.put(url, {}, httpOptions).pipe(
+      tap(_ => this.log('update')),
+      catchError(this.handleError<any>('updateTestimonial'))
+    );
+  }
+
+
   /**
    * Handle Http operation that failed.
    * Let the app continue.
