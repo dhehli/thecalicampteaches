@@ -9,19 +9,8 @@ createDatabaseIfNotExists(dbCaliCamp)
   createTableIfNotExists(dbCaliCamp,'team');
   createTableIfNotExists(dbCaliCamp,'testimonial');
   createTableIfNotExists(dbCaliCamp,'user');
+  createTableIfNotExists(dbCaliCamp,'uservideo');
   createTableIfNotExists(dbCaliCamp,'forgotpassword');
-})
-.catch(err => console.log(err));
-
-const dbCaliCampTest = 'thecalicampteachestest';
-
-createDatabaseIfNotExists(dbCaliCampTest)
-.then(()=> {
-  createTableIfNotExists(dbCaliCampTest,'order');
-  createTableIfNotExists(dbCaliCampTest,'team');
-  createTableIfNotExists(dbCaliCampTest,'testimonial');
-  createTableIfNotExists(dbCaliCampTest,'user');
-  createTableIfNotExists(dbCaliCampTest,'forgotpassword');
 })
 .catch(err => console.log(err));
 

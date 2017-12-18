@@ -6,11 +6,16 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+<<<<<<< HEAD
     "test": "mocha",
+=======
+    "test": "ng test",
+>>>>>>> parent of a658ea5... add tests
     "lint": "tslint ./src/**/*.ts -t verbose",
     "e2e": "ng e2e",
     "server": "nodemon index.js",
-    "setup": "node ./server/setup/index"
+    "setup": "node ./server/setup/index",
+    "fixtures": "node ./server/fixtures/index"
   },
   "keywords": [],
   "author": "",
