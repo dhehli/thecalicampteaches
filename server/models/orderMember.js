@@ -11,7 +11,6 @@ const router = express.Router();
 
 const table = 'order';
 
-
 //Find User By ID
 function findUserById(userId){
   return r.table('user')

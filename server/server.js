@@ -13,7 +13,7 @@ import signup from './models/signup';
 import login from './models/login';
 import forgotPassword from './models/forgotPassword'
 import resetPassword from './models/resetPassword'
-import testimonial from './models/testimonial';
+import testimonialAdmin from './models/testimonialAdmin';
 import testimonialPublic from './models/testimonialPublic';
 import teamAdmin from './models/teamAdmin';
 import teamPublic from './models/teamPublic';
@@ -64,12 +64,13 @@ app.use('/api', resetPassword);
 app.use('/api', resetPassword);
 app.use('/api', teamPublic);
 app.use('/api', testimonialPublic);
+
 //Member Routes
 app.use('/api', isMember, orderMember);
 
 //Admin Routes
 app.use('/api', isAdmin, orderAdmin);
-app.use('/api', isAdmin, testimonial);
+app.use('/api', isAdmin, testimonialAdmin);
 app.use('/api', isAdmin, teamAdmin);
 
 

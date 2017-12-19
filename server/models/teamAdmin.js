@@ -14,7 +14,7 @@ const table = 'team';
 router.get(`/${table}`, (req, res) => {
  r.table(table)
  .run()
- .then(response =>	res.json(response))
+ .then(response => res.json(response))
  .error(err => res.status(500).send({error: err}))
 })
 
@@ -102,7 +102,6 @@ router.put(`/${table}/:uid`, upload.single('image'), (req, res) => {
  }
 
  if(req.file){
-       // TODO: restriction for file type
    cloudinaryUpload(req.file.path, 'image')
    .then(image => {
      data.image = image;
