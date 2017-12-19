@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "test": "ng test",
+    "test": "mocha",
     "lint": "tslint ./src/**/*.ts -t verbose",
     "e2e": "ng e2e",
     "server": "nodemon index.js",
@@ -63,6 +63,7 @@
     "@types/jasmine": "~2.5.53",
     "@types/jasminewd2": "^2.0.3",
     "@types/node": "^6.0.45",
+    "chai": "^4.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-register": "^6.26.0",
     "jasmine": "~2.4.1",
