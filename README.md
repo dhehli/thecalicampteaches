@@ -1,27 +1,24 @@
-# MasterProject
+# TheCalicampTeaches Setup
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.0.0-rc.0.
+1. Install Node.js https://nodejs.org/en/
+2. Install Rethink DB https://www.rethinkdb.com/
 
-## Development server
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Intallation
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive/pipe/service/class/module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+1. Download project from github https://github.com/dhehli/thecalicampteaches
+2. cd to your rethinkdb.exe and run `rethinkdb` command.
+3. cd to thecalicampteaaches root
+4. run `npm install` to install all node_modules.
+5. run `npm run setup` to create databases. This will create the main and the test database.
+6. run `npm run server` this will start the backend server with nodemon to detect code changes. `http://localhost:3000/`
+7. run `ng serve` to startup the angular frontend. `http://localhost:4200/`
 
 ## Running unit tests
+1. run `npm run test` to test the rest api.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
+## Build Project
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
 
 ## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Mail to me.
