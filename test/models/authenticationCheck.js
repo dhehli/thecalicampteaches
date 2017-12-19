@@ -8,10 +8,10 @@ chai.use(chaiHttp);
 
 let assert = require('assert');
 
-const urlLogin = 'http://localhost:3000/api/login';
+const url = 'http://localhost:3000/api/login';
 const urlAuthcheck = 'http://localhost:3000/api/authcheck';
 
-describe('/POST signup', () => {
+describe('/Get autcheck', () => {
 
   before((done) => {
     r.table('user')
@@ -55,86 +55,10 @@ describe('/POST signup', () => {
     .error(e => fail());
   })
 
-  it('it should not login without email', (done) => {
-    let user = {}
+  let cookieAdmin;
+  let cookieUser;
 
-    chai.request(url)
-    .post('')
-    .send(user)
-    .end((err, res) => {
-      res.should.have.status(200);
-      res.body.errors[0].param.should.be.eql('email');
-      done();
-    });
-  });
-
-  it('it should not login without password', (done) => {
-    let user = {
-      email: "dh@netlive.ch"
-    }
-
-    chai.request(url)
-    .post('')
-    .send(user)
-    .end((err, res) => {
-      res.should.have.status(200);
-      res.body.errors[0].param.should.be.eql('password');
-      done();
-    });
-  });
-
-  it('it should not login without non existing email', (done) => {
-    let user = {
-      email: "dh@brot.ch",
-      password: "123"
-    }
-
-    chai.request(url)
-    .post('')
-    .send(user)
-    .end((err, res) => {
-      res.should.have.status(200);
-      res.body.errors[0].param.should.be.eql('email');
-      res.body.errors[0].msg.should.be.eql('User not found');
-      done();
-    });
-  });
-
-  it('it should not login with wrong password', (done) => {
-    let user = {
-      email: "dh@netlive.ch",
-      password: "1"
-    }
-
-    chai.request(url)
-    .post('')
-    .send(user)
-    .end((err, res) => {
-      res.should.have.status(200);
-      res.body.errors[0].param.should.be.eql('password');
-      res.body.errors[0].msg.should.be.eql('Password wrong');
-      done();
-    });
-  });
-
-  it('it should login as user', (done) => {
-    let user = {
-      email: "dh@netlive.ch",
-      password: "123"
-    }
-
-    chai.request(url)
-    .post('')
-    .send(user)
-    .end((err, res) => {
-      res.should.have.status(200);
-      res.body.loggedIn.should.be.eql(true);
-      should.equal(res.body.admin, undefined);
-      done();
-    });
-  });
-
-  it('it should login as admin', (done) => {
+  it('it should save admin cookie', (done) => {
     let user = {
       email: "admin@admin.ch",
       password: "admin"
@@ -144,10 +68,50 @@ describe('/POST signup', () => {
     .post('')
     .send(user)
     .end((err, res) => {
+      cookieAdmin = res.headers['set-cookie'].pop().split(';')[0];
+      done();
+    });
+  });
+
+  it('it should save user cookie', (done) => {
+    let user = {
+      email: "dh@netlive.ch",
+      password: "123"
+    }
+
+    chai.request(url)
+    .post('')
+    .send(user)
+    .end((err, res) => {
+      cookieUser = res.headers['set-cookie'].pop().split(';')[0];
+      done();
+    });
+  });
+
+  it('it should be logged in as admin', (done) => {
+    const req = chai.request(urlAuthcheck).get('');
+
+    req.cookies = cookieAdmin;
+
+    req.end((err, res) => {
       res.should.have.status(200);
       res.body.loggedIn.should.be.eql(true);
       res.body.admin.should.be.eql(true);
       done();
     });
   });
+
+  it('it should be logged in as user', (done) => {
+    const req = chai.request(urlAuthcheck).get('');
+
+    req.cookies = cookieUser;
+
+    req.end((err, res) => {
+      res.should.have.status(200);
+      res.body.loggedIn.should.be.eql(true);
+      should.equal(res.body.admin, undefined);
+      done();
+    });
+  });
+
 });
