@@ -10,11 +10,12 @@ chai.use(chaiHttp);
 
 let assert = require('assert');
 let uuid;
+let cookieAdmin;
 
-const urlTestimonial = 'http://localhost:3000/api/testimonial';
+const urlTeam = 'http://localhost:3000/api/team';
 const urlLogin = 'http://localhost:3000/api/login';
 
-describe('/testimonials', () => {
+describe('/teamAdmin', () => {
 
   before((done) => {
     r.table('user')
@@ -44,7 +45,7 @@ describe('/testimonials', () => {
     .delete()
     .run()
     .then(() => {
-      r.table('testimonial')
+      r.table('team')
       .delete()
       .run()
       .then(() => {
@@ -53,8 +54,6 @@ describe('/testimonials', () => {
     })
     .error(e => fail());
   })
-
-  let cookieAdmin;
 
   it('it should save admin cookie', (done) => {
     let user = {
@@ -71,9 +70,9 @@ describe('/testimonials', () => {
     });
   });
 
-  describe('/GET testimonials', () => {
-    it('it should get empty testimonials', (done) => {
-      const req = supertest(urlTestimonial).get('');
+  describe('/GET teams', () => {
+    it('it should get empty teams', (done) => {
+      const req = supertest(urlTeam).get('');
 
       req.cookies = cookieAdmin;
 
@@ -86,17 +85,18 @@ describe('/testimonials', () => {
     });
   });
 
-  describe('/POST testimonial', () => {
-    it('it should post a testimonials', (done) => {
+  describe('/POST team', () => {
+    it('it should post a teams', (done) => {
 
       const data = {
-        firstname: "Urs",
-        lastname: "Meyer",
-        quote: "awesome",
-        onlineState: true,
+        firstname: "Mario",
+        lastname: "Brot",
+        email: "um@netlie.ch",
+        location: "cali",
+        onlineState: true
       }
 
-      const req = supertest(urlTestimonial).post('')
+      const req = supertest(urlTeam).post('')
 
       req.cookies = cookieAdmin;
 
@@ -111,18 +111,20 @@ describe('/testimonials', () => {
     });
   });
 
-  describe('/GET testimonial by id', () => {
-    it('it should get a single testimonial', (done) => {
 
-      const req = supertest(urlTestimonial).get(`/${uuid}`)
+  describe('/GET team by id', () => {
+    it('it should get a single team', (done) => {
+
+      const req = supertest(urlTeam).get(`/${uuid}`)
 
       req.cookies = cookieAdmin;
 
       req.end((err, res) => {
         res.should.have.status(200);
-        res.body.firstname.should.be.eql("Urs");
-        res.body.lastname.should.be.eql("Meyer");
-        res.body.quote.should.be.eql("awesome");
+        res.body.firstname.should.be.eql("Mario");
+        res.body.lastname.should.be.eql("Brot");
+        res.body.email.should.be.eql("um@netlie.ch");
+        res.body.location.should.be.eql("cali");
         res.body.onlineState.should.be.eql("true");
         res.body.image.should.be.an('object');
         res.body.image.public_id.should.be.a('string');
@@ -135,17 +137,18 @@ describe('/testimonials', () => {
     });
   });
 
-  describe('/PUT testimonial', () => {
-    it('it should put a testimonials', (done) => {
+  describe('/PUT team', () => {
+    it('it should put a teams', (done) => {
 
       const data = {
-        firstname: "Lara",
-        lastname: "Roge",
-        quote: "whalo",
-        onlineState: false,
+        firstname: "Linux",
+        lastname: "Tor",
+        email: "tw@netlie.ch",
+        location: "ny",
+        onlineState: false
       }
 
-      const req = supertest(urlTestimonial).put(`/${uuid}`)
+      const req = supertest(urlTeam).put(`/${uuid}`)
 
       req.cookies = cookieAdmin;
 
@@ -160,18 +163,19 @@ describe('/testimonials', () => {
     });
   });
 
-  describe('/GET testimonial by id after update', () => {
-    it('it should get a single testimonial', (done) => {
+  describe('/GET team by id after update', () => {
+    it('it should get a single team', (done) => {
 
-      const req = supertest(urlTestimonial).get(`/${uuid}`)
+      const req = supertest(urlTeam).get(`/${uuid}`)
 
       req.cookies = cookieAdmin;
 
       req.end((err, res) => {
         res.should.have.status(200);
-        res.body.firstname.should.be.eql("Lara");
-        res.body.lastname.should.be.eql("Roge");
-        res.body.quote.should.be.eql("whalo");
+        res.body.firstname.should.be.eql("Linux");
+        res.body.lastname.should.be.eql("Tor");
+        res.body.email.should.be.eql("tw@netlie.ch");
+        res.body.location.should.be.eql("ny");
         res.body.onlineState.should.be.eql("false");
         res.body.image.should.be.an('object');
         res.body.image.public_id.should.be.a('string');
@@ -184,10 +188,10 @@ describe('/testimonials', () => {
     });
   });
 
-  describe('/DELETE testimonial', () => {
-    it('it should delete a testimonials', (done) => {
+  describe('/DELETE team', () => {
+    it('it should delete a teams', (done) => {
 
-      const req = supertest(urlTestimonial).delete(`/${uuid}`)
+      const req = supertest(urlTeam).delete(`/${uuid}`)
 
       req.cookies = cookieAdmin;
 

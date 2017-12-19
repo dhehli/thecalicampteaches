@@ -9,4 +9,5 @@ import authenticationCheck from './authenticationCheck';
 import forgotResetPassword from './forgotResetPassword';*/
 
 //Admin Tests
-import testimonial from './testimonial';
+//import testimonialAdmin from './testimonialAdmin';
+//import teamAdmin from './teamAdmin';
