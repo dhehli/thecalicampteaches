@@ -1,12 +1,12 @@
 import server from '../../server/server';
 
 //Public Tests
-import testimonialPublic from './testimonialPublic';
+/*import testimonialPublic from './testimonialPublic';
 import teamPublic from './teamPublic';
 import signup from './signup';
 import login from './login';
 import authenticationCheck from './authenticationCheck';
-import forgotResetPassword from './forgotResetPassword';
+import forgotResetPassword from './forgotResetPassword';*/
 
 //Admin Tests
-//import testimonial from './testimonial';
+import testimonial from './testimonial';
