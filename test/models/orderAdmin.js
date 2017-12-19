@@ -10,12 +10,12 @@ chai.use(chaiHttp);
 
 let assert = require('assert');
 let uuid;
-let cookieUser;
+let cookieAdmin;
 
 const urlTestimonial = 'http://localhost:3000/api/order';
 const urlLogin = 'http://localhost:3000/api/login';
 
-describe('/order', () => {
+describe('/orderAdmin', () => {
 
   before((done) => {
     r.table('user')
@@ -26,10 +26,11 @@ describe('/order', () => {
       .insert({
         id: 111,
         salutation: "Mr",
-        firstname: "dominic",
-        lastname: "hehli",
-        email: "dhehli@netlive.ch",
-        password: bcrypt.hashSync("123", 10)
+        firstname: "admin",
+        lastname: "admin",
+        email: "admin@admin.ch",
+        password: bcrypt.hashSync("admin", 10),
+        admin: true
       })
       .run()
       .then(() => {
@@ -55,17 +56,17 @@ describe('/order', () => {
     .error(e => fail());
   })
 
-  it('it should save user cookie', (done) => {
+  it('it should save admin cookie', (done) => {
     let user = {
-      email: "dhehli@netlive.ch",
-      password: "123"
+      email: "admin@admin.ch",
+      password: "admin"
     }
 
     supertest(urlLogin)
     .post('')
     .send(user)
     .end((err, res) => {
-      cookieUser = res.headers['set-cookie'].pop().split(';')[0];
+      cookieAdmin = res.headers['set-cookie'].pop().split(';')[0];
       done();
     });
   });
@@ -74,7 +75,7 @@ describe('/order', () => {
     it('it should get empty order', (done) => {
       const req = supertest(urlTestimonial).get('');
 
-      req.cookies = cookieUser;
+      req.cookies = cookieAdmin;
 
       req.end((err, res) => {
         res.should.have.status(200);
@@ -85,6 +86,7 @@ describe('/order', () => {
     });
   });
 
+/*
   describe('/POST testimonial', () => {
     it('it should post a order', (done) => {
 
@@ -96,7 +98,7 @@ describe('/order', () => {
 
       const req = supertest(urlTestimonial).post('')
 
-      req.cookies = cookieUser;
+      req.cookies = cookieAdmin;
 
       req
       .field(data)
@@ -114,7 +116,7 @@ describe('/order', () => {
 
       const req = supertest(urlTestimonial).get(`/${uuid}`)
 
-      req.cookies = cookieUser;
+      req.cookies = cookieAdmin;
 
       req.end((err, res) => {
         res.should.have.status(200);
@@ -141,7 +143,7 @@ describe('/order', () => {
 
       const req = supertest(urlTestimonial).delete(`/${uuid}`)
 
-      req.cookies = cookieUser;
+      req.cookies = cookieAdmin;
 
       req.end((err, res) => {
         res.should.have.status(200);
@@ -149,6 +151,6 @@ describe('/order', () => {
         done();
       });
     });
-  });
+  });*/
 
 });

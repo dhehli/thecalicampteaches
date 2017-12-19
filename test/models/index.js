@@ -11,4 +11,5 @@ import forgotResetPassword from './forgotResetPassword';*/
 //Admin Tests
 //import testimonialAdmin from './testimonialAdmin';
 //import teamAdmin from './teamAdmin';
-import orderMember from './orderMember';
+//import orderMember from './orderMember';
+import orderAdmin from './orderAdmin';
