@@ -8,7 +8,7 @@
 1. Download project from github https://github.com/dhehli/thecalicampteaches
 2. cd to your rethinkdb.exe and run `rethinkdb` command.
 3. cd to thecalicampteaaches root
-4. add default.json and test.json to config --> this files are not on github because of private api-keys.
+4. add default.json and test.json to config folder--> this files are not on github because of private api-keys.
 5. run `npm install` to install all node_modules.
 6. run `npm run setup` to create databases. This will create the main and the test database.
 7. run `npm run server` this will start the backend server with nodemon to detect code changes. `http://localhost:3000/`
