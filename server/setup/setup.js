@@ -2,6 +2,7 @@ import r from 'rethinkdb'
 import config from 'config';
 
 const dbCaliCamp = 'thecalicampteaches';
+const dbCaliCampTest = 'thecalicampteachestest';
 
 createDatabaseIfNotExists(dbCaliCamp)
 .then(()=> {
@@ -9,8 +10,17 @@ createDatabaseIfNotExists(dbCaliCamp)
   createTableIfNotExists(dbCaliCamp,'team');
   createTableIfNotExists(dbCaliCamp,'testimonial');
   createTableIfNotExists(dbCaliCamp,'user');
-  createTableIfNotExists(dbCaliCamp,'uservideo');
   createTableIfNotExists(dbCaliCamp,'forgotpassword');
+})
+.catch(err => console.log(err));
+
+createDatabaseIfNotExists(dbCaliCampTest)
+.then(()=> {
+  createTableIfNotExists(dbCaliCampTest,'order');
+  createTableIfNotExists(dbCaliCampTest,'team');
+  createTableIfNotExists(dbCaliCampTest,'testimonial');
+  createTableIfNotExists(dbCaliCampTest,'user');
+  createTableIfNotExists(dbCaliCampTest,'forgotpassword');
 })
 .catch(err => console.log(err));
 
