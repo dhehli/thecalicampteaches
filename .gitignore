@@ -2,4 +2,5 @@
 /dist
 /uploads
 /config/default.json
+/config/test.json
 /keys
