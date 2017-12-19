@@ -12,7 +12,7 @@ let assert = require('assert');
 let uuid;
 let cookieUser;
 
-const urlTestimonial = 'http://localhost:3000/api/order';
+const urlOrder = 'http://localhost:3000/api/order';
 const urlLogin = 'http://localhost:3000/api/login';
 
 describe('/order', () => {
@@ -72,7 +72,7 @@ describe('/order', () => {
 
   describe('/GET order', () => {
     it('it should get empty order', (done) => {
-      const req = supertest(urlTestimonial).get('');
+      const req = supertest(urlOrder).get('');
 
       req.cookies = cookieUser;
 
@@ -85,7 +85,7 @@ describe('/order', () => {
     });
   });
 
-  describe('/POST testimonial', () => {
+  describe('/POST order', () => {
     it('it should post a order', (done) => {
 
       const data = {
@@ -94,7 +94,7 @@ describe('/order', () => {
         quote: "awesome"
       }
 
-      const req = supertest(urlTestimonial).post('')
+      const req = supertest(urlOrder).post('')
 
       req.cookies = cookieUser;
 
@@ -109,10 +109,10 @@ describe('/order', () => {
     });
   });
 
-  describe('/GET testimonial by id', () => {
-    it('it should get a single testimonial', (done) => {
+  describe('/GET order by id', () => {
+    it('it should get a single order', (done) => {
 
-      const req = supertest(urlTestimonial).get(`/${uuid}`)
+      const req = supertest(urlOrder).get(`/${uuid}`)
 
       req.cookies = cookieUser;
 
@@ -136,10 +136,10 @@ describe('/order', () => {
   });
 
 
-  describe('/DELETE testimonial', () => {
+  describe('/DELETE order', () => {
     it('it should delete a order', (done) => {
 
-      const req = supertest(urlTestimonial).delete(`/${uuid}`)
+      const req = supertest(urlOrder).delete(`/${uuid}`)
 
       req.cookies = cookieUser;
 
