@@ -6,7 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "test": "mocha",
+    "test": "mocha --timeout 15000",
     "lint": "tslint ./src/**/*.ts -t verbose",
     "e2e": "ng e2e",
     "server": "nodemon index.js",
