@@ -4,3 +4,4 @@ import testimonialPublic from './testimonialPublic';
 import teamPublic from './teamPublic';
 import signup from './signup';
 import login from './login';
+//import authenticationCheck from './authenticationCheck';

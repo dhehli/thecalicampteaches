@@ -8,8 +8,8 @@ chai.use(chaiHttp);
 
 let assert = require('assert');
 
-const url = 'http://localhost:3000/api/login';
-const urlLogout = 'http://localhost:3000/api/logout';
+const urlLogin = 'http://localhost:3000/api/login';
+const urlAuthcheck = 'http://localhost:3000/api/authcheck';
 
 describe('/POST signup', () => {
 
@@ -130,7 +130,6 @@ describe('/POST signup', () => {
       res.should.have.status(200);
       res.body.loggedIn.should.be.eql(true);
       should.equal(res.body.admin, undefined);
-      res.headers['set-cookie'].should.be.a('array');
       done();
     });
   });
@@ -148,20 +147,7 @@ describe('/POST signup', () => {
       res.should.have.status(200);
       res.body.loggedIn.should.be.eql(true);
       res.body.admin.should.be.eql(true);
-      res.headers['set-cookie'].should.be.a('array');
       done();
     });
   });
-
-  it('it should logout', (done) => {
-    chai.request(urlLogout)
-    .get('')
-    .end((err, res) => {
-      res.should.have.status(200);
-      res.body.logout.should.be.eql(true);
-      should.equal(res.headers['set-cookie'], undefined);
-      done();
-    });
-  });
-
 });
