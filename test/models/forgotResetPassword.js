@@ -10,6 +10,7 @@ let assert = require('assert');
 
 const url = 'http://localhost:3000/api/forgotpassword';
 const urlReset = 'http://localhost:3000/api/resetpassword';
+const urlLogin = 'http://localhost:3000/api/login';
 
 describe('/POST/Get forgotResetPassword', () => {
 
@@ -166,6 +167,24 @@ describe('/POST/Get forgotResetPassword', () => {
     .end((err, res) => {
       res.should.have.status(200);
       res.body.updated.should.be.eql(true);
+      done();
+    });
+  });
+
+  it('it should login user with reseted password', (done) => {
+    let user = {
+      email: "dh@netlive.ch",
+      password: "456"
+    }
+
+    chai.request(urlLogin)
+    .post('')
+    .send(user)
+    .end((err, res) => {
+      res.should.have.status(200);
+      res.body.loggedIn.should.be.eql(true);
+      should.equal(res.body.admin, undefined);
+      res.headers['set-cookie'].should.be.a('array');
       done();
     });
   });
