@@ -15,7 +15,9 @@
 8. run `npm run server` this will start the backend server with nodemon to detect code changes. `http://localhost:3000/`
 9. run `ng serve` to startup the angular frontend. `http://localhost:4200/`
 
+```
 Note that rethinkdb, server, and ng serve have to run in simultaneously in differenct consoles
+```
 
 ## Running unit tests
 1. shut down running dev server
