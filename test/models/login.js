@@ -11,7 +11,7 @@ let assert = require('assert');
 const url = 'http://localhost:3000/api/login';
 const urlLogout = 'http://localhost:3000/api/logout';
 
-describe('/POST signup', () => {
+describe('/POST login', () => {
 
   before((done) => {
     r.table('user')
