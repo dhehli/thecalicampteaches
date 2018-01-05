@@ -5,5 +5,5 @@
   "image": "string",
   "quote": "string",
   "created": "date",
-  "onlineState": true
+  "onlineState": "boolean"
 }

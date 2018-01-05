@@ -6,5 +6,5 @@
   "email": "string",
   "password": "string",
   "created": "date",
-  "onlineState": true
+  "onlineState": "boolean"
 }
