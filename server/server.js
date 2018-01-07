@@ -1,4 +1,3 @@
-// Get dependencies
 import config from 'config';
 import express from 'express';
 import path from 'path';
@@ -32,8 +31,9 @@ app.use(express.static(path.join(__dirname, '../dist')));
 
 app.use(session(config.get('session')));
 
-
-//Router Middleware to Check if Memberaccess
+/**
+ * Router Middleware to Check if Memberaccess
+ */
 function isMember(req, res, next) {
   if (req.session && req.session.userId) {
     return next();
@@ -43,8 +43,9 @@ function isMember(req, res, next) {
     return next(err);
   }
 }
-
-//Router Middleware to Check if Adminaccess
+/**
+ * Router Middleware to Check if Adminaccess
+ */
 function isAdmin(req, res, next) {
   if (req.session && req.session.userId && req.session.admin) {
     return next();
@@ -73,8 +74,9 @@ app.use('/api', isAdmin, orderAdmin);
 app.use('/api', isAdmin, testimonialAdmin);
 app.use('/api', isAdmin, teamAdmin);
 
-
-// Catch all other routes and return the index file
+/**
+ * Catch all other routes and return the index file
+ */
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './dist/index.html'));
 });

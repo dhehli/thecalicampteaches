@@ -8,7 +8,8 @@
     "start": "ng serve",
     "test": "mocha --timeout 15000",
     "server": "nodemon index.js",
-    "setup": "node ./server/setup/index"
+    "setup": "node ./server/setup/index",
+    "fixtures": "node ./server/fixtures/index"
   },
   "keywords": [],
   "author": "",
