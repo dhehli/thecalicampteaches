@@ -1,0 +1,89 @@
+.navbar{
+  background: $white;
+  @include box-shadow(0, 1px, 5px, rgba(77, 77, 77, 0.5));
+
+  .container{
+    max-width: 1170px;
+  }
+
+  a{
+    font-family: $second-font-sans-serif;
+  }
+
+  .navbar-brand{
+    color: $black;
+    font-weight: $font-weight-bold;
+    font-size: $font-size-base * 2;
+
+    img{
+      display: block;
+      max-width: 200px;
+    }
+  }
+
+  .nav-item{
+    margin: 0 .3125rem;
+    @include transition(background-color, ease-in-out, 0.15s);
+
+    @include media('screen', '<tablet') {
+      margin: .3125rem 0;
+      padding: .2rem .3125rem;
+    }
+
+    .nav-link{
+      color: $black;
+      font-weight: $font-weight-bold;
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+
+    &.active, &:hover{
+      background: $blue;
+      color: $white;
+
+      .nav-link{
+        color: $white;
+      }
+    }
+  }
+
+  .navbar-toggler{
+    color: $gray;
+    border: 1px solid $gray;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+
+  .social-media{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    @include media('screen', '<tablet') {
+      margin: 1rem 0;
+    }
+
+    li{
+      background: $black;
+      display: inline-block;
+      @include borderradius(50%);
+      @include transition(background-color, ease-in-out, 0.15s);
+      width: 1.87rem;
+      width: 1.87rem;
+      text-align: center;
+
+      &:hover{
+        background: $blue;
+      }
+    }
+
+    a{
+      color: $white;
+      line-height: 1.87rem;
+
+      &:hover{
+        text-decoration: none;
+      }
+    }
+  }
+}
