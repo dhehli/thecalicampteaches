@@ -1,3 +1,4 @@
+import { environment } from '../../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -13,10 +14,11 @@ const httpOptions = {
   withCredentials: true
 };
 
+
 @Injectable()
 export class OrderServiceAdmin {
 
-  private orderUrl = 'http://localhost:3000/api/orderadmin';  // URL to web api
+  private orderUrl = `${environment.apiURL}/api/orderadmin`;  // URL to web api
 
   constructor(
     private http: HttpClient,

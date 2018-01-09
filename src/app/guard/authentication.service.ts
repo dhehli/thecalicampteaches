@@ -1,3 +1,4 @@
+import { environment } from '../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
@@ -15,7 +16,7 @@ const httpOptions = {
 @Injectable()
 export class AuthenticationService {
 
-  private url = 'http://localhost:3000/api/authcheck';  // URL to web api
+  private url = `${environment.apiURL}/api/authcheck`;  // URL to web api
 
   constructor(
     private http: HttpClient

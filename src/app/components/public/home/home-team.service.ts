@@ -1,3 +1,4 @@
+import { environment } from '../../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
@@ -15,7 +16,7 @@ const httpOptions = {
 @Injectable()
 export class TeamServicePublic {
 
-  private teamUrl = 'http://localhost:3000/api/teampublic';  // URL to web api
+  private teamUrl = `${environment.apiURL}/api/teampublic`;  // URL to web api
 
   constructor(
     private http: HttpClient,

@@ -1,3 +1,4 @@
+import { environment } from '../../../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { HttpModule } from '@angular/http';
@@ -14,7 +15,7 @@ const httpOptions = {
 
 @Injectable()
 export class ResetPasswordService {
-  private url = 'http://localhost:3000/api/resetpassword';
+  private url = `${environment.apiURL}/api/resetpassword`;
 
   constructor(
     private http: HttpClient
