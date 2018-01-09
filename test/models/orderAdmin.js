@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import r from '../../server/connection/connection';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import supertest from 'supertest';
 import cloudinary from 'cloudinary';
 
