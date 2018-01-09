@@ -630,11 +630,12 @@ var OrderAdminComponent = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderServiceAdmin; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__admin_message_message_service__ = __webpack_require__("../../../../../src/app/components/admin/message/message.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__admin_message_message_service__ = __webpack_require__("../../../../../src/app/components/admin/message/message.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -649,62 +650,63 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var httpOptions = {
-    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/json'),
+    headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/json'),
     withCredentials: true
 };
 var OrderServiceAdmin = (function () {
     function OrderServiceAdmin(http, messageService) {
         this.http = http;
         this.messageService = messageService;
-        this.orderUrl = 'http://localhost:3000/api/orderadmin'; // URL to web api
+        this.orderUrl = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].apiURL + "/api/orderadmin"; // URL to web api
     }
     /** GET orderes from the server */
     OrderServiceAdmin.prototype.getOrders = function () {
         var _this = this;
         return this.http.get(this.orderUrl, httpOptions)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (orderes) { return _this.log("fetched orderes"); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('getOrderes', [])));
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (orderes) { return _this.log("fetched orderes"); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('getOrderes', [])));
     };
     /** GET order by id. Return `undefined` when id not found */
     OrderServiceAdmin.prototype.getOrderNo404 = function (id) {
         var _this = this;
         var url = this.orderUrl + "/?id=" + id;
         return this.http.get(url, httpOptions)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["b" /* map */])(function (orderes) { return orderes[0]; }), // returns a {0|1} element array
-        Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (h) {
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["b" /* map */])(function (orderes) { return orderes[0]; }), // returns a {0|1} element array
+        Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (h) {
             var outcome = h ? "fetched" : "did not find";
             _this.log(outcome + " order id=" + id);
-        }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getOrder id=" + id)));
+        }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError("getOrder id=" + id)));
     };
     /** GET order by id. Will 404 if id not found */
     OrderServiceAdmin.prototype.getOrder = function (id) {
         var _this = this;
         var url = this.orderUrl + "/" + id;
-        return this.http.get(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("fetched order id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getOrder id=" + id)));
+        return this.http.get(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("fetched order id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError("getOrder id=" + id)));
     };
     /** DELETE: delete the order from the server */
     OrderServiceAdmin.prototype.deleteOrder = function (order) {
         var _this = this;
         var id = typeof order === 'number' ? order : order.id;
         var url = this.orderUrl + "/" + id;
-        return this.http.delete(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("deleted order id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('deleteOrder')));
+        return this.http.delete(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("deleted order id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('deleteOrder')));
     };
     /** PUT: update the testimonial on the server */
     OrderServiceAdmin.prototype.updateOrder = function (orderId, comment) {
         var _this = this;
         var url = this.orderUrl + "/" + orderId;
-        return this.http.put(url, JSON.stringify({ comment: comment }), httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (_) { return _this.log('update'); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('updateTestimonial')));
+        return this.http.put(url, JSON.stringify({ comment: comment }), httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (_) { return _this.log('update'); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('updateTestimonial')));
     };
     OrderServiceAdmin.prototype.deleteComment = function (orderId, commentId) {
         var _this = this;
         var url = this.orderUrl + "/" + orderId + "/" + commentId;
-        return this.http.delete(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("deleted comment id=" + commentId); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('deleteComment')));
+        return this.http.delete(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("deleted comment id=" + commentId); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('deleteComment')));
     };
     /** PUT: update the testimonial on the server */
     OrderServiceAdmin.prototype.sendCommentMail = function (orderId) {
         var _this = this;
         var url = this.orderUrl + "/mail/" + orderId;
-        return this.http.put(url, {}, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (_) { return _this.log('update'); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('updateTestimonial')));
+        return this.http.put(url, {}, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (_) { return _this.log('update'); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('updateTestimonial')));
     };
     /**
      * Handle Http operation that failed.
@@ -721,7 +723,7 @@ var OrderServiceAdmin = (function () {
             // TODO: better job of transforming error for user consumption
             _this.log(operation + " failed: " + error.message);
             // Let the app keep running by returning an empty result.
-            return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(result);
+            return Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_of__["a" /* of */])(result);
         };
     };
     /** Log a OrderService message with the MessageService */
@@ -729,9 +731,9 @@ var OrderServiceAdmin = (function () {
         this.messageService.add('OrderService: ' + message);
     };
     OrderServiceAdmin = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_4__admin_message_message_service__["a" /* MessageService */]])
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_5__admin_message_message_service__["a" /* MessageService */]])
     ], OrderServiceAdmin);
     return OrderServiceAdmin;
 }());
@@ -956,11 +958,12 @@ var TeamComponent = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TeamService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__message_message_service__ = __webpack_require__("../../../../../src/app/components/admin/message/message.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__message_message_service__ = __webpack_require__("../../../../../src/app/components/admin/message/message.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -975,6 +978,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var httpOptions = {
     withCredentials: true
 };
@@ -982,49 +986,49 @@ var TeamService = (function () {
     function TeamService(http, messageService) {
         this.http = http;
         this.messageService = messageService;
-        this.teamUrl = 'http://localhost:3000/api/team'; // URL to web api
+        this.teamUrl = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].apiURL + "/api/team"; // URL to web api
     }
     /** GET teames from the server */
     TeamService.prototype.getTeams = function () {
         var _this = this;
         return this.http.get(this.teamUrl, httpOptions)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (teams) { return _this.log("fetched teames"); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('getTeames', [])));
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (teams) { return _this.log("fetched teames"); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('getTeames', [])));
     };
     /** GET team by id. Return `undefined` when id not found */
     TeamService.prototype.getTeamNo404 = function (id) {
         var _this = this;
         var url = this.teamUrl + "/?id=" + id;
         return this.http.get(url, httpOptions)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["b" /* map */])(function (teames) { return teames[0]; }), // returns a {0|1} element array
-        Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (h) {
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["b" /* map */])(function (teames) { return teames[0]; }), // returns a {0|1} element array
+        Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (h) {
             var outcome = h ? "fetched" : "did not find";
             _this.log(outcome + " team id=" + id);
-        }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getTeam id=" + id)));
+        }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError("getTeam id=" + id)));
     };
     /** GET team by id. Will 404 if id not found */
     TeamService.prototype.getTeam = function (id) {
         var _this = this;
         var url = this.teamUrl + "/" + id;
-        return this.http.get(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("fetched team id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getTeam id=" + id)));
+        return this.http.get(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("fetched team id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError("getTeam id=" + id)));
     };
     //////// Save methods //////////
     /** POST: add a new team to the server */
     TeamService.prototype.addTeam = function (team) {
         var _this = this;
-        return this.http.post(this.teamUrl, team, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (team) { return _this.log("add"); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('addTeam')));
+        return this.http.post(this.teamUrl, team, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (team) { return _this.log("add"); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('addTeam')));
     };
     /** DELETE: delete the team from the server */
     TeamService.prototype.deleteTeam = function (team) {
         var _this = this;
         var id = typeof team === 'number' ? team : team.id;
         var url = this.teamUrl + "/" + id;
-        return this.http.delete(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("deleted team id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('deleteTeam')));
+        return this.http.delete(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("deleted team id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('deleteTeam')));
     };
     /** PUT: update the team on the server */
     TeamService.prototype.updateTeam = function (team) {
         var _this = this;
         var url = this.teamUrl + "/" + team.get('id');
-        return this.http.put(url, team, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (_) { return _this.log('update'); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('updateTeam')));
+        return this.http.put(url, team, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (_) { return _this.log('update'); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('updateTeam')));
     };
     /**
      * Handle Http operation that failed.
@@ -1041,7 +1045,7 @@ var TeamService = (function () {
             // TODO: better job of transforming error for user consumption
             _this.log(operation + " failed: " + error.message);
             // Let the app keep running by returning an empty result.
-            return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(result);
+            return Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_of__["a" /* of */])(result);
         };
     };
     /** Log a TeamService message with the MessageService */
@@ -1049,9 +1053,9 @@ var TeamService = (function () {
         this.messageService.add('TeamService: ' + message);
     };
     TeamService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_4__message_message_service__["a" /* MessageService */]])
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_5__message_message_service__["a" /* MessageService */]])
     ], TeamService);
     return TeamService;
 }());
@@ -1274,11 +1278,12 @@ var TestimonialComponent = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TestimonialService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__message_message_service__ = __webpack_require__("../../../../../src/app/components/admin/message/message.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__message_message_service__ = __webpack_require__("../../../../../src/app/components/admin/message/message.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1293,6 +1298,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var httpOptions = {
     withCredentials: true
 };
@@ -1300,49 +1306,49 @@ var TestimonialService = (function () {
     function TestimonialService(http, messageService) {
         this.http = http;
         this.messageService = messageService;
-        this.testimonialUrl = 'http://localhost:3000/api/testimonial'; // URL to web api
+        this.testimonialUrl = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].apiURL + "/api/testimonial"; // URL to web api
     }
     /** GET testimoniales from the server */
     TestimonialService.prototype.getTestimonials = function () {
         var _this = this;
         return this.http.get(this.testimonialUrl, httpOptions)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (testimoniales) { return _this.log("fetched testimoniales"); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('getTestimoniales', [])));
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (testimoniales) { return _this.log("fetched testimoniales"); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('getTestimoniales', [])));
     };
     /** GET testimonial by id. Return `undefined` when id not found */
     TestimonialService.prototype.getTestimonialNo404 = function (id) {
         var _this = this;
         var url = this.testimonialUrl + "/?id=" + id;
         return this.http.get(url, httpOptions)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["b" /* map */])(function (testimoniales) { return testimoniales[0]; }), // returns a {0|1} element array
-        Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (h) {
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["b" /* map */])(function (testimoniales) { return testimoniales[0]; }), // returns a {0|1} element array
+        Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (h) {
             var outcome = h ? "fetched" : "did not find";
             _this.log(outcome + " testimonial id=" + id);
-        }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getTestimonial id=" + id)));
+        }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError("getTestimonial id=" + id)));
     };
     /** GET testimonial by id. Will 404 if id not found */
     TestimonialService.prototype.getTestimonial = function (id) {
         var _this = this;
         var url = this.testimonialUrl + "/" + id;
-        return this.http.get(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("fetched testimonial id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getTestimonial id=" + id)));
+        return this.http.get(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("fetched testimonial id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError("getTestimonial id=" + id)));
     };
     //////// Save methods //////////
     /** POST: add a new testimonial to the server */
     TestimonialService.prototype.addTestimonial = function (testimonial) {
         var _this = this;
-        return this.http.post(this.testimonialUrl, testimonial, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (testimonial) { return _this.log("add"); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('addTestimonial')));
+        return this.http.post(this.testimonialUrl, testimonial, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (testimonial) { return _this.log("add"); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('addTestimonial')));
     };
     /** DELETE: delete the testimonial from the server */
     TestimonialService.prototype.deleteTestimonial = function (testimonial) {
         var _this = this;
         var id = typeof testimonial === 'number' ? testimonial : testimonial.id;
         var url = this.testimonialUrl + "/" + id;
-        return this.http.delete(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("deleted testimonial id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('deleteTestimonial')));
+        return this.http.delete(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("deleted testimonial id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('deleteTestimonial')));
     };
     /** PUT: update the testimonial on the server */
     TestimonialService.prototype.updateTestimonial = function (testimonial) {
         var _this = this;
         var url = this.testimonialUrl + "/" + testimonial.get('id');
-        return this.http.put(url, testimonial, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (_) { return _this.log('update'); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('updateTestimonial')));
+        return this.http.put(url, testimonial, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (_) { return _this.log('update'); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('updateTestimonial')));
     };
     /**
      * Handle Http operation that failed.
@@ -1359,7 +1365,7 @@ var TestimonialService = (function () {
             // TODO: better job of transforming error for user consumption
             _this.log(operation + " failed: " + error.message);
             // Let the app keep running by returning an empty result.
-            return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(result);
+            return Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_of__["a" /* of */])(result);
         };
     };
     /** Log a TestimonialService message with the MessageService */
@@ -1367,9 +1373,9 @@ var TestimonialService = (function () {
         this.messageService.add('TestimonialService: ' + message);
     };
     TestimonialService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_4__message_message_service__["a" /* MessageService */]])
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_5__message_message_service__["a" /* MessageService */]])
     ], TestimonialService);
     return TestimonialService;
 }());
@@ -1648,11 +1654,12 @@ var OrderMemberComponent = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderServiceMember; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__admin_message_message_service__ = __webpack_require__("../../../../../src/app/components/admin/message/message.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__admin_message_message_service__ = __webpack_require__("../../../../../src/app/components/admin/message/message.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1667,6 +1674,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var httpOptions = {
     withCredentials: true
 };
@@ -1674,43 +1682,43 @@ var OrderServiceMember = (function () {
     function OrderServiceMember(http, messageService) {
         this.http = http;
         this.messageService = messageService;
-        this.orderUrl = 'http://localhost:3000/api/order'; // URL to web api
+        this.orderUrl = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].apiURL + "/api/order"; // URL to web api
     }
     /** GET orderes from the server */
     OrderServiceMember.prototype.getOrders = function () {
         var _this = this;
         return this.http.get(this.orderUrl, httpOptions)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (orderes) { return _this.log("fetched orderes"); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('getOrderes', [])));
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (orderes) { return _this.log("fetched orderes"); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('getOrderes', [])));
     };
     /** GET order by id. Return `undefined` when id not found */
     OrderServiceMember.prototype.getOrderNo404 = function (id) {
         var _this = this;
         var url = this.orderUrl + "/?id=" + id;
         return this.http.get(url, httpOptions)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["b" /* map */])(function (orderes) { return orderes[0]; }), // returns a {0|1} element array
-        Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (h) {
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["b" /* map */])(function (orderes) { return orderes[0]; }), // returns a {0|1} element array
+        Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (h) {
             var outcome = h ? "fetched" : "did not find";
             _this.log(outcome + " order id=" + id);
-        }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getOrder id=" + id)));
+        }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError("getOrder id=" + id)));
     };
     /** GET order by id. Will 404 if id not found */
     OrderServiceMember.prototype.getOrder = function (id) {
         var _this = this;
         var url = this.orderUrl + "/" + id;
-        return this.http.get(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("fetched order id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError("getOrder id=" + id)));
+        return this.http.get(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("fetched order id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError("getOrder id=" + id)));
     };
     //////// Save methods //////////
     /** POST: add a new order to the server */
     OrderServiceMember.prototype.addOrder = function (order) {
         var _this = this;
-        return this.http.post(this.orderUrl, order, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (order) { return _this.log("add"); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('addOrder')));
+        return this.http.post(this.orderUrl, order, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (order) { return _this.log("add"); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('addOrder')));
     };
     /** DELETE: delete the order from the server */
     OrderServiceMember.prototype.deleteOrder = function (order) {
         var _this = this;
         var id = typeof order === 'number' ? order : order.id;
         var url = this.orderUrl + "/" + id;
-        return this.http.delete(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("deleted order id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('deleteOrder')));
+        return this.http.delete(url, httpOptions).pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (_) { return _this.log("deleted order id=" + id); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('deleteOrder')));
     };
     /**
      * Handle Http operation that failed.
@@ -1727,7 +1735,7 @@ var OrderServiceMember = (function () {
             // TODO: better job of transforming error for user consumption
             _this.log(operation + " failed: " + error.message);
             // Let the app keep running by returning an empty result.
-            return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(result);
+            return Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_of__["a" /* of */])(result);
         };
     };
     /** Log a OrderService message with the MessageService */
@@ -1735,9 +1743,9 @@ var OrderServiceMember = (function () {
         this.messageService.add('OrderService: ' + message);
     };
     OrderServiceMember = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_4__admin_message_message_service__["a" /* MessageService */]])
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_5__admin_message_message_service__["a" /* MessageService */]])
     ], OrderServiceMember);
     return OrderServiceMember;
 }());
@@ -1931,8 +1939,9 @@ var ResetpasswordComponent = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ResetPasswordService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1944,14 +1953,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var httpOptions = {
-    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/json'),
+    headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/json'),
     withCredentials: true
 };
 var ResetPasswordService = (function () {
     function ResetPasswordService(http) {
         this.http = http;
-        this.url = 'http://localhost:3000/api/resetpassword';
+        this.url = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].apiURL + "/api/resetpassword";
     }
     ResetPasswordService.prototype.checkHash = function (hash) {
         return this.http
@@ -1975,8 +1985,8 @@ var ResetPasswordService = (function () {
         return Promise.reject(error.message || error);
     };
     ResetPasswordService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
     ], ResetPasswordService);
     return ResetPasswordService;
 }());
@@ -2083,11 +2093,12 @@ var TeamHomeComponent = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TeamServicePublic; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__admin_message_message_service__ = __webpack_require__("../../../../../src/app/components/admin/message/message.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__admin_message_message_service__ = __webpack_require__("../../../../../src/app/components/admin/message/message.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2102,6 +2113,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var httpOptions = {
     withCredentials: true
 };
@@ -2109,13 +2121,13 @@ var TeamServicePublic = (function () {
     function TeamServicePublic(http, messageService) {
         this.http = http;
         this.messageService = messageService;
-        this.teamUrl = 'http://localhost:3000/api/teampublic'; // URL to web api
+        this.teamUrl = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].apiURL + "/api/teampublic"; // URL to web api
     }
     /** GET teames from the server */
     TeamServicePublic.prototype.getTeams = function () {
         var _this = this;
         return this.http.get(this.teamUrl, httpOptions)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (teams) { return _this.log("fetched teames"); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('getTeames', [])));
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (teams) { return _this.log("fetched teames"); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('getTeames', [])));
     };
     /**
      * Handle Http operation that failed.
@@ -2132,7 +2144,7 @@ var TeamServicePublic = (function () {
             // TODO: better job of transforming error for user consumption
             _this.log(operation + " failed: " + error.message);
             // Let the app keep running by returning an empty result.
-            return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(result);
+            return Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_of__["a" /* of */])(result);
         };
     };
     /** Log a TeamService message with the MessageService */
@@ -2140,9 +2152,9 @@ var TeamServicePublic = (function () {
         this.messageService.add('TeamService: ' + message);
     };
     TeamServicePublic = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_4__admin_message_message_service__["a" /* MessageService */]])
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_5__admin_message_message_service__["a" /* MessageService */]])
     ], TeamServicePublic);
     return TeamServicePublic;
 }());
@@ -2156,11 +2168,12 @@ var TeamServicePublic = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return TestimonialServicePublic; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__admin_message_message_service__ = __webpack_require__("../../../../../src/app/components/admin/message/message.service.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_observable_of__ = __webpack_require__("../../../../rxjs/_esm5/observable/of.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_operators__ = __webpack_require__("../../../../rxjs/_esm5/operators/index.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__admin_message_message_service__ = __webpack_require__("../../../../../src/app/components/admin/message/message.service.ts");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2175,6 +2188,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var httpOptions = {
     withCredentials: true
 };
@@ -2182,13 +2196,13 @@ var TestimonialServicePublic = (function () {
     function TestimonialServicePublic(http, messageService) {
         this.http = http;
         this.messageService = messageService;
-        this.testimonialUrl = 'http://localhost:3000/api/testimonialpublic'; // URL to web api
+        this.testimonialUrl = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].apiURL + "/api/testimonialpublic"; // URL to web api
     }
     /** GET testimoniales from the server */
     TestimonialServicePublic.prototype.getTestimonials = function () {
         var _this = this;
         return this.http.get(this.testimonialUrl, httpOptions)
-            .pipe(Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["c" /* tap */])(function (testimoniales) { return _this.log("fetched testimoniales"); }), Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_operators__["a" /* catchError */])(this.handleError('getTestimoniales', [])));
+            .pipe(Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["c" /* tap */])(function (testimoniales) { return _this.log("fetched testimoniales"); }), Object(__WEBPACK_IMPORTED_MODULE_4_rxjs_operators__["a" /* catchError */])(this.handleError('getTestimoniales', [])));
     };
     /**
      * Handle Http operation that failed.
@@ -2205,7 +2219,7 @@ var TestimonialServicePublic = (function () {
             // TODO: better job of transforming error for user consumption
             _this.log(operation + " failed: " + error.message);
             // Let the app keep running by returning an empty result.
-            return Object(__WEBPACK_IMPORTED_MODULE_2_rxjs_observable_of__["a" /* of */])(result);
+            return Object(__WEBPACK_IMPORTED_MODULE_3_rxjs_observable_of__["a" /* of */])(result);
         };
     };
     /** Log a TestimonialService message with the MessageService */
@@ -2213,9 +2227,9 @@ var TestimonialServicePublic = (function () {
         this.messageService.add('TestimonialService: ' + message);
     };
     TestimonialServicePublic = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
-            __WEBPACK_IMPORTED_MODULE_4__admin_message_message_service__["a" /* MessageService */]])
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_5__admin_message_message_service__["a" /* MessageService */]])
     ], TestimonialServicePublic);
     return TestimonialServicePublic;
 }());
@@ -2395,8 +2409,9 @@ var LoginComponent = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2408,14 +2423,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var httpOptions = {
-    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/json'),
+    headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/json'),
     withCredentials: true
 };
 var LoginService = (function () {
     function LoginService(http) {
         this.http = http;
-        this.url = 'http://localhost:3000/api/login'; // URL to web api
+        this.url = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].apiURL + "/api/login"; // URL to web api
     }
     /** POST: add a new hero to the server */
     LoginService.prototype.login = function (user) {
@@ -2430,8 +2446,8 @@ var LoginService = (function () {
         return Promise.reject(error.message || error);
     };
     LoginService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
     ], LoginService);
     return LoginService;
 }());
@@ -2555,8 +2571,9 @@ var SignupComponent = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return UserService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2568,14 +2585,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var httpOptions = {
-    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/json'),
+    headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/json'),
     withCredentials: true
 };
 var UserService = (function () {
     function UserService(http) {
         this.http = http;
-        this.url = 'http://localhost:3000/api/signup'; // URL to web api
+        this.url = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].apiURL + "/api/signup"; // URL to web api
     }
     /** POST: add a new hero to the server */
     UserService.prototype.addUser = function (user) {
@@ -2590,8 +2608,8 @@ var UserService = (function () {
         return Promise.reject(error.message || error);
     };
     UserService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
     ], UserService);
     return UserService;
 }());
@@ -2605,8 +2623,9 @@ var UserService = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthenticationService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2618,14 +2637,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var httpOptions = {
-    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/json'),
+    headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/json'),
     withCredentials: true
 };
 var AuthenticationService = (function () {
     function AuthenticationService(http) {
         this.http = http;
-        this.url = 'http://localhost:3000/api/authcheck'; // URL to web api
+        this.url = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].apiURL + "/api/authcheck"; // URL to web api
     }
     AuthenticationService.prototype.isAuthenticated = function () {
         return this.http
@@ -2639,8 +2659,8 @@ var AuthenticationService = (function () {
         return Promise.reject(error.message || error);
     };
     AuthenticationService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
     ], AuthenticationService);
     return AuthenticationService;
 }());
@@ -2876,8 +2896,9 @@ var LogoutComponent = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LogoutService; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__environments_environment__ = __webpack_require__("../../../../../src/environments/environment.ts");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__("../../../core/esm5/core.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common_http__ = __webpack_require__("../../../common/esm5/http.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2889,14 +2910,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var httpOptions = {
-    headers: new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/json'),
+    headers: new __WEBPACK_IMPORTED_MODULE_2__angular_common_http__["c" /* HttpHeaders */]().set('Content-Type', 'application/json'),
     withCredentials: true
 };
 var LogoutService = (function () {
     function LogoutService(http) {
         this.http = http;
-        this.url = 'http://localhost:3000/api/logout'; // URL to web api
+        this.url = __WEBPACK_IMPORTED_MODULE_0__environments_environment__["a" /* environment */].apiURL + "/api/logout"; // URL to web api
     }
     /** POST: add a new hero to the server */
     LogoutService.prototype.logout = function () {
@@ -2911,8 +2933,8 @@ var LogoutService = (function () {
         return Promise.reject(error.message || error);
     };
     LogoutService = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["Injectable"])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["Injectable"])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__angular_common_http__["a" /* HttpClient */]])
     ], LogoutService);
     return LogoutService;
 }());
@@ -2926,12 +2948,9 @@ var LogoutService = (function () {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
-// The file contents for the current environment will overwrite these during build.
-// The build system defaults to the dev environment which uses `environment.ts`, but if you do
-// `ng build --env=prod` then `environment.prod.ts` will be used instead.
-// The list of which env maps to which file can be found in `.angular-cli.json`.
 var environment = {
-    production: false
+    production: true,
+    apiURL: "http://104.131.181.34"
 };
 
 
