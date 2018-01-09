@@ -1,6 +1,6 @@
 import express from 'express';
 import _ from 'underscore';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import r from '../connection/connection'
 
 const router = express.Router();
