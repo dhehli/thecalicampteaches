@@ -30,7 +30,7 @@ router.post(`/${table}`, (req, res) => {
 
   req.checkBody("description", "No description.").notEmpty().trim();
   req.checkBody("fromDate", "No from date.").notEmpty().trim();
-  req.checkBody("toDate", "No to date.").isEmail().trim();
+  req.checkBody("toDate", "No to date.").notEmpty().trim();
   req.checkBody("code", "No code.").notEmpty().trim();
   req.checkBody("amount", "No amount.").notEmpty().trim();
   req.checkBody("onlineState", "No online state.").isBoolean();
@@ -65,7 +65,7 @@ router.put(`/${table}/:uid`, (req, res) => {
 
   req.checkBody("description", "No description.").notEmpty().trim();
   req.checkBody("fromDate", "No from date.").notEmpty().trim();
-  req.checkBody("toDate", "No to date.").isEmail().trim();
+  req.checkBody("toDate", "No to date.").notEmpty().trim();
   req.checkBody("code", "No code.").notEmpty().trim();
   req.checkBody("amount", "No amount.").notEmpty().trim();
   req.checkBody("onlineState", "No online state.").isBoolean();

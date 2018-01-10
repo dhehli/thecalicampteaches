@@ -22,7 +22,7 @@ createDatabaseIfNotExists(dbCaliCampTest)
   createTableIfNotExists(dbCaliCampTest,'testimonial');
   createTableIfNotExists(dbCaliCampTest,'user');
   createTableIfNotExists(dbCaliCampTest,'forgotpassword');
-  createTableIfNotExists(dbCaliCamp,'voucher')
+  createTableIfNotExists(dbCaliCampTest,'voucher')
 })
 .catch(err => console.log(err));
 
