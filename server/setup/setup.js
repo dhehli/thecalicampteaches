@@ -11,6 +11,7 @@ createDatabaseIfNotExists(dbCaliCamp)
   createTableIfNotExists(dbCaliCamp,'testimonial');
   createTableIfNotExists(dbCaliCamp,'user');
   createTableIfNotExists(dbCaliCamp,'forgotpassword');
+  createTableIfNotExists(dbCaliCamp,'voucher');
 })
 .catch(err => console.log(err));
 
@@ -21,6 +22,7 @@ createDatabaseIfNotExists(dbCaliCampTest)
   createTableIfNotExists(dbCaliCampTest,'testimonial');
   createTableIfNotExists(dbCaliCampTest,'user');
   createTableIfNotExists(dbCaliCampTest,'forgotpassword');
+  createTableIfNotExists(dbCaliCamp,'voucher')
 })
 .catch(err => console.log(err));
 
