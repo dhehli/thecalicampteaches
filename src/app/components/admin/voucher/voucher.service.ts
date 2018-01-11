@@ -24,7 +24,7 @@ export class VoucherService {
 
   /** GET vouchers from the server */
   getVouchers (): Observable<Voucher[]> {
-    return this.http.get<Voucher[]>(this.voucherUrl)
+    return this.http.get<Voucher[]>(this.voucherUrl, httpOptions)
       .pipe(
         tap(vouchers => this.log(`fetched vouchers`)),
         catchError(this.handleError('getVoucheres', []))
@@ -34,7 +34,7 @@ export class VoucherService {
   /** GET voucher by id. Will 404 if id not found */
   getVoucher(id: number): Observable<Voucher> {
     const url = `${this.voucherUrl}/${id}`;
-    return this.http.get<Voucher>(url).pipe(
+    return this.http.get<Voucher>(url, httpOptions).pipe(
       tap(_ => this.log(`fetched voucher id=${id}`)),
       catchError(this.handleError<Voucher>(`getVoucher id=${id}`))
     );
@@ -43,7 +43,7 @@ export class VoucherService {
   //////// Save methods //////////
 
   /** POST: add a new voucher to the server */
-  addVoucher (voucher: Voucher): Observable<Voucher> {
+  addVoucher (voucher: Voucher): Observable<any> {
     return this.http.post<Voucher>(this.voucherUrl, voucher, httpOptions).pipe(
       tap((voucher: Voucher) => this.log(`added voucher w/ id=${voucher.id}`)),
       catchError(this.handleError<Voucher>('addVoucher'))

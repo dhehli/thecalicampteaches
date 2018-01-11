@@ -64,7 +64,12 @@ import { OrderServiceAdmin } from './components/admin/order/order.service';
 
 import { TeamServicePublic } from './components/public/home/home-team.service';
 import { TestimonialServicePublic } from './components/public/home/home-testimonial.service';
+
 import { VoucherComponent } from './components/admin/voucher/voucher.component';
+import { VoucherAddComponent } from './components/admin/voucher/voucher-add.component';
+//import { TestimonialDetailComponent } from './components/admin/testimonial/testimonial-detail.component';
+
+import { VoucherService } from './components/admin/voucher/voucher.service';
 
 @NgModule({
   imports: [
@@ -110,7 +115,8 @@ import { VoucherComponent } from './components/admin/voucher/voucher.component';
     OrderAddMemberComponent,
     OrderAdminComponent,
     OrderDetailAdminComponent,
-    VoucherComponent
+    VoucherComponent,
+    VoucherAddComponent
   ],
   providers: [
     GuardAdmin,
@@ -127,7 +133,8 @@ import { VoucherComponent } from './components/admin/voucher/voucher.component';
     OrderServiceMember,
     OrderServiceAdmin,
     TeamServicePublic,
-    TestimonialServicePublic
+    TestimonialServicePublic,
+    VoucherService
   ],
   bootstrap: [ AppComponent ]
 })

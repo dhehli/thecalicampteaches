@@ -28,6 +28,7 @@ router.get(`/${table}/:uid`, (req, res) => {
 //Post
 router.post(`/${table}`, (req, res) => {
 
+  console.log(req.body);
   req.checkBody("description", "No description.").notEmpty().trim();
   req.checkBody("fromDate", "No from date.").notEmpty().trim();
   req.checkBody("toDate", "No to date.").notEmpty().trim();
@@ -51,6 +52,8 @@ router.post(`/${table}`, (req, res) => {
     amount,
     onlineState
   }
+
+  console.log(data);
 
   r.table(table)
   .insert(data)

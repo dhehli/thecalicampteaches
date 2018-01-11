@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import $ from 'jquery';
 
 import { Voucher } from './voucher';
 import { VoucherService } from './voucher.service';
@@ -22,19 +21,25 @@ export class VoucherAddComponent implements OnInit {
 
   }
 
-  add(description: string, fromDate: string, toDate: string, code: string, amount: number): void {
+  add(description: string, fromDate: string, toDate: string, code: string, amount: number, onlineState: boolean): void {
     this.isSubmitting = true;
 
-    let data = new Voucher(description, fromDate, toDate, code, amount);
+    this.voucher = new Voucher(
+      description,
+      fromDate,
+      toDate,
+      code,
+      amount,
+      onlineState
+    );
 
-    console.log(data)
-
-    this.voucherService.addVoucher(data)
+    this.voucherService.addVoucher(this.voucher)
     .subscribe(voucher => {
       this.isSubmitting = false;
       this.error = [];
 
       if(voucher.errors){
+        console.log(voucher.errors)
         voucher.errors.forEach(e => this.error[e.param] = e.msg);
       }else{
         this.success = true;

@@ -9,44 +9,48 @@
           </p>
           <div *ngIf="success">
             <div class="alert alert-success" role="alert">
-              Testimonial created <a [routerLink]="['../../voucher']">Back to List</a>
+              Voucher created <a [routerLink]="['../../voucher']">Back to List</a>
             </div>
           </div>
-          <form (ngSubmit)="add(firstname.value, lastname.value, quote.value, onlineState.value)" *ngIf="!success" enctype="multipart/form-data">
+          <form
+            (ngSubmit)="add(
+              description.value,
+              fromDate.value,
+              toDate.value,
+              code.value,
+              amount.value,
+              onlineState.value
+            )"
+            *ngIf="!success"
+          >
             <div class="form-group">
-              <input type="text" class="form-control {{error && error.firstname && 'is-invalid'}}" #firstname placeholder="Firstname" required>
+              <input type="text" class="form-control {{error && error.description && 'is-invalid'}}" placeholder="Description" #description required>
               <div class="invalid-feedback">
-                {{error && error.firstname}}
+                {{error && error.description}}
               </div>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control {{error && error.lastname && 'is-invalid'}}" placeholder="Description" #description required>
+              <input type="date" class="form-control {{error && error.fromDate && 'is-invalid'}}" placeholder="from Date" #fromDate required>
               <div class="invalid-feedback">
-                {{error && error.lastname}}
+                {{error && error.fromDate}}
               </div>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control {{error && error.lastname && 'is-invalid'}}" placeholder="from Date" #fromDate required>
+              <input type="date" class="form-control {{error && error.toDate && 'is-invalid'}}" placeholder="to Date" #toDate required>
               <div class="invalid-feedback">
-                {{error && error.lastname}}
+                {{error && error.toDate}}
               </div>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control {{error && error.lastname && 'is-invalid'}}" placeholder="to Date" #toDate required>
+              <input type="text" class="form-control {{error && error.code && 'is-invalid'}}" placeholder="Code" #code required>
               <div class="invalid-feedback">
-                {{error && error.lastname}}
+                {{error && error.code}}
               </div>
             </div>
             <div class="form-group">
-              <input type="text" class="form-control {{error && error.lastname && 'is-invalid'}}" placeholder="Code" #code required>
+              <input type="number" class="form-control {{error && error.amount && 'is-invalid'}}" placeholder="Amount" #amount required>
               <div class="invalid-feedback">
-                {{error && error.lastname}}
-              </div>
-            </div>
-            <div class="form-group">
-              <input type="number" class="form-control {{error && error.lastname && 'is-invalid'}}" placeholder="Amount" #amount required>
-              <div class="invalid-feedback">
-                {{error && error.lastname}}
+                {{error && error.amount}}
               </div>
             </div>
             <div class="form-group">

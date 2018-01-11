@@ -26,6 +26,10 @@ import { TeamDetailComponent }  from './components/admin/team/team-detail.compon
 import { OrderAdminComponent }  from './components/admin/order/order.component';
 import { OrderDetailAdminComponent }  from './components/admin/order/order-detail.component';
 
+import { VoucherComponent }  from './components/admin/voucher/voucher.component';
+import { VoucherAddComponent }  from './components/admin/voucher/voucher-add.component';
+//import { TeamDetailComponent }  from './components/admin/team/team-detail.component';
+
 
 //Member Components
 import { GuardMember } from './guard/guard-member';
@@ -64,7 +68,10 @@ const adminRoutes: Routes = [
      { path: 'team/add', component: TeamAddComponent },
      { path: 'team/:uid', component: TeamDetailComponent },
      { path: 'order', component: OrderAdminComponent },
-     { path: 'order/:uid', component: OrderDetailAdminComponent }
+     { path: 'order/:uid', component: OrderDetailAdminComponent },
+     { path: 'voucher', component: VoucherComponent },
+     { path: 'voucher/add', component: VoucherAddComponent },
+     //{ path: 'voucher/:uid', component: TeamDetailComponent },
    ]
   }
 ];
