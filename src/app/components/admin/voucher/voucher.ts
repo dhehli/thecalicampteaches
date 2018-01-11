@@ -13,7 +13,7 @@ export class Voucher {
     toDate: string,
     code: string,
     amount: number,
-    onlineState: boolean;
+    onlineState: boolean
   ){
     this.description = description;
     this.fromDate = fromDate;

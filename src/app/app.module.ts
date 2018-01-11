@@ -67,7 +67,7 @@ import { TestimonialServicePublic } from './components/public/home/home-testimon
 
 import { VoucherComponent } from './components/admin/voucher/voucher.component';
 import { VoucherAddComponent } from './components/admin/voucher/voucher-add.component';
-//import { TestimonialDetailComponent } from './components/admin/testimonial/testimonial-detail.component';
+import { VoucherDetailComponent } from './components/admin/voucher/voucher-detail.component';
 
 import { VoucherService } from './components/admin/voucher/voucher.service';
 
@@ -116,7 +116,8 @@ import { VoucherService } from './components/admin/voucher/voucher.service';
     OrderAdminComponent,
     OrderDetailAdminComponent,
     VoucherComponent,
-    VoucherAddComponent
+    VoucherAddComponent,
+    VoucherDetailComponent
   ],
   providers: [
     GuardAdmin,

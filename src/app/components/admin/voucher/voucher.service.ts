@@ -32,7 +32,7 @@ export class VoucherService {
   }
 
   /** GET voucher by id. Will 404 if id not found */
-  getVoucher(id: number): Observable<Voucher> {
+  getVoucher(id: string): Observable<Voucher> {
     const url = `${this.voucherUrl}/${id}`;
     return this.http.get<Voucher>(url, httpOptions).pipe(
       tap(_ => this.log(`fetched voucher id=${id}`)),
@@ -63,7 +63,7 @@ export class VoucherService {
 
   /** PUT: update the voucher on the server */
   updateVoucher (voucher: Voucher): Observable<any> {
-    return this.http.put(this.voucherUrl, voucher, httpOptions).pipe(
+    return this.http.put(`${this.voucherUrl}/${voucher.id}`, voucher, httpOptions).pipe(
       tap(_ => this.log(`updated voucher id=${voucher.id}`)),
       catchError(this.handleError<any>('updateVoucher'))
     );
