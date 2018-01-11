@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-
 import { Voucher } from './voucher';
 import { VoucherService } from './voucher.service';
 
@@ -26,8 +25,8 @@ export class VoucherAddComponent implements OnInit {
 
     this.voucher = new Voucher(
       description,
-      fromDate,
-      toDate,
+      new Date(fromDate),
+      new Date(toDate),
       code,
       amount,
       onlineState
@@ -39,7 +38,6 @@ export class VoucherAddComponent implements OnInit {
       this.error = [];
 
       if(voucher.errors){
-        console.log(voucher.errors)
         voucher.errors.forEach(e => this.error[e.param] = e.msg);
       }else{
         this.success = true;

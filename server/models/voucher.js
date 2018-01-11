@@ -48,7 +48,7 @@ router.post(`/${table}`, (req, res) => {
     fromDate,
     toDate,
     code,
-    amount,
+    amount: Number(amount),
     onlineState
   }
 
@@ -83,7 +83,7 @@ router.put(`/${table}/:uid`, (req, res) => {
     fromDate,
     toDate,
     code,
-    amount,
+    amount: Number(amount),
     onlineState
   }
 

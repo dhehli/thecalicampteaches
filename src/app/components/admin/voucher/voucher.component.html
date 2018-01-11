@@ -20,8 +20,8 @@
             <tbody>
               <tr *ngFor="let voucher of vouchers">
                 <td>{{voucher.description}}</td>
-                <td>{{voucher.fromDate}}</td>
-                <td>{{voucher.toDate}}</td>
+                <td>{{voucher.fromDate | date:'MM.dd.yyyy'}}</td>
+                <td>{{voucher.toDate | date:'MM.dd.yyyy'}}</td>
                 <td>{{voucher.code}}</td>
                 <td>{{voucher.amount}}</td>
                 <td><a [routerLink]="['./', voucher.id]">Detail</a></td>

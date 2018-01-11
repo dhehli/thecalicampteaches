@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import moment from 'moment-es6';
 
 import { Voucher } from './voucher';
 import { VoucherService } from './voucher.service';
@@ -27,11 +28,19 @@ export class VoucherDetailComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('uid');
 
     this.voucherService.getVoucher(id)
-      .subscribe(voucher => this.voucher = voucher);
+      .subscribe(voucher => {
+        voucher.fromDate = this.setDateAsString(voucher.fromDate)
+        voucher.toDate = this.setDateAsString(voucher.toDate)
+
+        this.voucher = voucher;
+      });
   }
 
   update(): void {
     this.isSubmitting = true;
+
+    this.voucher.fromDate = this.setDate(this.voucher.fromDate)
+    this.voucher.toDate = this.setDate(this.voucher.toDate)
 
     this.voucherService.updateVoucher(this.voucher)
     .subscribe(voucher => {
@@ -45,4 +54,13 @@ export class VoucherDetailComponent implements OnInit {
       }
     });
   }
+
+  setDateAsString(date: Date): string{
+    return moment(date).format('YYYY-MM-DD');
+  }
+
+  setDate(date: Date): string{
+    return new Date(date);
+  }
+
 }
