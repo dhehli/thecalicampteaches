@@ -14,7 +14,6 @@ export class TestimonialComponent implements OnInit {
     private testimonialService: TestimonialService
   ) { }
 
-
   ngOnInit() {
     this.getTestimonials();
   }

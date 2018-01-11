@@ -1,0 +1,70 @@
+<section>
+  <div class="container">
+    <div class="base-container">
+      <div class="row">
+        <div class="col-md-6">
+          <h1>Add Voucher</h1>
+          <p>
+            <button class="btn btn-default" [routerLink]="['../../voucher']">Back</button>
+          </p>
+          <div *ngIf="success">
+            <div class="alert alert-success" role="alert">
+              Testimonial created <a [routerLink]="['../../voucher']">Back to List</a>
+            </div>
+          </div>
+          <form (ngSubmit)="add(firstname.value, lastname.value, quote.value, onlineState.value)" *ngIf="!success" enctype="multipart/form-data">
+            <div class="form-group">
+              <input type="text" class="form-control {{error && error.firstname && 'is-invalid'}}" #firstname placeholder="Firstname" required>
+              <div class="invalid-feedback">
+                {{error && error.firstname}}
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control {{error && error.lastname && 'is-invalid'}}" placeholder="Description" #description required>
+              <div class="invalid-feedback">
+                {{error && error.lastname}}
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control {{error && error.lastname && 'is-invalid'}}" placeholder="from Date" #fromDate required>
+              <div class="invalid-feedback">
+                {{error && error.lastname}}
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control {{error && error.lastname && 'is-invalid'}}" placeholder="to Date" #toDate required>
+              <div class="invalid-feedback">
+                {{error && error.lastname}}
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="text" class="form-control {{error && error.lastname && 'is-invalid'}}" placeholder="Code" #code required>
+              <div class="invalid-feedback">
+                {{error && error.lastname}}
+              </div>
+            </div>
+            <div class="form-group">
+              <input type="number" class="form-control {{error && error.lastname && 'is-invalid'}}" placeholder="Amount" #amount required>
+              <div class="invalid-feedback">
+                {{error && error.lastname}}
+              </div>
+            </div>
+            <div class="form-group">
+              <select #onlineState class="form-control">
+                <option value="true">Online</option>
+                <option value="false">Offline</option>
+              </select>
+              <div class="invalid-feedback">
+                {{error && error.onlineState}}
+              </div>
+            </div>
+            <div class="form-group">
+              <button *ngIf="isSubmitting" class="btn btn-default" disabled><img src="assets/images/ajax-loader.gif" /> Loading...</button>
+              <button *ngIf="!isSubmitting" type="submit" class="btn">Create</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

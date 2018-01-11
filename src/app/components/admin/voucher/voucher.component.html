@@ -1,3 +1,39 @@
-<p>
-  voucher works!
-</p>
+<section>
+  <div class="container">
+    <div class="base-container">
+      <h1>Vouchers</h1>
+      <p><button class="btn" [routerLink]="['./add']">New Voucher</button></p>
+      <div *ngIf="vouchers && vouchers.length">
+        <div class="table-responsive">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Description</th>
+                <th>From Date</th>
+                <th>To Date</th>
+                <th>Code</th>
+                <th>Amount</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let voucher of vouchers">
+                <td>{{voucher.description}}</td>
+                <td>{{voucher.fromDate}}</td>
+                <td>{{voucher.toDate}}</td>
+                <td>{{voucher.code}}</td>
+                <td>{{voucher.amount}}</td>
+                <td><a [routerLink]="['./', voucher.id]">Detail</a></td>
+                <td>
+                  <button class="interface-button" href="#" title="delete voucher"
+                  (click)="delete(voucher)"><span class="icon-cross"></span></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

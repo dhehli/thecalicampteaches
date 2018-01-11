@@ -7,7 +7,7 @@ import { of } from 'rxjs/observable/of';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Voucher } from './voucher';
-import { MessageService } from './message.service';
+import { MessageService } from '../message/message.service';
 
 const httpOptions = {
   withCredentials: true
@@ -24,7 +24,7 @@ export class VoucherService {
 
   /** GET vouchers from the server */
   getVouchers (): Observable<Voucher[]> {
-    return this.http.get<Voucher[]>(this.vouchersUrl)
+    return this.http.get<Voucher[]>(this.voucherUrl)
       .pipe(
         tap(vouchers => this.log(`fetched vouchers`)),
         catchError(this.handleError('getVoucheres', []))
@@ -33,7 +33,7 @@ export class VoucherService {
 
   /** GET voucher by id. Will 404 if id not found */
   getVoucher(id: number): Observable<Voucher> {
-    const url = `${this.vouchersUrl}/${id}`;
+    const url = `${this.voucherUrl}/${id}`;
     return this.http.get<Voucher>(url).pipe(
       tap(_ => this.log(`fetched voucher id=${id}`)),
       catchError(this.handleError<Voucher>(`getVoucher id=${id}`))
@@ -44,7 +44,7 @@ export class VoucherService {
 
   /** POST: add a new voucher to the server */
   addVoucher (voucher: Voucher): Observable<Voucher> {
-    return this.http.post<Voucher>(this.vouchersUrl, voucher, httpOptions).pipe(
+    return this.http.post<Voucher>(this.voucherUrl, voucher, httpOptions).pipe(
       tap((voucher: Voucher) => this.log(`added voucher w/ id=${voucher.id}`)),
       catchError(this.handleError<Voucher>('addVoucher'))
     );
@@ -53,7 +53,7 @@ export class VoucherService {
   /** DELETE: delete the voucher from the server */
   deleteVoucher (voucher: Voucher | number): Observable<Voucher> {
     const id = typeof voucher === 'number' ? voucher : voucher.id;
-    const url = `${this.vouchersUrl}/${id}`;
+    const url = `${this.voucherUrl}/${id}`;
 
     return this.http.delete<Voucher>(url, httpOptions).pipe(
       tap(_ => this.log(`deleted voucher id=${id}`)),
@@ -63,7 +63,7 @@ export class VoucherService {
 
   /** PUT: update the voucher on the server */
   updateVoucher (voucher: Voucher): Observable<any> {
-    return this.http.put(this.vouchersUrl, voucher, httpOptions).pipe(
+    return this.http.put(this.voucherUrl, voucher, httpOptions).pipe(
       tap(_ => this.log(`updated voucher id=${voucher.id}`)),
       catchError(this.handleError<any>('updateVoucher'))
     );
@@ -71,7 +71,7 @@ export class VoucherService {
 
   /** GET voucher by id. Return `undefined` when id not found */
   getVoucherNo404<Data>(id: number): Observable<Voucher> {
-    const url = `${this.vouchersUrl}/?id=${id}`;
+    const url = `${this.voucherUrl}/?id=${id}`;
     return this.http.get<Voucher[]>(url)
       .pipe(
         map(vouchers => vouchers[0]), // returns a {0|1} element array
