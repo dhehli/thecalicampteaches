@@ -58,25 +58,27 @@
                 </div>
               </div>
               <div class="form-group">
-                <textarea
+                <input
+                  type="text"
                   class="form-control {{error && error.code && 'is-invalid'}}"
                   name="code"
                   [(ngModel)]="voucher.code"
                   placeholder="Code"
                   #code
-                  required></textarea>
+                  required>
                 <div class="invalid-feedback">
                   {{error && error.code}}
                 </div>
               </div>
               <div class="form-group">
-                <textarea
+                <input
+                  type="number"
                   class="form-control {{error && error.amount && 'is-invalid'}}"
                   name="amount"
                   [(ngModel)]="voucher.amount"
                   placeholder="Amount"
                   #amount
-                  required></textarea>
+                  required>
                 <div class="invalid-feedback">
                   {{error && error.amount}}
                 </div>
