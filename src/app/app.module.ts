@@ -64,6 +64,7 @@ import { OrderServiceAdmin } from './components/admin/order/order.service';
 
 import { TeamServicePublic } from './components/public/home/home-team.service';
 import { TestimonialServicePublic } from './components/public/home/home-testimonial.service';
+import { VoucherComponent } from './components/admin/voucher/voucher.component';
 
 @NgModule({
   imports: [
@@ -108,7 +109,8 @@ import { TestimonialServicePublic } from './components/public/home/home-testimon
     OrderDetailMemberComponent,
     OrderAddMemberComponent,
     OrderAdminComponent,
-    OrderDetailAdminComponent
+    OrderDetailAdminComponent,
+    VoucherComponent
   ],
   providers: [
     GuardAdmin,

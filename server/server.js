@@ -18,10 +18,9 @@ import teamAdmin from './models/teamAdmin';
 import teamPublic from './models/teamPublic';
 import orderMember from './models/orderMember'
 import orderAdmin from './models/orderAdmin'
-import voucher from './models/voucher';
+import voucher from './models/voucher'
 
 const app = express();
-
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -75,6 +74,7 @@ app.use('/api', isAdmin, orderAdmin);
 app.use('/api', isAdmin, testimonialAdmin);
 app.use('/api', isAdmin, teamAdmin);
 app.use('/api', isAdmin, voucher);
+
 /**
  * Catch all other routes and return the index file
  */
