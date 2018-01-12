@@ -6,7 +6,7 @@ import moment from 'moment-es6';
 const router = express.Router();
 
 const table = 'voucher';
-const url = 'voucherMember';
+const url = 'vouchermember';
 
 // Get All
 router.post(`/${url}`, (req, res) => {
@@ -15,7 +15,7 @@ router.post(`/${url}`, (req, res) => {
   const errors = req.validationErrors();
 
   if (errors) {
-    return res.json({errors: errors});
+    return res.json({ isValidCode: false});
   }
 
   const { code } = req.body;
@@ -25,7 +25,11 @@ router.post(`/${url}`, (req, res) => {
   .run()
   .then(response => {
     if(response && response.length){
-      return res.json({ isValidCode: true})
+      console.log(response);
+      return res.json({
+        isValidCode: true,
+        voucherAmount: response[0].amount
+      })
     }
     return res.json({ isValidCode: false})
   })

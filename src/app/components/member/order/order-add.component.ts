@@ -3,6 +3,7 @@ import $ from 'jquery';
 
 import { Order } from './order';
 import { OrderServiceMember } from './order.service';
+import { VoucherServiceMember } from './voucher.service';
 
 @Component({
   selector: 'app-add-order',
@@ -12,17 +13,44 @@ export class OrderAddMemberComponent implements OnInit {
   error = {};
   success: boolean;
   isSubmitting: boolean;
+  isValidCode: boolean;
+  showIsValidVoucher: boolean;
+  voucherAmount: number;
+  total: number;
+  amount: number;
 
   constructor(
-    private orderService: OrderServiceMember
-  ) { }
-
-  ngOnInit() {
+    private orderService: OrderServiceMember,
+    private voucherServiceMember: VoucherServiceMember
+  ) {
+    this.isValidCode = false;
+    this.showIsValidVoucher = false;
+    this.voucherAmount = 0;
+    this.amount = 49;
+    this.total = 49;
   }
 
-  isValidCode(event) : void{
+  ngOnInit() {}
+
+  isValidVoucher(event) : void{
     const code = event.target.value
-    console.log(code)
+    this.showIsValidVoucher = true;
+
+    this.voucherServiceMember.isValidVoucher(code)
+    .subscribe(isValid => {
+      const { isValidCode, voucherAmount } = isValid;
+      this.isValidCode = isValidCode;
+
+      if(voucherAmount){
+        this.voucherAmount = voucherAmount;
+        this.setCalculatTotal();
+        // TODO: total calc wrong
+      }
+    });
+  }
+
+  setCalculatTotal() : number{
+    return this.total = this.amount - this.voucherAmount;
   }
 
   add(title: string, userComment: string): void {

@@ -70,6 +70,7 @@ import { VoucherAddComponent } from './components/admin/voucher/voucher-add.comp
 import { VoucherDetailComponent } from './components/admin/voucher/voucher-detail.component';
 
 import { VoucherService } from './components/admin/voucher/voucher.service';
+import { VoucherServiceMember } from './components/member/order/voucher.service';
 
 @NgModule({
   imports: [
@@ -135,7 +136,8 @@ import { VoucherService } from './components/admin/voucher/voucher.service';
     OrderServiceAdmin,
     TeamServicePublic,
     TestimonialServicePublic,
-    VoucherService
+    VoucherService,
+    VoucherServiceMember
   ],
   bootstrap: [ AppComponent ]
 })

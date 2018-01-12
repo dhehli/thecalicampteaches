@@ -34,10 +34,18 @@
             <hr>
             <h1>Plase add your voucher code</h1>
             <div class="form-group ">
-              <input type="text" (keyup)="isValidCode($event)" class="form-control is-valid{{error && error.code && 'is-invalid'}}" id="code" name="code">
-              <div class="valid-feedback">Voucher is valid</div>
+              <input type="text"
+                (keyup)="isValidVoucher($event)"
+                class="form-control {{showIsValidVoucher && (isValidCode && 'is-valid' || 'is-invalid')}}"
+                #code
+                id="code"
+                name="code"
+              >
               <div class="invalid-feedback">
-                {{error && error.code}}
+                Voucher is invalid
+              </div>
+              <div class="valid-feedback">
+                Voucher is valid
               </div>
             </div>
             <div class="form-group">
@@ -53,22 +61,22 @@
             <tr>
               <th>Product</th>
               <th>Quantity</th>
-              <th>Amount</th>
+              <th class="text-md-right">Amount</th>
             </tr>
             <tr class="table-light">
               <td>Surf Order</td>
               <td>1</td>
-              <td>49.00 $</td>
+              <td class="text-md-right">{{amount}} $</td>
             </tr>
-            <tr class="table-light">
+            <tr class="table-light" *ngIf="showIsValidVoucher && isValidCode">
               <td>Voucher</td>
               <td>1</td>
-              <td>-20.00 $</td>
+              <td class="text-md-right">{{voucherAmount}} $</td>
             </tr>
             <tr class="table-primary">
               <th>Total</th>
               <th></th>
-              <th>29.00 $</th>
+              <th class="text-md-right">{{total}} $</th>
             </tr>
           </table>
           <p>Please order with the create button on the left side</p>
