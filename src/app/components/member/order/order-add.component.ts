@@ -20,6 +20,11 @@ export class OrderAddMemberComponent implements OnInit {
   ngOnInit() {
   }
 
+  isValidCode(event) : void{
+    const code = event.target.value
+    console.log(code)
+  }
+
   add(title: string, userComment: string): void {
     this.isSubmitting = true;
     let formData = new FormData();

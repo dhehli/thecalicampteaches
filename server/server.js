@@ -19,6 +19,8 @@ import teamPublic from './models/teamPublic';
 import orderMember from './models/orderMember'
 import orderAdmin from './models/orderAdmin'
 import voucher from './models/voucher'
+import voucherMember from './models/voucherMember'
+import paypal from './models/paypal'
 
 const app = express();
 
@@ -66,8 +68,13 @@ app.use('/api', resetPassword);
 app.use('/api', teamPublic);
 app.use('/api', testimonialPublic);
 
+// TODO: Move this to Member
+app.use('/api', paypal)
+app.use('/api', voucherMember);
+
 //Member Routes
 app.use('/api', isMember, orderMember);
+
 
 //Admin Routes
 app.use('/api', isAdmin, orderAdmin);
