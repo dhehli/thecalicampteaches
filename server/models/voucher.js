@@ -44,8 +44,6 @@ router.post(`/${table}`, (req, res) => {
 
   const {description,fromDate,toDate,code,amount,onlineState} = req.body;
 
-  console.log(fromDate);
-
   const data = {
     description,
     fromDate: moment(fromDate).toISOString(),
@@ -80,9 +78,6 @@ router.put(`/${table}/:uid`, (req, res) => {
   }
 
   const {description,fromDate,toDate,code,amount,onlineState} = req.body;
-
-
-  console.log(fromDate);
 
   const data = {
     description,
