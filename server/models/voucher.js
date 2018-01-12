@@ -1,6 +1,7 @@
 import express from 'express';
 import config from 'config';
 import r from '../connection/connection'
+import moment from 'moment-es6';
 
 const router = express.Router();
 
@@ -43,10 +44,12 @@ router.post(`/${table}`, (req, res) => {
 
   const {description,fromDate,toDate,code,amount,onlineState} = req.body;
 
+  console.log(fromDate);
+
   const data = {
     description,
-    fromDate,
-    toDate,
+    fromDate: moment(fromDate).toISOString(),
+    toDate: moment(toDate).toISOString(),
     code,
     amount: Number(amount),
     onlineState
@@ -78,10 +81,13 @@ router.put(`/${table}/:uid`, (req, res) => {
 
   const {description,fromDate,toDate,code,amount,onlineState} = req.body;
 
+
+  console.log(fromDate);
+
   const data = {
     description,
-    fromDate,
-    toDate,
+    fromDate: moment(fromDate).toISOString(),
+    toDate: moment(toDate).toISOString(),
     code,
     amount: Number(amount),
     onlineState

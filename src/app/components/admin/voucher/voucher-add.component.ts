@@ -25,8 +25,8 @@ export class VoucherAddComponent implements OnInit {
 
     this.voucher = new Voucher(
       description,
-      new Date(fromDate),
-      new Date(toDate),
+      fromDate,
+      toDate,
       code,
       amount,
       onlineState

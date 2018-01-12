@@ -39,9 +39,6 @@ export class VoucherDetailComponent implements OnInit {
   update(): void {
     this.isSubmitting = true;
 
-    this.voucher.fromDate = this.setDate(this.voucher.fromDate)
-    this.voucher.toDate = this.setDate(this.voucher.toDate)
-
     this.voucherService.updateVoucher(this.voucher)
     .subscribe(voucher => {
       this.isSubmitting = false;
@@ -55,12 +52,8 @@ export class VoucherDetailComponent implements OnInit {
     });
   }
 
-  setDateAsString(date: Date): string{
+  setDateAsString(date: string): string{
     return moment(date).format('YYYY-MM-DD');
-  }
-
-  setDate(date: Date): string{
-    return new Date(date);
   }
 
 }
