@@ -6,5 +6,5 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './paypal-success.component.html'
 })
 export class PaypalSuccessComponent implements OnInit {
-  
+  ngOnInit() {}
 }

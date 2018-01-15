@@ -7,4 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class PaypalErrorComponent implements OnInit {
 
+  ngOnInit() {}
+
 }

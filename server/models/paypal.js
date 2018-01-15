@@ -1,26 +1,52 @@
 import express from 'express';
 import r from '../connection/connection';
-import paypal from 'paypal-rest-sdk'
+import paypal from 'paypal-rest-sdk';
+import config from 'config';
 
 const router = express.Router();
-
-
-//Check if User Exists
-function checkIfHashExists(hash){
-  return new Promise((resolve, reject) => {
-   r.table(tableForgotpassword)
-   .filter({ hash, state: 0 })
-   .run()
-   .then(response => !_.isEmpty(response) ? resolve(response) : reject(false))
-   .error(err => reject(false));
-  })
-}
+paypal.configure(config.get("paypal"));
 
 router.get('/paypal', (req, res) => {
 
-  console.log("paypal");
+  var create_payment_json = {
+    "intent": "sale",
+    "payer": {
+      "payment_method": "paypal"
+    },
+    "redirect_urls": {
+      "return_url": "http://localhost:4200/member/paypalsuccess",
+      "cancel_url": "http://localhost:4200/member/paypalerror"
+    },
+    "transactions": [
+      {
+        "item_list": {
+          "items": [
+            {
+              "name": "item",
+              "sku": "item",
+              "price": "1.00",
+              "currency": "USD",
+              "quantity": 1
+            }
+          ]
+        },
+        "amount": {
+          "currency": "USD",
+          "total": "1.00"
+        },
+        "description": "This is the payment description."
+      }
+    ]
+  };
+
+  paypal.payment.create(create_payment_json, function(error, payment) {
+    if (error) {
+      throw error;
+    } else {
+      console.log("Create Payment Response");
+      console.log(payment);
+    }
+  });
 })
-
-
 
 export default router;
