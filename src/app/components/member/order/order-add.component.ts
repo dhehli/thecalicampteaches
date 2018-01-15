@@ -44,7 +44,6 @@ export class OrderAddMemberComponent implements OnInit {
       if(voucherAmount){
         this.voucherAmount = voucherAmount;
         this.setCalculatTotal();
-        // TODO: total calc wrong
       }
     });
   }
