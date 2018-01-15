@@ -12,7 +12,7 @@
               Video uploaded <a [routerLink]="['../../order']">Back to List</a>
             </div>
           </div>
-          <form (ngSubmit)="add(title.value, userComment.value)" *ngIf="!success" enctype="multipart/form-data">
+          <form (ngSubmit)="add(title.value, userComment.value, code.value)" *ngIf="!success" enctype="multipart/form-data">
             <div class="form-group">
               <input type="text" class="form-control {{error && error.title && 'is-invalid'}}" #title placeholder="Title" required>
               <div class="invalid-feedback">

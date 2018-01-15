@@ -72,6 +72,9 @@ import { VoucherDetailComponent } from './components/admin/voucher/voucher-detai
 import { VoucherService } from './components/admin/voucher/voucher.service';
 import { VoucherServiceMember } from './components/member/order/voucher.service';
 
+import { PaypalErrorComponent }  from './components/member/order/paypal-error.component';
+import { PaypalSuccessComponent }  from './components/member/order/paypal-success.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -118,7 +121,9 @@ import { VoucherServiceMember } from './components/member/order/voucher.service'
     OrderDetailAdminComponent,
     VoucherComponent,
     VoucherAddComponent,
-    VoucherDetailComponent
+    VoucherDetailComponent,
+    PaypalErrorComponent,
+    PaypalSuccessComponent
   ],
   providers: [
     GuardAdmin,

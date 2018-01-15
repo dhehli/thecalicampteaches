@@ -25,7 +25,6 @@ router.post(`/${url}`, (req, res) => {
   .run()
   .then(response => {
     if(response && response.length){
-      console.log(response);
       return res.json({
         isValidCode: true,
         voucherAmount: response[0].amount

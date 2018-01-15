@@ -39,6 +39,9 @@ import { OrderMemberComponent }  from './components/member/order/order.component
 import { OrderDetailMemberComponent }  from './components/member/order/order-detail.component';
 import { OrderAddMemberComponent }  from './components/member/order/order-add.component';
 
+import { PaypalErrorComponent }  from './components/member/order/paypal-error.component';
+import { PaypalSuccessComponent }  from './components/member/order/paypal-success.component';
+
 const publicRoutes: Routes = [
   {
    path: '',
@@ -85,7 +88,9 @@ const memberRoutes: Routes = [
      { path: '', redirectTo: 'order', pathMatch: 'full' },
      { path: 'order', component: OrderMemberComponent },
      { path: 'order/add', component: OrderAddMemberComponent },
-     { path: 'order/:uid', component: OrderDetailMemberComponent }
+     { path: 'order/:uid', component: OrderDetailMemberComponent },
+     { path: 'paypalerror', component: PaypalErrorComponent },
+     { path: 'paypalsuccess', component: PaypalSuccessComponent }
    ]
   }
 ];

@@ -71,7 +71,7 @@ router.post(`/${table}`, upload.single('video'), (req, res) => {
    return res.json({errors: errors});
  }
 
- const {title, userComment} = req.body;
+ const {title, userComment, code} = req.body;
 
  cloudinaryUpload(req.file.path, 'video')
  .then(video => {
@@ -89,7 +89,7 @@ router.post(`/${table}`, upload.single('video'), (req, res) => {
    r.table(table)
    .insert(data)
    .run()
-   .then(response =>	{
+   .then(response => {
 
     findUserById(userId)
     .then(user => {

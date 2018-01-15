@@ -43,8 +43,11 @@ export class OrderAddMemberComponent implements OnInit {
 
       if(voucherAmount){
         this.voucherAmount = voucherAmount;
-        this.setCalculatTotal();
+      }else{
+        this.voucherAmount = 0;
       }
+      
+      this.setCalculatTotal();
     });
   }
 
@@ -52,7 +55,7 @@ export class OrderAddMemberComponent implements OnInit {
     return this.total = this.amount - this.voucherAmount;
   }
 
-  add(title: string, userComment: string): void {
+  add(title: string, userComment: string, code: string): void {
     this.isSubmitting = true;
     let formData = new FormData();
 
@@ -61,6 +64,7 @@ export class OrderAddMemberComponent implements OnInit {
     formData.append('video', video);
     formData.append('title', title);
     formData.append('userComment', userComment);
+    formData.append('code', code);
     formData.append('state', "new");
 
 
