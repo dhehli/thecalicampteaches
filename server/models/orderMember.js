@@ -5,6 +5,7 @@ import r from '../connection/connection'
 import fs from 'fs';
 import upload from '../helpers/multer'
 import cloudinaryUpload from '../helpers/cloudinary'
+import createPaypalPayment from '../helpers/paypal'
 let mailgun = require('mailgun-js')(config.get('mailgun'));
 
 const router = express.Router();
@@ -113,7 +114,22 @@ router.post(`/${table}`, upload.single('video'), (req, res) => {
         }
 
        fs.unlink(req.file.path, e => e ? console.error(e) : '')
-       return res.status(201).json(response)
+
+       
+
+       createPaypalPayment(49, 20)
+       .then(paypalSuccess => {
+         const { links } = paypalSuccess;
+         const redirectElement = links.filter(link => link.method === "REDIRECT");
+         const redirctURL = redirectElement[0].href;
+
+         response.redirectURL = redirctURL;
+
+         return res.status(201).json(response);
+       })
+       .catch(paypalError => {
+         return res.status(201).json(paypalError);
+       })
      })
     })
    })

@@ -28,5 +28,6 @@
     "client_id": "",
     "client_secret": ""
   },
-  "defaultMail": ""
+  "defaultMail": "",
+  "productPrice": 
 }
