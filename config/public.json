@@ -23,11 +23,6 @@
     "apiKey": "",
     "domain": ""
   },
-  "paypal": {
-    "mode": "",
-    "client_id": "",
-    "client_secret": ""
-  },
   "defaultMail": "",
-  "productPrice": 
+  "productPrice":
 }
