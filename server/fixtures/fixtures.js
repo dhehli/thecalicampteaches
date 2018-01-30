@@ -1,6 +1,6 @@
 import r from 'rethinkdb'
 import config from 'config';
-
+import bcrypt from 'bcryptjs';
 const dbCaliCamp = 'thecalicampteaches';
 
 function connection(){
@@ -14,6 +14,9 @@ function connection(){
     })
   })
 }
+
+bcrypt.compare("123", "$2a$10$ScxZ3NXwrQ8MxsUf7kV.meA8rxisaSpgmnkmY5sJPkq9BgnNUO/k2").then(res => console.log(res));
+
 
 function createAdminIfNotExists(dbName){
   return connection()

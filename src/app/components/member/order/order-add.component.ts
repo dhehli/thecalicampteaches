@@ -77,9 +77,7 @@ export class OrderAddMemberComponent implements OnInit {
         order.errors.forEach(e => this.error[e.param] = e.msg);
       }else{
         this.success = true;
-        window.location.href=order.redirectURL;
       }
     });
   }
-
 }
