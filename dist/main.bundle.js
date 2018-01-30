@@ -3498,7 +3498,7 @@ var LogoutService = (function () {
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return environment; });
 var environment = {
     production: true,
-    apiURL: "http://104.131.181.34"
+    apiURL: "https://coach.thecalicamp.com"
 };
 
 
